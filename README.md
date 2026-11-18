@@ -5,6 +5,7 @@
 
 - `site/` 배포되는 정적 페이지 (`index.html`, `data.json`)
 - `update.py` 공식 데이터 수집·비교·빌드. GitHub Actions가 3시간마다 실행하고 바뀐 것이 있으면 커밋·배포합니다.
+- 감시 대상: 공식 전시기업 시스템, 포럼·전문전 페이지 43개, 공식 부스 내비게이션
 - `i18n/ko.json` 검수 번역 사전. 여기에 없는 새 문자열은 기계번역(`i18n/mt_cache.json`)으로 임시 표시되고 `i18n/pending.json`에 모입니다.
 - `merge_ko.py`, `UPDATE.md` 새 문자열 번역 반영 절차
 

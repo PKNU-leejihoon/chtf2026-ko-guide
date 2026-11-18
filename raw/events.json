@@ -1,5 +1,5 @@
 {
- "at": "2026-11-18T08:04+09:00",
+ "at": "2026-11-18T12:38+09:00",
  "items": [
   {
    "url": "https://www.chtf.com/luntanjihuodong/jiangxiangpingxuan",
@@ -120,6 +120,167 @@
    "title": "先进制造可靠性技术大会暨中国企业可靠性工程师年会“百工汇”",
    "hash": "3fbd1142d952",
    "len": 2481
+  },
+  {
+   "url": "https://www.chtf.com/zhanlanyuzhanshi/guozhizhognqi",
+   "title": "国之重器、科技巨头产业链",
+   "kind": "show",
+   "hash": "7d6cd849bbbf",
+   "len": 1804
+  },
+  {
+   "url": "https://www.chtf.com/zhanlanyuzhanshi/guojichengguo",
+   "title": "国际科技成果、省市科技成果",
+   "kind": "show",
+   "hash": "12d67acbcc18",
+   "len": 1635
+  },
+  {
+   "url": "https://www.chtf.com/zhanlanyuzhanshi/keyanyuan",
+   "title": "科研院所高校、产教融合、全国重点实验室及生物技术",
+   "kind": "show",
+   "hash": "9117813dae7b",
+   "len": 1450
+  },
+  {
+   "url": "https://www.chtf.com/zhanlanyuzhanshi/shenzhenkejichengguo",
+   "title": "粤科技",
+   "kind": "show",
+   "hash": "1612827e87b5",
+   "len": 407
+  },
+  {
+   "url": "https://www.chtf.com/zhanlanyuzhanshi/rengongzhineng",
+   "title": "人工智能产业链",
+   "kind": "show",
+   "hash": "84209ed53376",
+   "len": 516
+  },
+  {
+   "url": "https://www.chtf.com/zhanlanyuzhanshi/jiqirenchanye",
+   "title": "机器人产业链",
+   "kind": "show",
+   "hash": "6b4683e9cfe5",
+   "len": 514
+  },
+  {
+   "url": "https://www.chtf.com/zhanlanyuzhanshi/bandaoti",
+   "title": "半导体与集成电路产业",
+   "kind": "show",
+   "hash": "5844fbf36415",
+   "len": 395
+  },
+  {
+   "url": "https://www.chtf.com/zhanlanyuzhanshi/zhinengzhizao",
+   "title": "AI 算力产业与数据中心",
+   "kind": "show",
+   "hash": "c758e17e792c",
+   "len": 400
+  },
+  {
+   "url": "https://www.chtf.com/zhanlanyuzhanshi/dianzixiaofei",
+   "title": "消费电子",
+   "kind": "show",
+   "hash": "b9368c5ef72b",
+   "len": 454
+  },
+  {
+   "url": "https://www.chtf.com/zhanlanyuzhanshi/dikongjingji",
+   "title": "低空经济与通用航空",
+   "kind": "show",
+   "hash": "8e249ba55c5c",
+   "len": 2672
+  },
+  {
+   "url": "https://www.chtf.com/zhanlanyuzhanshi/syht",
+   "title": "亚洲航天展",
+   "kind": "show",
+   "hash": "c212284bc6f6",
+   "len": 384
+  },
+  {
+   "url": "https://www.chtf.com/zhanlanyuzhanshi/kuajingdianshang",
+   "title": "亚洲氢能产业展",
+   "kind": "show",
+   "hash": "f2e3a308c680",
+   "len": 390
+  },
+  {
+   "url": "https://www.chtf.com/zhanlanyuzhanshi/shengwujishu",
+   "title": "生物技术与化学工程",
+   "kind": "show",
+   "hash": "3e0f4fe83bc4",
+   "len": 445
+  },
+  {
+   "url": "https://www.chtf.com/zhanlanyuzhanshi/gaoduanyiliao",
+   "title": "高端医疗器械",
+   "kind": "show",
+   "hash": "78ae36be9adf",
+   "len": 388
+  },
+  {
+   "url": "https://www.chtf.com/zhanlanyuzhanshi/chunengdianchi",
+   "title": "储能及电池工业",
+   "kind": "show",
+   "hash": "b56b9ff9f66c",
+   "len": 463
+  },
+  {
+   "url": "https://www.chtf.com/zhanlanyuzhanshi/guangchuchongdianzhuang",
+   "title": "亚洲光储充及充电桩产业",
+   "kind": "show",
+   "hash": "fc88443bd84a",
+   "len": 398
+  },
+  {
+   "url": "https://www.chtf.com/zhanlanyuzhanshi/shuzinengyuan",
+   "title": "智慧电力与数字能源",
+   "kind": "show",
+   "hash": "3d55e6164a57",
+   "len": 1163
+  },
+  {
+   "url": "https://www.chtf.com/zhanlanyuzhanshi/shuiwuyuhuanjing",
+   "title": "水务与环境、C³未来建筑大会",
+   "kind": "show",
+   "hash": "18b1b76c978c",
+   "len": 472
+  },
+  {
+   "url": "https://www.chtf.com/zhanlanyuzhanshi/shizhenggongcheng",
+   "title": "市政工程",
+   "kind": "show",
+   "hash": "cdfb7dd889aa",
+   "len": 453
+  },
+  {
+   "url": "https://www.chtf.com/zhanlanyuzhanshi/guidao",
+   "title": "轨道交通",
+   "kind": "show",
+   "hash": "85e735d32fa1",
+   "len": 420
+  },
+  {
+   "url": "https://www.chtf.com/zhanlanyuzhanshi/zhihuigangkou",
+   "title": "智慧港口",
+   "kind": "show",
+   "hash": "909eeb07b0b3",
+   "len": 415
+  },
+  {
+   "url": "https://www.chtf.com/zhanlanyuzhanshi/yazhouxincailiaochanyezhan",
+   "title": "亚洲新材料产业展",
+   "kind": "show",
+   "hash": "4446d71f9cac",
+   "len": 391
+  },
+  {
+   "url": "https://www.chtf.com/zhanlanyuzhanshi/alsh",
+   "title": "亚洲生命科学与健康产业展",
+   "kind": "show",
+   "hash": "1fc41b0d4da2",
+   "len": 396
   }
  ]
 }

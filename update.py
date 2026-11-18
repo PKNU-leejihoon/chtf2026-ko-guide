@@ -40,6 +40,19 @@ API_HEADERS = {
 PROJECT = "1150"
 EVENT_INDEX = "https://www.chtf.com/luntanjihuodong/gaoxinluntan"
 CJK = re.compile("[一-鿿]")
+NAV_API = "https://s.whte.cn/Cs/"
+NAV_PROJECT = 12  # 공식 부스 내비게이션의 2026년 프로젝트 (https://s.whte.cn/zwzl/chtf/?id=12)
+SHOW_PAGES = {
+    "guozhizhognqi": "国之重器、科技巨头产业链", "guojichengguo": "国际科技成果、省市科技成果",
+    "keyanyuan": "科研院所高校、产教融合、全国重点实验室及生物技术", "shenzhenkejichengguo": "粤科技",
+    "rengongzhineng": "人工智能产业链", "jiqirenchanye": "机器人产业链", "bandaoti": "半导体与集成电路产业",
+    "zhinengzhizao": "AI 算力产业与数据中心", "dianzixiaofei": "消费电子", "dikongjingji": "低空经济与通用航空",
+    "syht": "亚洲航天展", "kuajingdianshang": "亚洲氢能产业展", "shengwujishu": "生物技术与化学工程",
+    "gaoduanyiliao": "高端医疗器械", "chunengdianchi": "储能及电池工业",
+    "guangchuchongdianzhuang": "亚洲光储充及充电桩产业", "shuzinengyuan": "智慧电力与数字能源",
+    "shuiwuyuhuanjing": "水务与环境、C³未来建筑大会", "shizhenggongcheng": "市政工程", "guidao": "轨道交通",
+    "zhihuigangkou": "智慧港口", "yazhouxincailiaochanyezhan": "亚洲新材料产业展", "alsh": "亚洲生命科学与健康产业展",
+}
 
 
 def load(path, default):
@@ -132,6 +145,8 @@ def fetch_events():
         url = "https://www.chtf.com/" + href.lstrip("/").rstrip("/")
         found[url] = title.strip()
     items = [{"url": u, "title": t} for u, t in found.items() if not u.endswith("zhutiluxian")]
+    # 전문전 페이지. 대부분 포스터 이미지라서 이미지 주소까지 비교 대상에 들어간다
+    items += [{"url": f"https://www.chtf.com/zhanlanyuzhanshi/{k}", "title": v, "kind": "show"} for k, v in SHOW_PAGES.items()]
     for it in items:
         try:
             body = page_main_text(get_text(it["url"]))
@@ -140,6 +155,23 @@ def fetch_events():
         except Exception as e:  # noqa: BLE001
             it["hash"], it["err"] = None, str(e)
     return items
+
+
+def nav_get(path):
+    req = urllib.request.Request(NAV_API + path, headers={"User-Agent": "Mozilla/5.0"})
+    with urllib.request.urlopen(req, timeout=45) as r:
+        return json.loads(r.read().decode("utf-8"))
+
+
+def fetch_nav():
+    """공식 부스 내비게이션에 입력된 부스. 주최 측이 전시 직전까지 채워 넣는 데이터다."""
+    halls = []
+    for a in nav_get(f"plan/listAreaByProjectId?projectId={NAV_PROJECT}") or []:
+        rows = nav_get(f"plan/pagePlan?areaId={a['id']}").get("data") or []
+        named = [{"booth": (x.get("planBooth") or "").strip(), "name": (x.get("planName") or x.get("jcName") or "").strip(),
+                  "cid": str(x.get("catalogueId") or "")} for x in rows if x.get("planName") or x.get("jcName")]
+        halls.append({"id": a["id"], "name": a.get("areaName") or "", "total": len(rows), "named": named})
+    return halls
 
 
 # ---------------------------------------------------------------- 번역
@@ -214,6 +246,9 @@ def build(now_iso):
     changes = load(os.path.join(RAW, "changes.json"), [])
     events_state = load(os.path.join(RAW, "events.json"), {"items": []})
 
+    nav = load(os.path.join(RAW, "nav.json"), [])
+    nav_booth = {n["cid"]: n["booth"] for h in nav for n in h.get("named", []) if n.get("cid") and n.get("booth")}
+
     def tr(s):
         if not s or not CJK.search(s):
             return s
@@ -240,7 +275,7 @@ def build(now_iso):
             name = tr(cn)
             if CJK.search(cn) and cn not in ko:
                 pending.add(cn)
-        booth = clean_booth(r.get("boothNum"))
+        booth = clean_booth(r.get("boothNum")) or nav_booth.get(str(r["serveCatalogueId"]), "")
         hs = halls_of(booth)
         cs = [cat(t["tradeName"]) for t in (r.get("tradeClassList") or [])]
         plist = []
@@ -288,7 +323,9 @@ def build(now_iso):
         "krHalls": sorted(kr_halls),
         "noHall": nohall,
         "recent": recent,
-        "eventPages": [{"url": e["url"], "title": e["title"], "ko": tr(e["title"])} for e in events_state.get("items", [])],
+        "eventPages": [{"url": e["url"], "title": e["title"], "ko": tr(e["title"]), "kind": e.get("kind", "event")} for e in events_state.get("items", [])],
+        "nav": {"url": f"https://s.whte.cn/zwzl/chtf/?id={NAV_PROJECT}",
+                "halls": [{"name": h["name"], "total": h["total"], "named": len(h["named"])} for h in nav]},
         "x": X,
     }
     save(os.path.join(SITE, "data.json"), out, compact=True)
@@ -339,6 +376,17 @@ def collect():
         elif o and e.get("hash") and o.get("hash") and o["hash"] != e["hash"]:
             items.append({"type": "event_changed", "url": e["url"], "title_cn": e["title"]})
 
+    nav_old = {h["id"]: h for h in load(os.path.join(RAW, "nav.json"), [])}
+    try:
+        nav_new = fetch_nav()
+        for h in nav_new:
+            before = len((nav_old.get(h["id"]) or {}).get("named", []))
+            if len(h["named"]) > before:
+                items.append({"type": "nav", "hall": h["name"], "from": before, "to": len(h["named"])})
+        save(os.path.join(RAW, "nav.json"), nav_new)
+    except Exception as e:  # noqa: BLE001
+        print("부스 내비게이션 수집 실패:", e, file=sys.stderr)
+
     save(os.path.join(RAW, "exhibitors.json"), list(new.values()))
     save(os.path.join(RAW, "prod_by_cat.json"), prods)
     save(os.path.join(RAW, "events.json"), {"at": now, "items": ev_new})
@@ -370,7 +418,12 @@ def _safe(fn, *a):
 def main():
     os.makedirs(RAW, exist_ok=True)
     os.makedirs(SITE, exist_ok=True)
-    if "--build" in sys.argv:
+    if "--baseline" in sys.argv:  # 감시 대상을 늘릴 때 '새 항목' 알림 없이 기준선만 저장
+        now = dt.datetime.now(KST).isoformat(timespec="minutes")
+        save(os.path.join(RAW, "events.json"), {"at": now, "items": fetch_events()})
+        save(os.path.join(RAW, "nav.json"), fetch_nav())
+        items = []
+    elif "--build" in sys.argv:
         now = load(os.path.join(RAW, "meta.json"), {}).get("checkedAt") or dt.datetime.now(KST).isoformat(timespec="minutes")
         items = []
     else:
