@@ -15,7 +15,7 @@
   "isRecommend": 0,
   "collectionsCount": 1,
   "allCollectionsCount": 1,
-  "readNum": 902,
+  "readNum": 903,
   "productCount": 10,
   "boothNum": "14-H15",
   "sectionName": "总展区",
@@ -155,7 +155,7 @@
   "isRecommend": 0,
   "collectionsCount": 0,
   "allCollectionsCount": 0,
-  "readNum": 160,
+  "readNum": 162,
   "productCount": 2,
   "boothNum": "14-H5",
   "sectionName": "总展区",
@@ -645,7 +645,7 @@
   "isRecommend": 0,
   "collectionsCount": 0,
   "allCollectionsCount": 1,
-  "readNum": 112,
+  "readNum": 113,
   "productCount": 10,
   "boothNum": "14-H18",
   "sectionName": "总展区",
@@ -2920,7 +2920,7 @@
   "isRecommend": 0,
   "collectionsCount": 0,
   "allCollectionsCount": 0,
-  "readNum": 89,
+  "readNum": 90,
   "productCount": 3,
   "boothNum": "14-H7",
   "sectionName": "总展区",
@@ -7120,7 +7120,7 @@
   "isRecommend": 0,
   "collectionsCount": 0,
   "allCollectionsCount": 0,
-  "readNum": 82,
+  "readNum": 83,
   "productCount": 8,
   "boothNum": "12-E40-1",
   "sectionName": "总展区",
@@ -7295,7 +7295,7 @@
   "isRecommend": 0,
   "collectionsCount": 0,
   "allCollectionsCount": 0,
-  "readNum": 81,
+  "readNum": 82,
   "productCount": 3,
   "boothNum": "14-H12",
   "sectionName": "总展区",
@@ -7890,7 +7890,7 @@
   "isRecommend": 0,
   "collectionsCount": 0,
   "allCollectionsCount": 0,
-  "readNum": 79,
+  "readNum": 80,
   "productCount": 2,
   "boothNum": "12-E45",
   "sectionName": "总展区",
@@ -9675,7 +9675,7 @@
   "isRecommend": 0,
   "collectionsCount": 0,
   "allCollectionsCount": 0,
-  "readNum": 79,
+  "readNum": 81,
   "productCount": 5,
   "boothNum": "14-H104",
   "sectionName": "总展区",
@@ -9901,6 +9901,41 @@
     "tradeName": "AI 算力产业与数据中心",
     "tradeNameEn": "",
     "tradeId": 500
+   }
+  ]
+ },
+ {
+  "serveCatalogueId": 10999,
+  "taskDtlId": 1910695,
+  "companyName": "中科（深圳）无线半导体有限公司",
+  "companyNameEn": "CT-UNITE (SHENZHEN) WIRELESS SEMICONDUCTOR CO.,LTD",
+  "companyAbbr": "中科半导体 / CT-Unite",
+  "companyAddress": "深圳市罗湖区宝安北路3059号深业泰富科创大厦18层",
+  "companyAddressEn": "18th Floor, Shenye Taifu Kechuang Building, No.3059 Bao'an North Road, Luohu District, Shenzhen, Guangdong, P.R.China",
+  "tel": "18269102606",
+  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261106/1793949598705_1080*720.jpg",
+  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261106/1793948939675_971*729.png",
+  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261106/1793948939675_971*729.png",
+  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261106/1793949598705_1080*720.jpg",
+  "isRecommend": 0,
+  "collectionsCount": 0,
+  "allCollectionsCount": 0,
+  "readNum": 83,
+  "productCount": 10,
+  "boothNum": "15-D4-22",
+  "sectionName": "总展区",
+  "sectionNameEn": null,
+  "tradeId": null,
+  "tradeIdEn": null,
+  "tradeName": null,
+  "tradeNameEn": null,
+  "readNumInit": null,
+  "collectNumInit": null,
+  "tradeClassList": [
+   {
+    "tradeName": "人工智能与机器人",
+    "tradeNameEn": null,
+    "tradeId": 379
    }
   ]
  },
@@ -10360,6 +10395,41 @@
   ]
  },
  {
+  "serveCatalogueId": 10543,
+  "taskDtlId": 1884829,
+  "companyName": "北京四方继保自动化股份有限公司",
+  "companyNameEn": "BEIJING SIFANG AUTOMATION CO.,LTD",
+  "companyAbbr": "",
+  "companyAddress": "‌北京市海淀区上地信息产业基地四街9号‌",
+  "companyAddressEn": "No. 9, 4th Street, Shangdi Information Industry Base, Haidian District, Beijing",
+  "tel": "17314986224",
+  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261102/1793623145150_385*306.png",
+  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261102/1793623229830_644*266.png",
+  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261102/1793623229830_644*266.png",
+  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261102/1793623145150_385*306.png",
+  "isRecommend": 0,
+  "collectionsCount": 0,
+  "allCollectionsCount": 0,
+  "readNum": 77,
+  "productCount": 2,
+  "boothNum": "5-575",
+  "sectionName": "总展区",
+  "sectionNameEn": null,
+  "tradeId": null,
+  "tradeIdEn": null,
+  "tradeName": null,
+  "tradeNameEn": null,
+  "readNumInit": null,
+  "collectNumInit": null,
+  "tradeClassList": [
+   {
+    "tradeName": "新型电力、储能、充电",
+    "tradeNameEn": "",
+    "tradeId": 369
+   }
+  ]
+ },
+ {
   "serveCatalogueId": 10544,
   "taskDtlId": 1884823,
   "companyName": "杭州浪巅科技有限公司",
@@ -10706,41 +10776,6 @@
     "tradeName": "智慧农业与数字乡村",
     "tradeNameEn": null,
     "tradeId": 380
-   }
-  ]
- },
- {
-  "serveCatalogueId": 10999,
-  "taskDtlId": 1910695,
-  "companyName": "中科（深圳）无线半导体有限公司",
-  "companyNameEn": "CT-UNITE (SHENZHEN) WIRELESS SEMICONDUCTOR CO.,LTD",
-  "companyAbbr": "中科半导体 / CT-Unite",
-  "companyAddress": "深圳市罗湖区宝安北路3059号深业泰富科创大厦18层",
-  "companyAddressEn": "18th Floor, Shenye Taifu Kechuang Building, No.3059 Bao'an North Road, Luohu District, Shenzhen, Guangdong, P.R.China",
-  "tel": "18269102606",
-  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261106/1793949598705_1080*720.jpg",
-  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261106/1793948939675_971*729.png",
-  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261106/1793948939675_971*729.png",
-  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261106/1793949598705_1080*720.jpg",
-  "isRecommend": 0,
-  "collectionsCount": 0,
-  "allCollectionsCount": 0,
-  "readNum": 79,
-  "productCount": 10,
-  "boothNum": "15-D4-22",
-  "sectionName": "总展区",
-  "sectionNameEn": null,
-  "tradeId": null,
-  "tradeIdEn": null,
-  "tradeName": null,
-  "tradeNameEn": null,
-  "readNumInit": null,
-  "collectNumInit": null,
-  "tradeClassList": [
-   {
-    "tradeName": "人工智能与机器人",
-    "tradeNameEn": null,
-    "tradeId": 379
    }
   ]
  },
@@ -11546,41 +11581,6 @@
     "tradeName": "人工智能与机器人",
     "tradeNameEn": null,
     "tradeId": 379
-   }
-  ]
- },
- {
-  "serveCatalogueId": 10543,
-  "taskDtlId": 1884829,
-  "companyName": "北京四方继保自动化股份有限公司",
-  "companyNameEn": "BEIJING SIFANG AUTOMATION CO.,LTD",
-  "companyAbbr": "",
-  "companyAddress": "‌北京市海淀区上地信息产业基地四街9号‌",
-  "companyAddressEn": "No. 9, 4th Street, Shangdi Information Industry Base, Haidian District, Beijing",
-  "tel": "17314986224",
-  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261102/1793623145150_385*306.png",
-  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261102/1793623229830_644*266.png",
-  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261102/1793623229830_644*266.png",
-  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261102/1793623145150_385*306.png",
-  "isRecommend": 0,
-  "collectionsCount": 0,
-  "allCollectionsCount": 0,
-  "readNum": 76,
-  "productCount": 2,
-  "boothNum": "5-575",
-  "sectionName": "总展区",
-  "sectionNameEn": null,
-  "tradeId": null,
-  "tradeIdEn": null,
-  "tradeName": null,
-  "tradeNameEn": null,
-  "readNumInit": null,
-  "collectNumInit": null,
-  "tradeClassList": [
-   {
-    "tradeName": "新型电力、储能、充电",
-    "tradeNameEn": "",
-    "tradeId": 369
    }
   ]
  },
@@ -14260,7 +14260,7 @@
   "isRecommend": 0,
   "collectionsCount": 0,
   "allCollectionsCount": 0,
-  "readNum": 74,
+  "readNum": 75,
   "productCount": 4,
   "boothNum": "10-G71",
   "sectionName": "总展区",
@@ -19215,6 +19215,41 @@
   ]
  },
  {
+  "serveCatalogueId": 10752,
+  "taskDtlId": 1897808,
+  "companyName": "成都明途科技有限公司",
+  "companyNameEn": "Chengdu Minto Technology Co., Ltd.",
+  "companyAbbr": "明途科技",
+  "companyAddress": "成都市天府新区兴隆街道湖畔路西段99号B6栋2/19楼",
+  "companyAddressEn": "Floors 2 and 19, Building B6, No. 99, West Section of  Xinglong Sub-district, Tianfu New Area, Chengdu City. Hupan Road,",
+  "tel": "400-001-0224",
+  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261105/1793845533558_1080*725.jpg",
+  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261105/1793844579806_3284*710.png",
+  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261105/1793844579806_3284*710.png",
+  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261105/1793845533558_1080*725.jpg",
+  "isRecommend": 0,
+  "collectionsCount": 0,
+  "allCollectionsCount": 0,
+  "readNum": 77,
+  "productCount": 2,
+  "boothNum": "13-B17-8",
+  "sectionName": "总展区",
+  "sectionNameEn": null,
+  "tradeId": null,
+  "tradeIdEn": null,
+  "tradeName": null,
+  "tradeNameEn": null,
+  "readNumInit": null,
+  "collectNumInit": null,
+  "tradeClassList": [
+   {
+    "tradeName": "人工智能与机器人",
+    "tradeNameEn": null,
+    "tradeId": 379
+   }
+  ]
+ },
+ {
   "serveCatalogueId": 10773,
   "taskDtlId": 1897688,
   "companyName": "保定福赛福生物科技集团有限公司",
@@ -22225,41 +22260,6 @@
   ]
  },
  {
-  "serveCatalogueId": 10752,
-  "taskDtlId": 1897808,
-  "companyName": "成都明途科技有限公司",
-  "companyNameEn": "Chengdu Minto Technology Co., Ltd.",
-  "companyAbbr": "明途科技",
-  "companyAddress": "成都市天府新区兴隆街道湖畔路西段99号B6栋2/19楼",
-  "companyAddressEn": "Floors 2 and 19, Building B6, No. 99, West Section of  Xinglong Sub-district, Tianfu New Area, Chengdu City. Hupan Road,",
-  "tel": "400-001-0224",
-  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261105/1793845533558_1080*725.jpg",
-  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261105/1793844579806_3284*710.png",
-  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261105/1793844579806_3284*710.png",
-  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261105/1793845533558_1080*725.jpg",
-  "isRecommend": 0,
-  "collectionsCount": 0,
-  "allCollectionsCount": 0,
-  "readNum": 74,
-  "productCount": 2,
-  "boothNum": "13-B17-8",
-  "sectionName": "总展区",
-  "sectionNameEn": null,
-  "tradeId": null,
-  "tradeIdEn": null,
-  "tradeName": null,
-  "tradeNameEn": null,
-  "readNumInit": null,
-  "collectNumInit": null,
-  "tradeClassList": [
-   {
-    "tradeName": "人工智能与机器人",
-    "tradeNameEn": null,
-    "tradeId": 379
-   }
-  ]
- },
- {
   "serveCatalogueId": 10755,
   "taskDtlId": 1881961,
   "companyName": "鹤壁市诺信电子有限公司",
@@ -24273,6 +24273,41 @@
   "readNum": 75,
   "productCount": 3,
   "boothNum": "15-A8-20",
+  "sectionName": "总展区",
+  "sectionNameEn": null,
+  "tradeId": null,
+  "tradeIdEn": null,
+  "tradeName": null,
+  "tradeNameEn": null,
+  "readNumInit": null,
+  "collectNumInit": null,
+  "tradeClassList": [
+   {
+    "tradeName": "智能制造与自动化",
+    "tradeNameEn": "",
+    "tradeId": 370
+   }
+  ]
+ },
+ {
+  "serveCatalogueId": 10957,
+  "taskDtlId": 1882030,
+  "companyName": "贝克牌气泵设备(上海)有限公司",
+  "companyNameEn": "Becker Vacuum and Air Equipment (Shanghai) Co.,Ltd",
+  "companyAbbr": "",
+  "companyAddress": "中国上海市外高桥保税区华京路8号三联大厦737室",
+  "companyAddressEn": "Room737, No8HuajingRoad, Waigaoqiao FTZ, Pudong, Shanghai, China",
+  "tel": "59867988",
+  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261106/1793935637553_633*335.png",
+  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261106/1793934915830_2295*549.png",
+  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261106/1793934915830_2295*549.png",
+  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261106/1793935637553_633*335.png",
+  "isRecommend": 0,
+  "collectionsCount": 0,
+  "allCollectionsCount": 0,
+  "readNum": 66,
+  "productCount": 4,
+  "boothNum": "12-C59",
   "sectionName": "总展区",
   "sectionNameEn": null,
   "tradeId": null,
@@ -27996,41 +28031,6 @@
     "tradeName": "数字产业",
     "tradeNameEn": null,
     "tradeId": 384
-   }
-  ]
- },
- {
-  "serveCatalogueId": 10957,
-  "taskDtlId": 1882030,
-  "companyName": "贝克牌气泵设备(上海)有限公司",
-  "companyNameEn": "Becker Vacuum and Air Equipment (Shanghai) Co.,Ltd",
-  "companyAbbr": "",
-  "companyAddress": "中国上海市外高桥保税区华京路8号三联大厦737室",
-  "companyAddressEn": "Room737, No8HuajingRoad, Waigaoqiao FTZ, Pudong, Shanghai, China",
-  "tel": "59867988",
-  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261106/1793935637553_633*335.png",
-  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261106/1793934915830_2295*549.png",
-  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261106/1793934915830_2295*549.png",
-  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261106/1793935637553_633*335.png",
-  "isRecommend": 0,
-  "collectionsCount": 0,
-  "allCollectionsCount": 0,
-  "readNum": 64,
-  "productCount": 4,
-  "boothNum": "12-C59",
-  "sectionName": "总展区",
-  "sectionNameEn": null,
-  "tradeId": null,
-  "tradeIdEn": null,
-  "tradeName": null,
-  "tradeNameEn": null,
-  "readNumInit": null,
-  "collectNumInit": null,
-  "tradeClassList": [
-   {
-    "tradeName": "智能制造与自动化",
-    "tradeNameEn": "",
-    "tradeId": 370
    }
   ]
  },
@@ -39005,7 +39005,7 @@
   "isRecommend": 0,
   "collectionsCount": 0,
   "allCollectionsCount": 0,
-  "readNum": 57,
+  "readNum": 58,
   "productCount": 3,
   "boothNum": "13-B03-4",
   "sectionName": "总展区",
@@ -45375,7 +45375,7 @@
   "isRecommend": 0,
   "collectionsCount": 1,
   "allCollectionsCount": 0,
-  "readNum": 49,
+  "readNum": 51,
   "productCount": 2,
   "boothNum": "0",
   "sectionName": "总展区",
@@ -46690,6 +46690,41 @@
   ]
  },
  {
+  "serveCatalogueId": 11184,
+  "taskDtlId": 1880443,
+  "companyName": "厦门赛尔特电子股份有限公司",
+  "companyNameEn": "Xiamen SET Electronics Co.,Ltd.",
+  "companyAbbr": "赛尔特",
+  "companyAddress": "厦门火炬高新区（翔安）产业区翔安西路8067号,8001号",
+  "companyAddressEn": "No. 8067, 8001 West Xiang’an Road Torch High-Tech Industrial District Xiang’an 361101 Xiamen Fujian Province P. R. China",
+  "tel": "0592-5715838",
+  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261109/1794208004131_1079*565.jpg",
+  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261109/1794207998879_800*287.png",
+  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261109/1794207998879_800*287.png",
+  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261109/1794208004131_1079*565.jpg",
+  "isRecommend": 0,
+  "collectionsCount": 0,
+  "allCollectionsCount": 0,
+  "readNum": 53,
+  "productCount": 4,
+  "boothNum": "6-B52-4",
+  "sectionName": "总展区",
+  "sectionNameEn": null,
+  "tradeId": null,
+  "tradeIdEn": null,
+  "tradeName": null,
+  "tradeNameEn": null,
+  "readNumInit": null,
+  "collectNumInit": null,
+  "tradeClassList": [
+   {
+    "tradeName": "新型电力、储能、充电",
+    "tradeNameEn": "",
+    "tradeId": 369
+   }
+  ]
+ },
+ {
   "serveCatalogueId": 11215,
   "taskDtlId": 1911520,
   "companyName": "中山市天创祺盛科技有限公司",
@@ -47351,41 +47386,6 @@
     "tradeName": "智能制造与自动化",
     "tradeNameEn": "",
     "tradeId": 370
-   }
-  ]
- },
- {
-  "serveCatalogueId": 11184,
-  "taskDtlId": 1880443,
-  "companyName": "厦门赛尔特电子股份有限公司",
-  "companyNameEn": "Xiamen SET Electronics Co.,Ltd.",
-  "companyAbbr": "赛尔特",
-  "companyAddress": "厦门火炬高新区（翔安）产业区翔安西路8067号,8001号",
-  "companyAddressEn": "No. 8067, 8001 West Xiang’an Road Torch High-Tech Industrial District Xiang’an 361101 Xiamen Fujian Province P. R. China",
-  "tel": "0592-5715838",
-  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261109/1794208004131_1079*565.jpg",
-  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261109/1794207998879_800*287.png",
-  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261109/1794207998879_800*287.png",
-  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261109/1794208004131_1079*565.jpg",
-  "isRecommend": 0,
-  "collectionsCount": 0,
-  "allCollectionsCount": 0,
-  "readNum": 52,
-  "productCount": 4,
-  "boothNum": "6-B52-4",
-  "sectionName": "总展区",
-  "sectionNameEn": null,
-  "tradeId": null,
-  "tradeIdEn": null,
-  "tradeName": null,
-  "tradeNameEn": null,
-  "readNumInit": null,
-  "collectNumInit": null,
-  "tradeClassList": [
-   {
-    "tradeName": "新型电力、储能、充电",
-    "tradeNameEn": "",
-    "tradeId": 369
    }
   ]
  },
@@ -50330,6 +50330,41 @@
   ]
  },
  {
+  "serveCatalogueId": 11404,
+  "taskDtlId": 1954327,
+  "companyName": "深圳市宇智动力技术研究有限公司",
+  "companyNameEn": "UCHI DYNAMICS",
+  "companyAbbr": "宇智动力",
+  "companyAddress": "深圳市福田区车公庙工业园213栋4A",
+  "companyAddressEn": "4A, 213 Building, Che Gong Miao Industrial Park, Shenzhen, China",
+  "tel": "13902904568",
+  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20251031/1761924074315_1301*975.jpg",
+  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20251031/1761924092624_1923*1442.jpg",
+  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20251031/1761924092624_1923*1442.jpg",
+  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20251031/1761924074315_1301*975.jpg",
+  "isRecommend": 0,
+  "collectionsCount": 0,
+  "allCollectionsCount": 0,
+  "readNum": 44,
+  "productCount": 2,
+  "boothNum": "15-B7-9",
+  "sectionName": "总展区",
+  "sectionNameEn": null,
+  "tradeId": null,
+  "tradeIdEn": null,
+  "tradeName": null,
+  "tradeNameEn": null,
+  "readNumInit": null,
+  "collectNumInit": null,
+  "tradeClassList": [
+   {
+    "tradeName": "人工智能与机器人",
+    "tradeNameEn": null,
+    "tradeId": 379
+   }
+  ]
+ },
+ {
   "serveCatalogueId": 11408,
   "taskDtlId": 1954414,
   "companyName": "深圳市夜行人科技有限公司",
@@ -50641,41 +50676,6 @@
     "tradeName": "新材料",
     "tradeNameEn": null,
     "tradeId": 375
-   }
-  ]
- },
- {
-  "serveCatalogueId": 11404,
-  "taskDtlId": 1954327,
-  "companyName": "深圳市宇智动力技术研究有限公司",
-  "companyNameEn": "UCHI DYNAMICS",
-  "companyAbbr": "宇智动力",
-  "companyAddress": "深圳市福田区车公庙工业园213栋4A",
-  "companyAddressEn": "4A, 213 Building, Che Gong Miao Industrial Park, Shenzhen, China",
-  "tel": "13902904568",
-  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20251031/1761924074315_1301*975.jpg",
-  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20251031/1761924092624_1923*1442.jpg",
-  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20251031/1761924092624_1923*1442.jpg",
-  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20251031/1761924074315_1301*975.jpg",
-  "isRecommend": 0,
-  "collectionsCount": 0,
-  "allCollectionsCount": 0,
-  "readNum": 43,
-  "productCount": 2,
-  "boothNum": "15-B7-9",
-  "sectionName": "总展区",
-  "sectionNameEn": null,
-  "tradeId": null,
-  "tradeIdEn": null,
-  "tradeName": null,
-  "tradeNameEn": null,
-  "readNumInit": null,
-  "collectNumInit": null,
-  "tradeClassList": [
-   {
-    "tradeName": "人工智能与机器人",
-    "tradeNameEn": null,
-    "tradeId": 379
    }
   ]
  },
@@ -58310,6 +58310,41 @@
   ]
  },
  {
+  "serveCatalogueId": 11043,
+  "taskDtlId": 1910611,
+  "companyName": "珠海智信佰达科技有限公司",
+  "companyNameEn": "Zhu hai BestData Technology Co., Ltd",
+  "companyAbbr": "智信佰达",
+  "companyAddress": "珠海市高新区唐家湾镇软件园路1号生产加工中心3#四层2单元",
+  "companyAddressEn": "Unit 2, 4th Floor, Building 3, Production & Processing Center, No.1 Software Park Road, Tangjiawan Town, High‑Tech Zone, Zhuhai City, Guangdong Province, P.R.China",
+  "tel": "15916273887",
+  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261106/1793953421916_324*243.png",
+  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261106/1793953418386_188*204.png",
+  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261106/1793953418386_188*204.png",
+  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261106/1793953421916_324*243.png",
+  "isRecommend": 0,
+  "collectionsCount": 0,
+  "allCollectionsCount": 0,
+  "readNum": 24,
+  "productCount": 0,
+  "boothNum": "11-203B",
+  "sectionName": "总展区",
+  "sectionNameEn": null,
+  "tradeId": null,
+  "tradeIdEn": null,
+  "tradeName": null,
+  "tradeNameEn": null,
+  "readNumInit": null,
+  "collectNumInit": null,
+  "tradeClassList": [
+   {
+    "tradeName": "水务与环境",
+    "tradeNameEn": "",
+    "tradeId": 385
+   }
+  ]
+ },
+ {
   "serveCatalogueId": 11397,
   "taskDtlId": 1954676,
   "companyName": "先进能源科学与技术广东省实验室（东江实验室）",
@@ -58796,41 +58831,6 @@
     "tradeName": "人工智能与机器人",
     "tradeNameEn": null,
     "tradeId": 379
-   }
-  ]
- },
- {
-  "serveCatalogueId": 11043,
-  "taskDtlId": 1910611,
-  "companyName": "珠海智信佰达科技有限公司",
-  "companyNameEn": "Zhu hai BestData Technology Co., Ltd",
-  "companyAbbr": "智信佰达",
-  "companyAddress": "珠海市高新区唐家湾镇软件园路1号生产加工中心3#四层2单元",
-  "companyAddressEn": "Unit 2, 4th Floor, Building 3, Production & Processing Center, No.1 Software Park Road, Tangjiawan Town, High‑Tech Zone, Zhuhai City, Guangdong Province, P.R.China",
-  "tel": "15916273887",
-  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261106/1793953421916_324*243.png",
-  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261106/1793953418386_188*204.png",
-  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261106/1793953418386_188*204.png",
-  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261106/1793953421916_324*243.png",
-  "isRecommend": 0,
-  "collectionsCount": 0,
-  "allCollectionsCount": 0,
-  "readNum": 23,
-  "productCount": 0,
-  "boothNum": "11-203B",
-  "sectionName": "总展区",
-  "sectionNameEn": null,
-  "tradeId": null,
-  "tradeIdEn": null,
-  "tradeName": null,
-  "tradeNameEn": null,
-  "readNumInit": null,
-  "collectNumInit": null,
-  "tradeClassList": [
-   {
-    "tradeName": "水务与环境",
-    "tradeNameEn": "",
-    "tradeId": 385
    }
   ]
  },
@@ -59430,6 +59430,41 @@
   ]
  },
  {
+  "serveCatalogueId": 10982,
+  "taskDtlId": 1898433,
+  "companyName": "安徽实日驱动科技有限公司",
+  "companyNameEn": "Anhui Shiri Drive Technology Co., Ltd.",
+  "companyAbbr": "实日驱动",
+  "companyAddress": "安徽省安庆市桐城市经济技术开发区经五路9号双创产业园E区8栋",
+  "companyAddressEn": "Building 8, Zone E, Shuangchuang Industrial Park,No.9 Jingwu Rd, Economic & Technological Development Zone, Tongcheng City, Anqing City,Anhui  Province,P.R China.",
+  "tel": "0556-6566808",
+  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261106/1793945523449_1024*915.png",
+  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261106/1793945370830_1080*424.jpg",
+  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261106/1793945370830_1080*424.jpg",
+  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261106/1793945523449_1024*915.png",
+  "isRecommend": 0,
+  "collectionsCount": 0,
+  "allCollectionsCount": 0,
+  "readNum": 22,
+  "productCount": 2,
+  "boothNum": "12-D50",
+  "sectionName": "总展区",
+  "sectionNameEn": null,
+  "tradeId": null,
+  "tradeIdEn": null,
+  "tradeName": null,
+  "tradeNameEn": null,
+  "readNumInit": null,
+  "collectNumInit": null,
+  "tradeClassList": [
+   {
+    "tradeName": "人工智能与机器人",
+    "tradeNameEn": null,
+    "tradeId": 379
+   }
+  ]
+ },
+ {
   "serveCatalogueId": 11156,
   "taskDtlId": 1881682,
   "companyName": "深圳鹏星智联科技有限公司",
@@ -60025,41 +60060,6 @@
   ]
  },
  {
-  "serveCatalogueId": 10982,
-  "taskDtlId": 1898433,
-  "companyName": "安徽实日驱动科技有限公司",
-  "companyNameEn": "Anhui Shiri Drive Technology Co., Ltd.",
-  "companyAbbr": "实日驱动",
-  "companyAddress": "安徽省安庆市桐城市经济技术开发区经五路9号双创产业园E区8栋",
-  "companyAddressEn": "Building 8, Zone E, Shuangchuang Industrial Park,No.9 Jingwu Rd, Economic & Technological Development Zone, Tongcheng City, Anqing City,Anhui  Province,P.R China.",
-  "tel": "0556-6566808",
-  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261106/1793945523449_1024*915.png",
-  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261106/1793945370830_1080*424.jpg",
-  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261106/1793945370830_1080*424.jpg",
-  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261106/1793945523449_1024*915.png",
-  "isRecommend": 0,
-  "collectionsCount": 0,
-  "allCollectionsCount": 0,
-  "readNum": 21,
-  "productCount": 2,
-  "boothNum": "12-D50",
-  "sectionName": "总展区",
-  "sectionNameEn": null,
-  "tradeId": null,
-  "tradeIdEn": null,
-  "tradeName": null,
-  "tradeNameEn": null,
-  "readNumInit": null,
-  "collectNumInit": null,
-  "tradeClassList": [
-   {
-    "tradeName": "人工智能与机器人",
-    "tradeNameEn": null,
-    "tradeId": 379
-   }
-  ]
- },
- {
   "serveCatalogueId": 11179,
   "taskDtlId": 1891890,
   "companyName": "深圳市吉斯凯达智慧科技有限公司",
@@ -60323,6 +60323,41 @@
   "readNum": 23,
   "productCount": 2,
   "boothNum": "15-C5-37",
+  "sectionName": "总展区",
+  "sectionNameEn": null,
+  "tradeId": null,
+  "tradeIdEn": null,
+  "tradeName": null,
+  "tradeNameEn": null,
+  "readNumInit": null,
+  "collectNumInit": null,
+  "tradeClassList": [
+   {
+    "tradeName": "人工智能与机器人",
+    "tradeNameEn": null,
+    "tradeId": 379
+   }
+  ]
+ },
+ {
+  "serveCatalogueId": 11720,
+  "taskDtlId": 1911690,
+  "companyName": "中科智城（广州）信息科技有限公司",
+  "companyNameEn": "CAS SMART CITY",
+  "companyAbbr": "",
+  "companyAddress": "广州市南沙区横沥镇海望路 7 号越秀国际金融中心 B 塔9层",
+  "companyAddressEn": "9F,Tower B, Yuexiu International Finance Center, No. 7 Haiwang Road, Hengli Town, Nansha District, Guangzhou, Guangdong, P.R.China",
+  "tel": "13829783606",
+  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261113/1794537941370_1182*540.png",
+  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261113/1794537352636_1002*411.jpg",
+  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261113/1794537352636_1002*411.jpg",
+  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261113/1794537941370_1182*540.png",
+  "isRecommend": 0,
+  "collectionsCount": 0,
+  "allCollectionsCount": 0,
+  "readNum": 23,
+  "productCount": 1,
+  "boothNum": "15-A6-21",
   "sectionName": "总展区",
   "sectionNameEn": null,
   "tradeId": null,
@@ -60655,6 +60690,41 @@
   ]
  },
  {
+  "serveCatalogueId": 9725,
+  "taskDtlId": 1882159,
+  "companyName": "浙江华感科技有限公司",
+  "companyNameEn": "Zhejiang Pixfra Technology Co., Ltd.",
+  "companyAbbr": "华感科技",
+  "companyAddress": "浙江省杭州市萧山区建设二路858号A幢",
+  "companyAddressEn": "Building A, NO.858 Jianshe 2nd Road, Xiaoshan District, Hangzhou, Zhejiang",
+  "tel": "400-995-3595",
+  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261015/1792026935800_1080*349.jpg",
+  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261015/1792026901415_2142*999.png",
+  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261015/1792026901415_2142*999.png",
+  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261015/1792026935800_1080*349.jpg",
+  "isRecommend": 0,
+  "collectionsCount": 0,
+  "allCollectionsCount": 0,
+  "readNum": 23,
+  "productCount": 3,
+  "boothNum": "12-D26",
+  "sectionName": "总展区",
+  "sectionNameEn": null,
+  "tradeId": null,
+  "tradeIdEn": null,
+  "tradeName": null,
+  "tradeNameEn": null,
+  "readNumInit": null,
+  "collectNumInit": null,
+  "tradeClassList": [
+   {
+    "tradeName": "低空经济与商业航天",
+    "tradeNameEn": "",
+    "tradeId": 373
+   }
+  ]
+ },
+ {
   "serveCatalogueId": 10243,
   "taskDtlId": 1880812,
   "companyName": "上海莱茗电子科技有限公司",
@@ -60900,6 +60970,41 @@
   ]
  },
  {
+  "serveCatalogueId": 11405,
+  "taskDtlId": 1911226,
+  "companyName": "深圳市芯宇技术有限公司",
+  "companyNameEn": "Shenzhen Xinyu Technology Co., Ltd.",
+  "companyAbbr": "",
+  "companyAddress": "深圳市盐田区海山街道鹏湾社区深盐路2015号盐田综合保税区沙头角片区工业区24栋301",
+  "companyAddressEn": "Room 301, Building 24, Industrial Zone of Shatoujiao Area, Yantian Comprehensive Bonded Zone, No. 2015 Shenyan Road, Pengwan Community, Haishan Subdistrict, Yantian District, Shenzhen, Guangdong Province, China",
+  "tel": "13377678053",
+  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261111/1794361765125_1080*720.jpg",
+  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261111/1794361539582_971*359.png",
+  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261111/1794361539582_971*359.png",
+  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261111/1794361765125_1080*720.jpg",
+  "isRecommend": 0,
+  "collectionsCount": 0,
+  "allCollectionsCount": 0,
+  "readNum": 20,
+  "productCount": 5,
+  "boothNum": "15-D6-18",
+  "sectionName": "总展区",
+  "sectionNameEn": null,
+  "tradeId": null,
+  "tradeIdEn": null,
+  "tradeName": null,
+  "tradeNameEn": null,
+  "readNumInit": null,
+  "collectNumInit": null,
+  "tradeClassList": [
+   {
+    "tradeName": "半导体与集成电路",
+    "tradeNameEn": "",
+    "tradeId": 374
+   }
+  ]
+ },
+ {
   "serveCatalogueId": 11416,
   "taskDtlId": 1954624,
   "companyName": "惠州市沃瑞科技有限公司",
@@ -61020,7 +61125,7 @@
   "isRecommend": 0,
   "collectionsCount": 0,
   "allCollectionsCount": 0,
-  "readNum": 20,
+  "readNum": 21,
   "productCount": 3,
   "boothNum": "12-B29",
   "sectionName": "总展区",
@@ -61425,41 +61530,6 @@
   ]
  },
  {
-  "serveCatalogueId": 11720,
-  "taskDtlId": 1911690,
-  "companyName": "中科智城（广州）信息科技有限公司",
-  "companyNameEn": "CAS SMART CITY",
-  "companyAbbr": "",
-  "companyAddress": "广州市南沙区横沥镇海望路 7 号越秀国际金融中心 B 塔9层",
-  "companyAddressEn": "9F,Tower B, Yuexiu International Finance Center, No. 7 Haiwang Road, Hengli Town, Nansha District, Guangzhou, Guangdong, P.R.China",
-  "tel": "13829783606",
-  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261113/1794537941370_1182*540.png",
-  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261113/1794537352636_1002*411.jpg",
-  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261113/1794537352636_1002*411.jpg",
-  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261113/1794537941370_1182*540.png",
-  "isRecommend": 0,
-  "collectionsCount": 0,
-  "allCollectionsCount": 0,
-  "readNum": 22,
-  "productCount": 1,
-  "boothNum": "15-A6-21",
-  "sectionName": "总展区",
-  "sectionNameEn": null,
-  "tradeId": null,
-  "tradeIdEn": null,
-  "tradeName": null,
-  "tradeNameEn": null,
-  "readNumInit": null,
-  "collectNumInit": null,
-  "tradeClassList": [
-   {
-    "tradeName": "人工智能与机器人",
-    "tradeNameEn": null,
-    "tradeId": 379
-   }
-  ]
- },
- {
   "serveCatalogueId": 11734,
   "taskDtlId": 1910758,
   "companyName": "芜湖三联锻造股份有限公司",
@@ -61561,41 +61631,6 @@
     "tradeName": "智慧农业与数字乡村",
     "tradeNameEn": null,
     "tradeId": 380
-   }
-  ]
- },
- {
-  "serveCatalogueId": 9725,
-  "taskDtlId": 1882159,
-  "companyName": "浙江华感科技有限公司",
-  "companyNameEn": "Zhejiang Pixfra Technology Co., Ltd.",
-  "companyAbbr": "华感科技",
-  "companyAddress": "浙江省杭州市萧山区建设二路858号A幢",
-  "companyAddressEn": "Building A, NO.858 Jianshe 2nd Road, Xiaoshan District, Hangzhou, Zhejiang",
-  "tel": "400-995-3595",
-  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261015/1792026935800_1080*349.jpg",
-  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261015/1792026901415_2142*999.png",
-  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261015/1792026901415_2142*999.png",
-  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261015/1792026935800_1080*349.jpg",
-  "isRecommend": 0,
-  "collectionsCount": 0,
-  "allCollectionsCount": 0,
-  "readNum": 22,
-  "productCount": 3,
-  "boothNum": "12-D26",
-  "sectionName": "总展区",
-  "sectionNameEn": null,
-  "tradeId": null,
-  "tradeIdEn": null,
-  "tradeName": null,
-  "tradeNameEn": null,
-  "readNumInit": null,
-  "collectNumInit": null,
-  "tradeClassList": [
-   {
-    "tradeName": "低空经济与商业航天",
-    "tradeNameEn": "",
-    "tradeId": 373
    }
   ]
  },
@@ -61806,41 +61841,6 @@
     "tradeName": "医药/生物技术与实验室",
     "tradeNameEn": "",
     "tradeId": 372
-   }
-  ]
- },
- {
-  "serveCatalogueId": 11405,
-  "taskDtlId": 1911226,
-  "companyName": "深圳市芯宇技术有限公司",
-  "companyNameEn": "Shenzhen Xinyu Technology Co., Ltd.",
-  "companyAbbr": "",
-  "companyAddress": "深圳市盐田区海山街道鹏湾社区深盐路2015号盐田综合保税区沙头角片区工业区24栋301",
-  "companyAddressEn": "Room 301, Building 24, Industrial Zone of Shatoujiao Area, Yantian Comprehensive Bonded Zone, No. 2015 Shenyan Road, Pengwan Community, Haishan Subdistrict, Yantian District, Shenzhen, Guangdong Province, China",
-  "tel": "13377678053",
-  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261111/1794361765125_1080*720.jpg",
-  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261111/1794361539582_971*359.png",
-  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261111/1794361539582_971*359.png",
-  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261111/1794361765125_1080*720.jpg",
-  "isRecommend": 0,
-  "collectionsCount": 0,
-  "allCollectionsCount": 0,
-  "readNum": 19,
-  "productCount": 5,
-  "boothNum": "15-D6-18",
-  "sectionName": "总展区",
-  "sectionNameEn": null,
-  "tradeId": null,
-  "tradeIdEn": null,
-  "tradeName": null,
-  "tradeNameEn": null,
-  "readNumInit": null,
-  "collectNumInit": null,
-  "tradeClassList": [
-   {
-    "tradeName": "半导体与集成电路",
-    "tradeNameEn": "",
-    "tradeId": 374
    }
   ]
  },
