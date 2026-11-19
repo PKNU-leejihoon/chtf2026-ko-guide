@@ -252,5 +252,171 @@
     "to": "9-A012"
    }
   ]
+ },
+ {
+  "at": "2026-11-19T20:37+09:00",
+  "items": [
+   {
+    "type": "booth",
+    "id": 10704,
+    "from": "15-D7",
+    "to": "9-D7"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/jiangxiangpingxuan",
+    "title_cn": "第二十八届中国国际高新技术成果交易会奖项申报须知"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/quanqiu2",
+    "title_cn": "全球采购对接大会"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/gaoxinluntan",
+    "title_cn": "中国高新技术论坛"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/quanqiutourongzi2",
+    "title_cn": "全球投融资供需对接会"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/xincanpingxinjishuxinchengguo",
+    "title_cn": "第二十八届高交会新产品、新技术、新成果发布会"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/zhaongguogaoxinjishuluntan",
+    "title_cn": "专业技术讲座"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/luyanhuodong",
+    "title_cn": "项目路演活动"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/zhcsluntan",
+    "title_cn": "大模型与智能体的安全、伦理与治理"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/dikongluntan",
+    "title_cn": "第二十八届中国深圳高交会“大湾区低空论坛”"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/cxswy",
+    "title_cn": "大模型与智能体行业前沿应用论坛"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/touzidahui",
+    "title_cn": "2026深圳科技投资大会"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/shangwucan",
+    "title_cn": "2026深圳科技投资大会VIP午宴"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/networkSecurity",
+    "title_cn": "物理AI与机器人品类创新大会"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/sfsxlyq",
+    "title_cn": "首发首秀路演区"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/sanya_meeting",
+    "title_cn": "三亚崖州湾科技城高新区高新技术产业合作发展对接会(深圳)"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/hongshulinting",
+    "title_cn": "综合大会日程安排"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/shijierengongzhinenyingyongdahui",
+    "title_cn": "世界人工智能应用大会"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/gaojiaohuikekaoxingjishudahui",
+    "title_cn": "第28届高交会可靠性技术大会"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/_5E_duibiaochuangyiliu",
+    "title_cn": "5E双标创一流”经验交流大会"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/wunichuli",
+    "title_cn": "第三届污泥处理处置产业链座谈会"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/dianlishebeixiehuidaibiaohui",
+    "title_cn": "中国电力设备管理协会第二届第五次会员代表大会"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/faxianxinfanshiyuweilaichanyechuangxin",
+    "title_cn": "科学智能：发现新范式与未来产业创新 论坛议程"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/shengangjinrongqianyuehuodong",
+    "title_cn": "深港科技金融论坛暨重大项目签约活动议程"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/guangdongshengshizhengxingyekejichuangxindahui",
+    "title_cn": "第五届广东省市政行业科技创新大会"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/hainantouzihezuofangan",
+    "title_cn": "海南自由贸易港（深圳）投资合作交流会方案"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/gaojiyanxiuban",
+    "title_cn": "2026年国家技术转移中部中心高级技术经理人研修班"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/xinnengyuanchuangxin",
+    "title_cn": "第二届新能源工匠创新技术交流会-初步会议日程"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/xinxingdianlijishujiaoliuhui",
+    "title_cn": "数智赋能 节能降碳——新型电力系统下煤电机组灵活性能力提升技术交流会”-议程"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/smu_sliyazhoushangye",
+    "title_cn": "以尽责治理领导力，驱动长期价值增长"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/baigonghui",
+    "title_cn": "先进制造可靠性技术大会暨中国企业可靠性工程师年会“百工汇”"
+   },
+   {
+    "type": "event_added",
+    "url": "https://www.chtf.com/luntanjihuodong/dawanquqingnenguimohuayingyongchuangxinfenghui_yaoqinghan",
+    "title_cn": "氢能规模化应用创新峰会-邀请函"
+   }
+  ]
  }
 ]
