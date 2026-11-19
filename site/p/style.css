@@ -1,0 +1,13 @@
+:root{--bg:#f3f5f8;--s:#fff;--i:#122033;--m:#5a6779;--l:#d8dee7;--a:#0f6fd6;--c:#e9eef5;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#0d141d;--s:#151f2b;--i:#e6edf5;--m:#9aa8b8;--l:#2a3848;--a:#4c9cf0;--c:#1f2b39;color-scheme:dark}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--i);font:16px/1.75 "IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif}
+a{color:var(--a)}.w{max-width:860px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right))}
+header{background:var(--s);border-bottom:1px solid var(--l)}header .w{max-width:1100px;display:flex;gap:6px 18px;align-items:center;flex-wrap:wrap;padding-block:12px}
+header b{font-size:1.05rem}header a{text-decoration:none;color:var(--m);font-size:.9rem;font-weight:600}header a.h{color:var(--i)}
+main{padding-block:26px 56px}h1{font-size:1.65rem;line-height:1.35;margin:4px 0 8px;text-wrap:balance}h2{font-size:1.14rem;margin:30px 0 8px;line-height:1.4}
+.meta{font-size:.82rem;color:var(--m);display:flex;gap:6px 14px;flex-wrap:wrap;margin-bottom:22px}p{margin:10px 0}ul{padding-left:1.2em}figure{margin:16px 0}img{max-width:100%;height:auto;display:block;border-radius:6px}.tn{background:var(--c);border:1px solid var(--l);border-radius:8px;padding:10px 12px;font-size:.9rem}
+.tw{overflow-x:auto;margin:14px 0;background:var(--s);border:1px solid var(--l);border-radius:8px}table{border-collapse:collapse;width:100%;font-size:.88rem;line-height:1.5}td{border-bottom:1px solid var(--l);padding:8px 10px;vertical-align:top;min-width:72px}tr:first-child td{font-weight:700;background:var(--c)}
+.card{display:grid;grid-template-columns:120px minmax(0,1fr);gap:12px;background:var(--s);border:1px solid var(--l);border-radius:8px;padding:10px;margin:8px 0;text-decoration:none;color:inherit}.card span{display:flex;flex-direction:column;gap:2px;min-width:0}.card small{color:var(--m)}.card em{font-style:normal;font-size:.86rem;color:var(--m)}.card b{line-height:1.4}
+.grp{margin-top:26px}.list{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:6px 18px;list-style:none;padding:0}
+.sc td{min-width:0}.tag{display:inline-block;background:var(--c);border-radius:4px;padding:0 6px;font-size:.76rem;color:var(--m)}
+footer{border-top:1px solid var(--l);color:var(--m);font-size:.8rem}footer .w{padding-block:16px 28px}

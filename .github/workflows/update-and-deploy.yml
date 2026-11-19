@@ -32,16 +32,26 @@ jobs:
         continue-on-error: true
         run: python3 -I update.py
 
+      - name: 공식 안내 한글판 갱신 (push 때는 건너뜀)
+        if: github.event_name != 'push'
+        id: mirror
+        continue-on-error: true
+        run: |
+          python3 -m pip install --quiet beautifulsoup4
+          python3 -I mirror/extract.py
+          python3 -I mirror/build.py
+
       - name: 바뀐 데이터 커밋
-        if: github.event_name != 'push' && steps.collect.outcome == 'success'
+        if: github.event_name != 'push' && (steps.collect.outcome == 'success' || steps.mirror.outcome == 'success')
         run: |
           git config user.name "chtf-guide-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add raw i18n site/data.json
+          git add raw i18n site/data.json mirror/pages.json mirror/urls.json mirror/meetings.json mirror/pending.json site/p
           if git diff --cached --quiet; then
             echo "변경 없음"
           else
             git commit -m "data: 공식 데이터 갱신 $(TZ=Asia/Seoul date '+%m/%d %H:%M')"
+            git pull --rebase --autostash
             git push
           fi
 

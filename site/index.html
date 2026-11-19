@@ -58,6 +58,7 @@ header.top .wrap{padding-block:20px 14px;display:flex;flex-wrap:wrap;gap:8px 24p
 nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
 nav.tabs .wrap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
 nav.tabs a{flex:none;text-decoration:none;color:var(--muted);font-weight:600;padding:11px 14px;border-bottom:3px solid transparent;white-space:nowrap}
+.deadline{margin:16px 0 16px;padding:12px 14px;border:1px solid var(--line,#d9dee5);border-left:3px solid var(--accent);border-radius:8px;font-size:.92rem}.deadline ul{margin:6px 0 8px;padding-left:1.15em}.deadline li{margin:3px 0}
 nav.tabs a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--accent)}
 nav.tabs .count{font-family:var(--f-mono);font-size:.75rem;background:var(--pick);color:#fff;border-radius:99px;padding:0 6px;margin-left:4px}
 
@@ -215,10 +216,21 @@ footer .wrap{padding-block:18px 28px;display:flex;flex-direction:column;gap:4px}
     <a href="#find" data-v="find">기업 찾기</a>
     <a href="#mine" data-v="mine">내 방문 목록<span class="count" id="mineCount" hidden>0</span></a>
     <a href="#news" data-v="news">업데이트 소식<span class="count" id="newsCount" hidden>0</span></a>
+    <a href="p/index.html">공식 안내 한글판</a>
+    <a href="p/schedule.html">행사 일정 전체</a>
   </div>
 </nav>
 
 <main class="wrap">
+  <aside class="deadline" aria-label="관람 전 확인">
+    <b>관람 전 확인</b>
+    <ul>
+      <li><b>11/25(수) 12:00</b>에 무료 입장권 등록이 끝납니다. 이후에는 공식 온라인 채널이나 남측 등록홀에서 120위안에 구매합니다.</li>
+      <li>무료 교통권은 <b>11/23(월)까지</b> 등록한 중국 본토 휴대전화 번호 사용자에게 제공됩니다.</li>
+      <li>외국인은 <b>남측 등록홀 유인 창구</b>에서 증명서 절차를 밟습니다. 입장은 11/26 09:30, 11/27~28 09:00부터이고 매일 16:00에 입장 마감, 17:00에 폐장합니다.</li>
+    </ul>
+    <a href="p/canguanzhiyin-gonggao.html">입장권 공지 전문 보기</a>
+  </aside>
   <!-- MAP -->
   <section class="view" id="v-map">
     <p class="lede">전시관을 누르면 그 관의 주제와 분야 구성, 들러볼 만한 부스가 나옵니다. 부스 번호는 <span class="booth">12-B19</span>처럼 <b>관 번호-구역</b> 형식이에요. 남·북 등록홀에서 입장하고, 지하철 12·20호선 국전역(国展站)과 국전북역(国展北站)이 각 등록홀과 연결됩니다.</p>

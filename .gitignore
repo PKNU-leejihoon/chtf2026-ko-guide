@@ -2,3 +2,7 @@ i18n/batches/
 __pycache__/
 *.tmp
 .DS_Store
+mirror/.cache/
+mirror/img_work/
+mirror/.venv/
+mirror/bin/
