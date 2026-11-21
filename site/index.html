@@ -190,6 +190,7 @@ details.card .filters{margin-bottom:12px}
 .co{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px}
 .co .names{min-width:0}
 .co .ko{font-weight:600}
+.co .rk{display:inline-block;min-width:2.2em;margin-right:8px;font-family:var(--f-mono);font-weight:600;font-size:.82rem;text-align:center;background:var(--pick-soft);color:var(--pick);border-radius:4px;padding:0 5px}
 .co .en{font-size:.84rem;color:var(--muted);overflow-wrap:anywhere}
 .co .cnn{font-size:.78rem;color:var(--muted)}
 .co .right{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
@@ -227,6 +228,7 @@ footer .wrap{padding-block:18px 28px;display:flex;flex-direction:column;gap:4px}
 <nav class="tabs" aria-label="보기">
   <div class="wrap">
     <a href="#home" data-v="home">개요</a>
+    <a href="#hot" data-v="hot">인기 부스</a>
     <a href="#map" data-v="explore">전시관·기업 찾기</a>
     <a href="#events" data-v="events">포럼·행사</a>
     <a href="#mine" data-v="mine">내 방문 목록<span class="count" id="mineCount" hidden>0</span></a>
@@ -252,10 +254,19 @@ footer .wrap{padding-block:18px 28px;display:flex;flex-direction:column;gap:4px}
     </aside>
     <div class="section-h"><h2>올해는 어떤 분야가 큰가</h2><span class="note">온라인 등록 기업의 분야 분포 · 한 기업이 여러 분야에 들 수 있어요 · 누르면 그 분야 기업을 봅니다</span></div>
     <div class="card"><div class="bars catbars" id="catBars"><span class="note">불러오는 중…</span></div></div>
+    <div class="section-h"><h2>가장 많이 본 부스 TOP 5</h2><a href="#hot">인기 부스 전체 순위</a></div>
+    <div class="card"><ul class="picklist" id="homeHot"><li><span class="note">불러오는 중…</span></li></ul></div>
     <div class="section-h"><h2>관심사별로 둘러보기</h2><span class="note">어느 관부터 돌고 어떤 부스와 세션을 챙기면 좋은지</span></div>
     <div class="routes" id="routes"></div>
     <div class="section-h"><h2>놓치기 아까운 행사</h2><a href="#events">포럼·행사 전체 보기</a></div>
     <div class="card"><ul class="picklist" id="homeEvents"></ul></div>
+  </section>
+
+  <!-- HOT -->
+  <section class="view" id="v-hot" hidden>
+    <p class="lede">공식 전시기업 시스템(e.chtf.com)에서 기업 페이지가 조회된 횟수 순서예요. 관람객이 미리 많이 찾아본 곳이라는 뜻이고, 유명 대기업이 꼭 위에 있지는 않아요. <span class="tag pick">추천</span> 표시는 정리자가 따로 고른 부스로, 이유를 함께 적었습니다. 분야를 골라 내 전공과 가까운 순위만 볼 수 있어요. <span id="hotChecked"></span></p>
+    <div class="filters" id="hotFilters" aria-label="분야"></div>
+    <div class="results" id="hotList"><div class="empty">불러오는 중…</div></div>
   </section>
 
   <!-- EXPLORE: map + finder + shows -->
@@ -573,7 +584,8 @@ document.addEventListener("click",e=>{
 
 /* ---------- state ---------- */
 let DATA=null, CATS=[], BYID=new Map();
-const S={view:"home",hall:12,day:26,evTag:null,q:"",fHall:"",fCat:"",fKr:false,quick:null,limit:40};
+const PICKWHY=new Map(); // company id -> curator's reason, from PICKS
+const S={view:"home",hotCat:"",hotLimit:30,hall:12,day:26,evTag:null,q:"",fHall:"",fCat:"",fKr:false,quick:null,limit:40};
 const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 let MINE=new Set(store.get("chtf26-mine",[]));
 const $=s=>document.querySelector(s);
@@ -581,7 +593,7 @@ const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",
 const fmt=n=>n.toLocaleString("ko-KR");
 
 /* ---------- routing ---------- */
-const VIEWS=["home","explore","events","mine","news"];
+const VIEWS=["home","hot","explore","events","mine","news"];
 // old tab hashes (and links from p/ pages) land on the section inside the merged view
 const ALIAS={routes:"home",map:"explore",find:"explore",shows:"explore"};
 function route(){
@@ -590,6 +602,7 @@ function route(){
   VIEWS.forEach(v=>{$("#v-"+v).hidden=v!==S.view});
   document.querySelectorAll("nav.tabs a").forEach(a=>a.setAttribute("aria-current",a.dataset.v===S.view?"page":"false"));
   if(S.view==="explore")renderFind();
+  if(S.view==="hot")renderHot();
   if(S.view==="mine")renderMine();
   if(S.view==="news")renderNews();
   if(h==="shows")$("#shows").open=true;
@@ -729,6 +742,23 @@ document.addEventListener("click",e=>{
   S.fCat=a.dataset.gocat;S.fHall="";S.q="";S.quick=null;S.fKr=false;S.limit=40;syncControls();
 });
 
+/* ---------- hot ---------- */
+const byViews=(a,b)=>b[9]-a[9];
+function renderHomeHot(){
+  $("#homeHot").innerHTML=[...DATA.x].sort(byViews).slice(0,5).map((x,i)=>`<li><span class="booth${x[4]?"":" none"}">${esc(x[4]||"미정")}</span><div><div class="nm">${i+1}위 · <a href="#find" data-goid="${x[0]}">${esc(x[1])}</a></div><div class="why">${esc(x[8].slice(0,2).map(p=>p[0]).join(" · ")||x[2])}</div></div></li>`).join("");
+}
+function renderHot(){
+  if(!DATA)return;
+  const cc=DATA.catCount, top=CATS.map((c,i)=>i).sort((a,b)=>cc[b]-cc[a]).slice(0,10);
+  $("#hotFilters").innerHTML=`<button class="fchip" data-hc="" aria-pressed="${S.hotCat===""}">전체</button><button class="fchip" data-hc="pick" aria-pressed="${S.hotCat==="pick"}">추천 부스만</button>`+top.map(i=>`<button class="fchip" data-hc="${i}" aria-pressed="${S.hotCat===String(i)}">${esc(CATS[i])}</button>`).join("");
+  const list=DATA.x.filter(x=>S.hotCat===""||(S.hotCat==="pick"?PICKWHY.has(x[0]):x[6].includes(+S.hotCat))).sort(byViews);
+  $("#hotList").innerHTML=list.slice(0,S.hotLimit).map((x,i)=>coCard(x,i+1)).join("")+(list.length>S.hotLimit?`<button class="btn more" data-hotmore>30곳 더 보기</button>`:"");
+}
+document.addEventListener("click",e=>{
+  const c=e.target.closest("[data-hc]"); if(c){S.hotCat=c.dataset.hc;S.hotLimit=30;renderHot();return}
+  if(e.target.closest("[data-hotmore]")){S.hotLimit+=30;renderHot()}
+});
+
 /* ---------- finder ---------- */
 function syncControls(){
   if(!DATA)return;
@@ -764,13 +794,14 @@ function filtered(){
     return true;
   });
 }
-function coCard(x){
+function coCard(x,rank){
   const on=MINE.has(x[0]);
-  const prods=x[8];
+  const prods=x[8], why=PICKWHY.get(x[0]);
   return `<article class="co">
-    <div class="names"><div class="ko">${esc(x[1])}</div>${x[2]&&x[2]!==x[1]?`<div class="en">${esc(x[2])}</div>`:""}${x[3]&&x[3]!==x[2]&&x[3]!==x[1]?`<div class="cnn">${esc(x[3])}</div>`:""}</div>
-    <div class="right"><span class="booth${x[4]?"":" none"}">${esc(x[4]||"부스 미정")}</span><button class="starbtn" data-star="${x[0]}" aria-pressed="${on}">${on?"★ 담음":"☆ 담기"}</button></div>
-    <div class="tags">${x[7]?'<span class="tag kr">한국 기업</span>':""}${x[6].map(c=>`<span class="tag">${esc(CATS[c])}</span>`).join("")}</div>
+    <div class="names"><div class="ko">${rank?`<span class="rk">${rank}</span>`:""}${esc(x[1])}</div>${x[2]&&x[2]!==x[1]?`<div class="en">${esc(x[2])}</div>`:""}${x[3]&&x[3]!==x[2]&&x[3]!==x[1]?`<div class="cnn">${esc(x[3])}</div>`:""}</div>
+    <div class="right"><span class="booth${x[4]?"":" none"}">${esc(x[4]||"부스 미정")}</span><button class="starbtn" data-star="${x[0]}" aria-pressed="${on}">${on?"★ 담음":"☆ 담기"}</button>${rank?`<span class="note mono">조회 ${fmt(x[9])}</span>`:""}</div>
+    <div class="tags">${why!==undefined?'<span class="tag pick">추천</span>':""}${x[7]?'<span class="tag kr">한국 기업</span>':""}${x[6].map(c=>`<span class="tag">${esc(CATS[c])}</span>`).join("")}</div>
+    ${why?`<p class="prods"><span>추천 이유 · </span>${esc(why)}</p>`:""}
     ${prods.length?`<p class="prods"><span>전시 제품 · </span>${prods.slice(0,8).map(p=>esc(p[0])).join(" · ")}${prods.length>8?` <span>외 ${prods.length-8}개</span>`:""}</p>`:""}
     <div class="links"><a href="https://e.chtf.com/#/exhorDetails/${x[0]}" target="_blank" rel="noopener">공식 기업 페이지 (중국어)</a><a href="https://papago.naver.com/?sk=zh-CN&tk=ko&st=${encodeURIComponent(x[3]+"\n"+prods.slice(0,20).map(p=>p[1]).join("\n"))}" target="_blank" rel="noopener">파파고로 원문 번역</a></div>
   </article>`;
@@ -818,7 +849,9 @@ fetch("data.json",{cache:"no-cache"}).then(r=>r.json()).then(d=>{
   $("#factChecked").textContent=fmtTime(d.checkedAt);
   const nn=(d.recent&&d.recent[0])?d.recent[0].items.length+d.recent[0].more:0;
   if(nn){$("#newsCount").textContent=nn;$("#newsCount").hidden=false;}
-  setupFinder(); renderCatBars(); renderPlan(); renderHall(); renderShows(); renderRoutes(); route();
+  for(const P of Object.values(PICKS))for(const [k,,why] of P){const x=findByKey(k);if(x&&!PICKWHY.has(x[0]))PICKWHY.set(x[0],why)}
+  $("#hotChecked").textContent=`(${fmtTime(d.checkedAt)} 확인 기준)`;
+  setupFinder(); renderCatBars(); renderHomeHot(); renderPlan(); renderHall(); renderShows(); renderRoutes(); route();
 }).catch(()=>{$("#results").innerHTML=`<div class="empty">기업 목록을 불러오지 못했어요. 페이지를 새로고침해 보세요.</div>`});
 })();
 </script>
