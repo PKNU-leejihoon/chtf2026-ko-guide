@@ -60,7 +60,7 @@ nav.tabs .wrap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
 nav.tabs a{flex:none;text-decoration:none;color:var(--muted);font-weight:600;padding:11px 14px;border-bottom:3px solid transparent;white-space:nowrap}
 .deadline{margin:16px 0 16px;padding:12px 14px;border:1px solid var(--line,#d9dee5);border-left:3px solid var(--accent);border-radius:8px;font-size:.92rem}.deadline ul{margin:6px 0 8px;padding-left:1.15em}.deadline li{margin:3px 0}
 nav.tabs a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--accent)}
-nav.tabs .count{font-family:var(--f-mono);font-size:.75rem;background:var(--pick);color:#fff;border-radius:99px;padding:0 6px;margin-left:4px}
+.count{font-family:var(--f-mono);font-size:.75rem;background:var(--pick);color:#fff;border-radius:99px;padding:0 6px;margin-left:4px}
 
 main{padding-block:22px 60px}
 .view{display:flex;flex-direction:column;gap:22px}
@@ -68,6 +68,18 @@ main{padding-block:22px 60px}
 .section-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .section-h h2{font-size:1.2rem}
 .note{font-size:.82rem;color:var(--muted)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px}
+.intro h2{font-size:1.2rem;margin-bottom:6px}
+.intro p{margin:0;max-width:75ch}
+.catbars{margin:0}
+.catbars .bar{grid-template-columns:minmax(0,13em) 1fr 3em;font-size:.9rem;color:var(--ink);text-decoration:none;padding:3px 6px;border-radius:6px}
+.catbars .bar:hover{background:var(--chip)}
+@media (max-width:520px){.catbars .bar{grid-template-columns:minmax(0,9em) 1fr 2.6em;font-size:.84rem}}
+details.card summary{cursor:pointer;padding:2px 0}
+details.card[open] summary{margin-bottom:12px}
+details.card .lede{margin-bottom:12px}
+details.card .filters{margin-bottom:12px}
+#map,#find,#shows,#routes{scroll-margin-top:64px}
 
 /* booth plate */
 .booth{display:inline-block;font-family:var(--f-mono);font-weight:600;font-size:.82rem;background:var(--ink);color:var(--surface);border-radius:4px;padding:1px 7px;white-space:nowrap}
@@ -89,6 +101,12 @@ main{padding-block:22px 60px}
 .hall.minor{background:var(--chip)}
 .hall .dot{position:absolute;top:8px;right:8px;width:8px;height:8px;border-radius:50%;background:var(--kr)}
 .lobby{grid-row:1 / span 2;border:1.5px dashed var(--line);border-radius:30px;display:flex;align-items:center;justify-content:center;writing-mode:vertical-rl;font-weight:600;color:var(--muted);font-size:.85rem;letter-spacing:.2em}
+@media (max-width:640px){
+  .plan-scroll{padding:10px}
+  .plan{grid-template-columns:repeat(3,minmax(0,1fr));min-width:0}
+  .plan .hall{grid-column:auto!important;grid-row:auto!important;min-height:92px}
+  .plan .lobby{display:none}
+}
 .plan-legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;font-size:.8rem;color:var(--muted)}
 .plan-legend i{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--kr);margin-right:5px;vertical-align:middle}
 
@@ -99,6 +117,7 @@ main{padding-block:22px 60px}
 .bars{display:flex;flex-direction:column;gap:6px;margin-top:12px}
 .bar{display:grid;grid-template-columns:minmax(0,9.5em) 1fr 2.5em;gap:8px;align-items:center;font-size:.82rem}
 .bar .track{height:8px;background:var(--chip);border-radius:4px;overflow:hidden}
+.bar .track,.bar .fill{display:block}
 .bar .fill{height:100%;background:var(--hall-strong)}
 .bar .n{font-family:var(--f-mono);text-align:right;color:var(--muted)}
 .picklist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
@@ -202,68 +221,53 @@ footer .wrap{padding-block:18px 28px;display:flex;flex-direction:column;gap:4px}
       <div class="fact"><b>11.26–28</b><span>목–토</span></div>
       <div class="fact"><b id="factCo">1,877</b><span>온라인 등록 기업</span></div>
       <div class="fact"><b>16</b><span>전시관(1–16관)</span></div>
-      <div class="fact"><b id="factEv">–</b><span>정리한 행사</span></div>
-      <div class="fact"><b id="factChecked">–</b><span>공식 데이터 확인</span></div>
     </div>
   </div>
 </header>
 <nav class="tabs" aria-label="보기">
   <div class="wrap">
-    <a href="#map" data-v="map">전시관 지도</a>
-    <a href="#shows" data-v="shows">전문전</a>
+    <a href="#home" data-v="home">개요</a>
+    <a href="#map" data-v="explore">전시관·기업 찾기</a>
     <a href="#events" data-v="events">포럼·행사</a>
-    <a href="#routes" data-v="routes">관심사별 동선</a>
-    <a href="#find" data-v="find">기업 찾기</a>
     <a href="#mine" data-v="mine">내 방문 목록<span class="count" id="mineCount" hidden>0</span></a>
-    <a href="#news" data-v="news">업데이트 소식<span class="count" id="newsCount" hidden>0</span></a>
-    <a href="p/index.html">공식 안내 한글판</a>
-    <a href="p/schedule.html">행사 일정 전체</a>
   </div>
 </nav>
 
 <main class="wrap">
-  <aside class="deadline" aria-label="관람 전 확인">
-    <b>관람 전 확인</b>
-    <ul>
-      <li><b>11/25(수) 12:00</b>에 무료 입장권 등록이 끝납니다. 이후에는 공식 온라인 채널이나 남측 등록홀에서 120위안에 구매합니다.</li>
-      <li>무료 교통권은 <b>11/23(월)까지</b> 등록한 중국 본토 휴대전화 번호 사용자에게 제공됩니다.</li>
-      <li>외국인은 <b>남측 등록홀 유인 창구</b>에서 증명서 절차를 밟습니다. 입장은 11/26 09:30, 11/27~28 09:00부터이고 매일 16:00에 입장 마감, 17:00에 폐장합니다.</li>
-    </ul>
-    <a href="p/canguanzhiyin-gonggao.html">입장권 공지 전문 보기</a>
-  </aside>
-  <!-- MAP -->
-  <section class="view" id="v-map">
+  <!-- HOME -->
+  <section class="view" id="v-home">
+    <div class="intro">
+      <h2>고교회(CHTF)는 어떤 행사인가</h2>
+      <p>1999년부터 매년 선전에서 열리는 중국 최대 규모의 과학기술 전시회예요. 제품 전시와 함께 <b>기술 성과 거래, 투자 상담, 포럼</b>이 한자리에서 열리는 자리라서, 부스마다 시제품인지 이미 팔고 있는 제품인지, 누구를 상대로 나왔는지를 보면 중국 기술 산업의 흐름이 잘 보입니다. 올해 제28회는 11/26–28 선전 국제회의전시센터(바오안)에서 전시면적 40만㎡ 규모로 열립니다. <a href="p/liaojiegaojiaohui-zynr-gaikuang.html">공식 소개 한글판</a></p>
+    </div>
+    <aside class="deadline" aria-label="관람 안내">
+      <b>관람 안내</b>
+      <ul>
+        <li>입장은 11/26 09:30, 11/27~28 09:00부터이고 매일 <b>16:00에 입장 마감</b>, 17:00에 폐장합니다. 지하철 12·20호선 국전역(国展站)은 남측, 국전북역(国展北站)은 북측 등록홀과 바로 연결됩니다.</li>
+        <li>외국인은 <b>남측 등록홀 유인 창구</b>에서 증명서 절차를 밟습니다.</li>
+        <li><b>11/25(수) 12:00</b>에 무료 입장권 등록이 끝납니다. 이후에는 공식 온라인 채널이나 남측 등록홀에서 120위안에 구매합니다.</li>
+        <li>무료 교통권은 <b>11/23(월)까지</b> 등록한 중국 본토 휴대전화 번호 사용자에게만 제공됩니다.</li>
+      </ul>
+      <a href="p/canguanzhiyin-ruchangxuzhiX.html">입장 안내</a> · <a href="p/canguanzhiyin-gonggao.html">입장권 공지</a> · <a href="p/canguanzhiyin-jiaotongzhiyinX.html">교통 안내</a>
+    </aside>
+    <div class="section-h"><h2>올해는 어떤 분야가 큰가</h2><span class="note">온라인 등록 기업의 분야 분포 · 한 기업이 여러 분야에 들 수 있어요 · 누르면 그 분야 기업을 봅니다</span></div>
+    <div class="card"><div class="bars catbars" id="catBars"><span class="note">불러오는 중…</span></div></div>
+    <div class="section-h"><h2>관심사별로 둘러보기</h2><span class="note">어느 관부터 돌고 어떤 부스와 세션을 챙기면 좋은지</span></div>
+    <div class="routes" id="routes"></div>
+    <div class="section-h"><h2>놓치기 아까운 행사</h2><a href="#events">포럼·행사 전체 보기</a></div>
+    <div class="card"><ul class="picklist" id="homeEvents"></ul></div>
+  </section>
+
+  <!-- EXPLORE: map + finder + shows -->
+  <section class="view" id="v-explore" hidden>
     <p class="lede">전시관을 누르면 그 관의 주제와 분야 구성, 들러볼 만한 부스가 나옵니다. 부스 번호는 <span class="booth">12-B19</span>처럼 <b>관 번호-구역</b> 형식이에요. 남·북 등록홀에서 입장하고, 지하철 12·20호선 국전역(国展站)과 국전북역(国展北站)이 각 등록홀과 연결됩니다.</p>
-    <div>
+    <div id="map">
       <div class="plan-scroll"><div class="plan" id="plan"></div></div>
       <div class="plan-legend"><span><i></i>한국 기업 부스 있음</span><span>숫자 = 통합 목록에 부스가 등록된 기업 수</span><a id="navLink" href="https://s.whte.cn/zwzl/chtf/?id=12" target="_blank" rel="noopener">공식 부스 지도 (입력 진행 중)</a></div>
     </div>
     <div class="hall-detail" id="hallDetail"></div>
-  </section>
 
-  <!-- SHOWS -->
-  <section class="view" id="v-shows" hidden>
-    <p class="lede">고교회는 전시관마다 별도 이름의 전문전이 함께 열리는 구조예요. 공식 사이트의 전문전 소개와 포스터를 모두 읽어 정리했습니다. 전문전별 올해 참가기업 전체 명단은 공개되지 않아서, 참가 발표 기업과 지난해 참가 기업을 구분해 적었고, "관련 기업"은 통합 전시기업 목록에서 해당 관·분야로 찾은 결과입니다.</p>
-    <div class="filters" id="showFilters" aria-label="전문전 분야"></div>
-    <div class="shows" id="showList"></div>
-  </section>
-
-  <!-- EVENTS -->
-  <section class="view" id="v-events" hidden>
-    <p class="lede">공식 사이트의 포럼·행사 페이지 19개를 읽고, 배울 거리가 있는 것만 골라 정리했어요. 회의실 이름은 현장에서 물어볼 수 있게 중국어 원문도 같이 적었습니다. 연사는 대부분 "섭외 예정(拟邀)" 단계라서 바뀔 수 있어요.</p>
-    <div class="daybar" id="daybar"></div>
-    <div class="filters" id="evFilters" aria-label="분야"></div>
-    <div class="timeline" id="timeline"></div>
-  </section>
-
-  <!-- ROUTES -->
-  <section class="view" id="v-routes" hidden>
-    <p class="lede">목적별로 어느 관부터 돌고 어떤 부스와 세션을 챙기면 좋은지 정리했어요. 부스 이름을 누르면 기업 찾기에서 그 회사를 보여줍니다.</p>
-    <div class="routes" id="routes"></div>
-  </section>
-
-  <!-- FIND -->
-  <section class="view" id="v-find" hidden>
+    <div class="section-h" id="find"><h2>기업 찾기</h2><span class="note">관·분야·검색어로 좁혀 보세요</span></div>
     <div class="finder">
       <aside class="side" aria-label="필터">
         <div>
@@ -289,6 +293,21 @@ footer .wrap{padding-block:18px 28px;display:flex;flex-direction:column;gap:4px}
         <div class="results" id="results"><div class="empty">기업 목록을 불러오는 중…</div></div>
       </div>
     </div>
+
+    <details class="card" id="shows">
+    <summary><b>전문전 목록</b> <span class="note">전시관마다 함께 열리는 전문 전시회의 전시 범위와 참가 기업</span></summary>
+    <p class="lede">고교회는 전시관마다 별도 이름의 전문전이 함께 열리는 구조예요. 공식 사이트의 전문전 소개와 포스터를 모두 읽어 정리했습니다. 전문전별 올해 참가기업 전체 명단은 공개되지 않아서, 참가 발표 기업과 지난해 참가 기업을 구분해 적었고, "관련 기업"은 통합 전시기업 목록에서 해당 관·분야로 찾은 결과입니다.</p>
+    <div class="filters" id="showFilters" aria-label="전문전 분야"></div>
+    <div class="shows" id="showList"></div>
+    </details>
+  </section>
+
+  <!-- EVENTS -->
+  <section class="view" id="v-events" hidden>
+    <p class="lede">공식 사이트의 포럼·행사 페이지 19개를 읽고, 배울 거리가 있는 것만 골라 정리했어요. 회의실 이름은 현장에서 물어볼 수 있게 중국어 원문도 같이 적었습니다. 연사는 대부분 "섭외 예정(拟邀)" 단계라서 바뀔 수 있어요. 빠짐없는 목록은 <a href="p/schedule.html">공식 행사 일정 한글판</a>에 있습니다.</p>
+    <div class="daybar" id="daybar"></div>
+    <div class="filters" id="evFilters" aria-label="분야"></div>
+    <div class="timeline" id="timeline"></div>
   </section>
 
   <!-- NEWS -->
@@ -313,6 +332,7 @@ footer .wrap{padding-block:18px 28px;display:flex;flex-direction:column;gap:4px}
 <footer>
   <div class="wrap">
     <span>출처: 고교회 공식 사이트 chtf.com의 전시관 배치도·초청 범위·포럼 페이지, 공식 전시기업 시스템(e.chtf.com)의 기업·부스·제품 목록. 기업·부스·제품과 행사 페이지 목록은 주기적으로 다시 확인해 반영합니다. 개인이 정리한 비공식 자료이며, 부스와 일정은 현장에서 바뀔 수 있습니다.</span>
+    <span>공식 데이터 확인 <span class="mono" id="factChecked">–</span> · <a href="#news">업데이트 소식</a><span class="count" id="newsCount" hidden>0</span> · <a href="p/index.html">공식 안내 한글판</a> · <a href="p/schedule.html">공식 행사 일정 한글판</a></span>
     <span>공식: <a href="https://www.chtf.com/" target="_blank" rel="noopener">www.chtf.com</a> · 전시기업 검색 <a href="https://e.chtf.com/#/exhibitor" target="_blank" rel="noopener">e.chtf.com</a></span>
   </div>
 </footer>
@@ -553,7 +573,7 @@ document.addEventListener("click",e=>{
 
 /* ---------- state ---------- */
 let DATA=null, CATS=[], BYID=new Map();
-const S={view:"map",hall:12,day:26,evTag:null,q:"",fHall:"",fCat:"",fKr:false,quick:null,limit:40};
+const S={view:"home",hall:12,day:26,evTag:null,q:"",fHall:"",fCat:"",fKr:false,quick:null,limit:40};
 const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 let MINE=new Set(store.get("chtf26-mine",[]));
 const $=s=>document.querySelector(s);
@@ -561,16 +581,22 @@ const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",
 const fmt=n=>n.toLocaleString("ko-KR");
 
 /* ---------- routing ---------- */
-const VIEWS=["map","shows","events","routes","find","mine","news"];
+const VIEWS=["home","explore","events","mine","news"];
+// old tab hashes (and links from p/ pages) land on the section inside the merged view
+const ALIAS={routes:"home",map:"explore",find:"explore",shows:"explore"};
 function route(){
   const h=(location.hash||"").slice(1);
-  S.view=VIEWS.includes(h)?h:"map";
+  S.view=VIEWS.includes(h)?h:(ALIAS[h]||"home");
   VIEWS.forEach(v=>{$("#v-"+v).hidden=v!==S.view});
   document.querySelectorAll("nav.tabs a").forEach(a=>a.setAttribute("aria-current",a.dataset.v===S.view?"page":"false"));
-  if(S.view==="find")renderFind();
+  if(S.view==="explore")renderFind();
   if(S.view==="mine")renderMine();
   if(S.view==="news")renderNews();
+  if(h==="shows")$("#shows").open=true;
+  if(ALIAS[h])document.getElementById(h).scrollIntoView();
+  else window.scrollTo(0,0);
 }
+document.addEventListener("click",e=>{if(e.target.closest('a[href="#shows"]'))$("#shows").open=true});
 
 /* ---------- news ---------- */
 function fmtTime(iso){
@@ -612,7 +638,7 @@ function renderPlan(){
   for(const [h,c,r] of LAYOUT){
     const H=HALLS[h], n=hallCount(h), minor=h>=17;
     const span=h===17?"grid-column:11 / span 2;":`grid-column:${c};`;
-    html+=`<button class="hall${minor?" minor":""}" style="${span}grid-row:${r}" data-h="${h}" aria-pressed="${S.hall===h}">
+    html+=`<button class="hall${minor?" minor":""}" style="${span}grid-row:${r};order:${h}" data-h="${h}" aria-pressed="${S.hall===h}">
       ${hallHasKr(h)?'<span class="dot" title="한국 기업"></span>':""}
       <span class="hn">${h}관</span><span class="hz">${esc(H.z)}</span>
       <span class="hc">${minor?"":(n===null?"…":(n?fmt(n)+"곳":"목록 없음"))}</span></button>`;
@@ -629,7 +655,7 @@ function renderHall(){
     if(arr.length){left+=`<div class="bars" aria-label="분야 구성">`+arr.map(([c,n])=>`<div class="bar"><span>${esc(CATS[c])}</span><span class="track"><span class="fill" style="width:${Math.round(n/mx*100)}%"></span></span><span class="n">${n}</span></div>`).join("")+`</div>`;}
     const n=hallCount(h);
     if(n)left+=`<div style="margin-top:14px"><a class="btn primary" href="#find" data-gohall="${h}">${h}관 기업 ${fmt(n)}곳 전체 보기</a></div>`;
-    else if(h<17)left+=`<p class="note" style="margin-top:12px">이 관은 통합 전시기업 목록에 등록된 부스가 거의 없어요. 위 전문전 탭에서 전시 범위와 참가 발표 기업을 확인하세요.</p>`;
+    else if(h<17)left+=`<p class="note" style="margin-top:12px">이 관은 통합 전시기업 목록에 등록된 부스가 거의 없어요. 아래 <a href="#shows">전문전 목록</a>에서 전시 범위와 참가 발표 기업을 확인하세요.</p>`;
   }
   const hs=SHOWS.filter(s=>s.halls.includes(h));
   if(hs.length)left+=`<div style="margin-top:14px"><div class="note" style="margin-bottom:5px">이 관의 전문전</div><div class="filters">${hs.map(s=>`<a class="tag" href="#shows">${esc(s.ko)}</a>`).join("")}</div></div>`;
@@ -687,6 +713,22 @@ function renderRoutes(){
   </article>`).join("");
 }
 
+/* ---------- home ---------- */
+function renderCatBars(){
+  const cc=DATA.catCount, arr=CATS.map((c,i)=>[c,i]).sort((a,b)=>cc[b[1]]-cc[a[1]]).slice(0,10), mx=cc[arr[0][1]];
+  $("#catBars").innerHTML=arr.map(([c,i])=>`<a class="bar" href="#find" data-gocat="${i}"><span>${esc(c)}</span><span class="track"><span class="fill" style="width:${Math.round(cc[i]/mx*100)}%"></span></span><span class="n">${fmt(cc[i])}</span></a>`).join("");
+}
+function renderHomeEvents(){
+  const D={26:"11/26",27:"11/27",28:"11/28"};
+  $("#homeEvents").innerHTML=EVENTS.filter(e=>e.star).sort((a,b)=>(a.d||99)-(b.d||99)||a.t.localeCompare(b.t)).map(e=>
+    `<li><span class="booth">${e.d?D[e.d]+" "+esc(e.t.split("–")[0]):"상시"}</span><div><div class="nm"><a href="#events" data-goday="${e.d}">${esc(e.title)}</a></div><div class="why">${esc(e.place)}</div></div></li>`).join("");
+}
+document.addEventListener("click",e=>{
+  const a=e.target.closest("[data-gocat],[data-goday]"); if(!a)return;
+  if(a.dataset.goday!==undefined){S.day=+a.dataset.goday;S.evTag=null;renderDays();renderEvents();return}
+  S.fCat=a.dataset.gocat;S.fHall="";S.q="";S.quick=null;S.fKr=false;S.limit=40;syncControls();
+});
+
 /* ---------- finder ---------- */
 function syncControls(){
   if(!DATA)return;
@@ -736,7 +778,7 @@ function coCard(x){
 function renderFind(){
   if(!DATA)return;
   const list=filtered();
-  list.sort((a,b)=>(b[7]-a[7])||(b[9]-a[9]));
+  list.sort((a,b)=>b[9]-a[9]);
   $("#resCount").textContent=`${fmt(list.length)}곳`+(list.length>S.limit?` 중 ${S.limit}곳 표시`:"");
   $("#results").innerHTML=list.length?list.slice(0,S.limit).map(coCard).join("")+(list.length>S.limit?`<button class="btn more" id="moreBtn">40곳 더 보기</button>`:""):`<div class="empty">조건에 맞는 기업이 없어요. 검색어를 줄이거나 필터를 풀어 보세요.</div>`;
   const m=$("#moreBtn"); if(m)m.addEventListener("click",()=>{S.limit+=40;renderFind()});
@@ -768,8 +810,7 @@ $("#clearMine").addEventListener("click",e=>{if(!clearArmed){clearArmed=true;e.t
   MINE.clear();store.set("chtf26-mine",[]);updateMineCount();renderMine();clearArmed=false;e.target.textContent="목록 비우기"});
 
 /* ---------- boot ---------- */
-$("#factEv").textContent=EVENTS.length;
-renderPlan(); renderHall(); renderShows(); renderDays(); renderEvents(); renderRoutes(); updateMineCount(); route();
+renderPlan(); renderHall(); renderShows(); renderDays(); renderEvents(); renderRoutes(); renderHomeEvents(); updateMineCount(); route();
 fetch("data.json",{cache:"no-cache"}).then(r=>r.json()).then(d=>{
   CATS=d.cats; DATA=d;
   d.x.forEach(x=>{x[10]=(x[1]+" "+x[2]+" "+x[3]+" "+(x[4]||"")+" "+x[8].map(p=>p[0]+" "+p[1]).join(" ")).toLowerCase();BYID.set(x[0],x)});
@@ -777,7 +818,7 @@ fetch("data.json",{cache:"no-cache"}).then(r=>r.json()).then(d=>{
   $("#factChecked").textContent=fmtTime(d.checkedAt);
   const nn=(d.recent&&d.recent[0])?d.recent[0].items.length+d.recent[0].more:0;
   if(nn){$("#newsCount").textContent=nn;$("#newsCount").hidden=false;}
-  setupFinder(); renderPlan(); renderHall(); renderShows(); renderRoutes(); route();
+  setupFinder(); renderCatBars(); renderPlan(); renderHall(); renderShows(); renderRoutes(); route();
 }).catch(()=>{$("#results").innerHTML=`<div class="empty">기업 목록을 불러오지 못했어요. 페이지를 새로고침해 보세요.</div>`});
 })();
 </script>
