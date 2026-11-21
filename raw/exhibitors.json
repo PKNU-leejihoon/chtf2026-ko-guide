@@ -210,6 +210,41 @@
   ]
  },
  {
+  "serveCatalogueId": 9920,
+  "taskDtlId": 1882531,
+  "companyName": "江苏意优机器人科技有限公司",
+  "companyNameEn": "Jiangsu EYOUBOT Technology Co., Ltd",
+  "companyAbbr": "意优科技",
+  "companyAddress": "无锡市锡山区安镇街道先锋中路6号中国电子（无锡）数字芯城一号楼2层203-1",
+  "companyAddressEn": "203-1, Building 1,.6 Xianfeng Middle Road, Xishan District, Wuxi City, Jiangsu Province, China 214000",
+  "tel": "13063616910",
+  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261021/1792568602250_1080*720.jpg",
+  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20251010/1760060165347_1675*885.jpg",
+  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20251010/1760060165347_1675*885.jpg",
+  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261021/1792568602250_1080*720.jpg",
+  "isRecommend": 0,
+  "collectionsCount": 0,
+  "allCollectionsCount": 0,
+  "readNum": 158,
+  "productCount": 3,
+  "boothNum": "12-A35",
+  "sectionName": "总展区",
+  "sectionNameEn": null,
+  "tradeId": null,
+  "tradeIdEn": null,
+  "tradeName": null,
+  "tradeNameEn": null,
+  "readNumInit": null,
+  "collectNumInit": null,
+  "tradeClassList": [
+   {
+    "tradeName": "人工智能与机器人",
+    "tradeNameEn": null,
+    "tradeId": 379
+   }
+  ]
+ },
+ {
   "serveCatalogueId": 9797,
   "taskDtlId": 1881670,
   "companyName": "模感(上海)科技有限公司",
@@ -263,41 +298,6 @@
   "readNum": 159,
   "productCount": 3,
   "boothNum": "12-C27",
-  "sectionName": "总展区",
-  "sectionNameEn": null,
-  "tradeId": null,
-  "tradeIdEn": null,
-  "tradeName": null,
-  "tradeNameEn": null,
-  "readNumInit": null,
-  "collectNumInit": null,
-  "tradeClassList": [
-   {
-    "tradeName": "人工智能与机器人",
-    "tradeNameEn": null,
-    "tradeId": 379
-   }
-  ]
- },
- {
-  "serveCatalogueId": 9920,
-  "taskDtlId": 1882531,
-  "companyName": "江苏意优机器人科技有限公司",
-  "companyNameEn": "Jiangsu EYOUBOT Technology Co., Ltd",
-  "companyAbbr": "意优科技",
-  "companyAddress": "无锡市锡山区安镇街道先锋中路6号中国电子（无锡）数字芯城一号楼2层203-1",
-  "companyAddressEn": "203-1, Building 1,.6 Xianfeng Middle Road, Xishan District, Wuxi City, Jiangsu Province, China 214000",
-  "tel": "13063616910",
-  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261021/1792568602250_1080*720.jpg",
-  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20251010/1760060165347_1675*885.jpg",
-  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20251010/1760060165347_1675*885.jpg",
-  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261021/1792568602250_1080*720.jpg",
-  "isRecommend": 0,
-  "collectionsCount": 0,
-  "allCollectionsCount": 0,
-  "readNum": 157,
-  "productCount": 3,
-  "boothNum": "12-A35",
   "sectionName": "总展区",
   "sectionNameEn": null,
   "tradeId": null,
@@ -6665,7 +6665,7 @@
   "isRecommend": 0,
   "collectionsCount": 1,
   "allCollectionsCount": 0,
-  "readNum": 98,
+  "readNum": 99,
   "productCount": 2,
   "boothNum": "12-D5",
   "sectionName": "总展区",
@@ -9920,7 +9920,7 @@
   "isRecommend": 0,
   "collectionsCount": 1,
   "allCollectionsCount": 0,
-  "readNum": 94,
+  "readNum": 96,
   "productCount": 1,
   "boothNum": "13-B34-3",
   "sectionName": "总展区",
@@ -10375,7 +10375,7 @@
   "isRecommend": 0,
   "collectionsCount": 0,
   "allCollectionsCount": 0,
-  "readNum": 95,
+  "readNum": 96,
   "productCount": 5,
   "boothNum": "11-D50",
   "sectionName": "总展区",
@@ -10426,6 +10426,41 @@
     "tradeName": "人工智能与机器人",
     "tradeNameEn": null,
     "tradeId": 379
+   }
+  ]
+ },
+ {
+  "serveCatalogueId": 9931,
+  "taskDtlId": 1881166,
+  "companyName": "华航高科(北京)技术有限公司",
+  "companyNameEn": "Huahang Hi-Tech (Beijing) Technology Co., Ltd.",
+  "companyAbbr": "HHTC",
+  "companyAddress": "北京市朝阳区安翔北里甲11号院1号楼806/成都市武侯区簇桥上街159号华航大厦/青岛市城阳区锦业路11号德标智能产业园",
+  "companyAddressEn": "Room 806, Floor 8, Building 1, No. 11 Courtyard, Beilijia, Anxiang, Chaoyang District, Beijing",
+  "tel": "010-6483 6391",
+  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261019/1792407567926_323*243.png",
+  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261019/1792407264181_5334*4000.png",
+  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261019/1792407264181_5334*4000.png",
+  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261019/1792407567926_323*243.png",
+  "isRecommend": 0,
+  "collectionsCount": 0,
+  "allCollectionsCount": 0,
+  "readNum": 96,
+  "productCount": 10,
+  "boothNum": "11-D7",
+  "sectionName": "总展区",
+  "sectionNameEn": null,
+  "tradeId": null,
+  "tradeIdEn": null,
+  "tradeName": null,
+  "tradeNameEn": null,
+  "readNumInit": null,
+  "collectNumInit": null,
+  "tradeClassList": [
+   {
+    "tradeName": "低空经济与商业航天",
+    "tradeNameEn": "",
+    "tradeId": 373
    }
   ]
  },
@@ -11266,41 +11301,6 @@
     "tradeName": "智能制造与自动化",
     "tradeNameEn": "",
     "tradeId": 370
-   }
-  ]
- },
- {
-  "serveCatalogueId": 9931,
-  "taskDtlId": 1881166,
-  "companyName": "华航高科(北京)技术有限公司",
-  "companyNameEn": "Huahang Hi-Tech (Beijing) Technology Co., Ltd.",
-  "companyAbbr": "HHTC",
-  "companyAddress": "北京市朝阳区安翔北里甲11号院1号楼806/成都市武侯区簇桥上街159号华航大厦/青岛市城阳区锦业路11号德标智能产业园",
-  "companyAddressEn": "Room 806, Floor 8, Building 1, No. 11 Courtyard, Beilijia, Anxiang, Chaoyang District, Beijing",
-  "tel": "010-6483 6391",
-  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261019/1792407567926_323*243.png",
-  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261019/1792407264181_5334*4000.png",
-  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261019/1792407264181_5334*4000.png",
-  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261019/1792407567926_323*243.png",
-  "isRecommend": 0,
-  "collectionsCount": 0,
-  "allCollectionsCount": 0,
-  "readNum": 93,
-  "productCount": 10,
-  "boothNum": "11-D7",
-  "sectionName": "总展区",
-  "sectionNameEn": null,
-  "tradeId": null,
-  "tradeIdEn": null,
-  "tradeName": null,
-  "tradeNameEn": null,
-  "readNumInit": null,
-  "collectNumInit": null,
-  "tradeClassList": [
-   {
-    "tradeName": "低空经济与商业航天",
-    "tradeNameEn": "",
-    "tradeId": 373
    }
   ]
  },
@@ -12965,7 +12965,7 @@
   "isRecommend": 0,
   "collectionsCount": 1,
   "allCollectionsCount": 0,
-  "readNum": 91,
+  "readNum": 92,
   "productCount": 10,
   "boothNum": "8-A87",
   "sectionName": "总展区",
@@ -15155,6 +15155,41 @@
   ]
  },
  {
+  "serveCatalogueId": 10747,
+  "taskDtlId": 1898234,
+  "companyName": "武汉光谷卓越科技股份有限公司",
+  "companyNameEn": "WUHAN OPTICS VALLEY ZOYON SCIENCE AND TECHNOLOGY CO., LTD",
+  "companyAbbr": "武汉卓越科技",
+  "companyAddress": "武汉市东湖新技术开发区光谷大道308号",
+  "companyAddressEn": "No. 308 Guanggu Avenue, Donghu New Technology Development Zone, Wuhan City",
+  "tel": "027-87196158",
+  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261105/1793842622444_1079*686.jpg",
+  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261105/1793842548275_1080*1079.jpg",
+  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261105/1793842548275_1080*1079.jpg",
+  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261105/1793842622444_1079*686.jpg",
+  "isRecommend": 0,
+  "collectionsCount": 0,
+  "allCollectionsCount": 0,
+  "readNum": 88,
+  "productCount": 6,
+  "boothNum": "13-B31-13",
+  "sectionName": "总展区",
+  "sectionNameEn": null,
+  "tradeId": null,
+  "tradeIdEn": null,
+  "tradeName": null,
+  "tradeNameEn": null,
+  "readNumInit": null,
+  "collectNumInit": null,
+  "tradeClassList": [
+   {
+    "tradeName": "交通运输与物流科技创新 ",
+    "tradeNameEn": null,
+    "tradeId": 382
+   }
+  ]
+ },
+ {
   "serveCatalogueId": 10752,
   "taskDtlId": 1897808,
   "companyName": "成都明途科技有限公司",
@@ -16061,41 +16096,6 @@
     "tradeName": "人工智能与机器人",
     "tradeNameEn": null,
     "tradeId": 379
-   }
-  ]
- },
- {
-  "serveCatalogueId": 10747,
-  "taskDtlId": 1898234,
-  "companyName": "武汉光谷卓越科技股份有限公司",
-  "companyNameEn": "WUHAN OPTICS VALLEY ZOYON SCIENCE AND TECHNOLOGY CO., LTD",
-  "companyAbbr": "武汉卓越科技",
-  "companyAddress": "武汉市东湖新技术开发区光谷大道308号",
-  "companyAddressEn": "No. 308 Guanggu Avenue, Donghu New Technology Development Zone, Wuhan City",
-  "tel": "027-87196158",
-  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261105/1793842622444_1079*686.jpg",
-  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261105/1793842548275_1080*1079.jpg",
-  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261105/1793842548275_1080*1079.jpg",
-  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261105/1793842622444_1079*686.jpg",
-  "isRecommend": 0,
-  "collectionsCount": 0,
-  "allCollectionsCount": 0,
-  "readNum": 86,
-  "productCount": 6,
-  "boothNum": "13-B31-13",
-  "sectionName": "总展区",
-  "sectionNameEn": null,
-  "tradeId": null,
-  "tradeIdEn": null,
-  "tradeName": null,
-  "tradeNameEn": null,
-  "readNumInit": null,
-  "collectNumInit": null,
-  "tradeClassList": [
-   {
-    "tradeName": "交通运输与物流科技创新 ",
-    "tradeNameEn": null,
-    "tradeId": 382
    }
   ]
  },
@@ -20665,7 +20665,7 @@
   "isRecommend": 0,
   "collectionsCount": 0,
   "allCollectionsCount": 0,
-  "readNum": 80,
+  "readNum": 83,
   "productCount": 10,
   "boothNum": "8-A111",
   "sectionName": "总展区",
@@ -21470,7 +21470,7 @@
   "isRecommend": 0,
   "collectionsCount": 0,
   "allCollectionsCount": 0,
-  "readNum": 82,
+  "readNum": 85,
   "productCount": 2,
   "boothNum": "15-A8-39",
   "sectionName": "总展区",
@@ -34335,6 +34335,41 @@
   ]
  },
  {
+  "serveCatalogueId": 10777,
+  "taskDtlId": 1897847,
+  "companyName": "四川伊娃云智科技有限公司",
+  "companyNameEn": "Sichuan Eva Cloud Intelligence Technology Co., Ltd.",
+  "companyAbbr": "",
+  "companyAddress": "成都市龙泉驿区成龙大道1666号经开区孵化园B2-2-103",
+  "companyAddressEn": "No. 1666 Chenglong Avenue, Longquanyi District, Chengdu, B2-2-103, Incubation Park, Economic Development Zone",
+  "tel": "028-84861230",
+  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20251021/1761025755166_1563*1172.jpg",
+  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20251021/1761025423321_1182*452.png",
+  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20251021/1761025423321_1182*452.png",
+  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20251021/1761025755166_1563*1172.jpg",
+  "isRecommend": 0,
+  "collectionsCount": 0,
+  "allCollectionsCount": 0,
+  "readNum": 87,
+  "productCount": 2,
+  "boothNum": "13-B17-3",
+  "sectionName": "总展区",
+  "sectionNameEn": null,
+  "tradeId": null,
+  "tradeIdEn": null,
+  "tradeName": null,
+  "tradeNameEn": null,
+  "readNumInit": null,
+  "collectNumInit": null,
+  "tradeClassList": [
+   {
+    "tradeName": "低空经济与商业航天",
+    "tradeNameEn": "",
+    "tradeId": 373
+   }
+  ]
+ },
+ {
   "serveCatalogueId": 10792,
   "taskDtlId": 1898294,
   "companyName": "贵州省电子工业研究所",
@@ -36033,41 +36068,6 @@
   "readNum": 71,
   "productCount": 4,
   "boothNum": "11-026",
-  "sectionName": "总展区",
-  "sectionNameEn": null,
-  "tradeId": null,
-  "tradeIdEn": null,
-  "tradeName": null,
-  "tradeNameEn": null,
-  "readNumInit": null,
-  "collectNumInit": null,
-  "tradeClassList": [
-   {
-    "tradeName": "低空经济与商业航天",
-    "tradeNameEn": "",
-    "tradeId": 373
-   }
-  ]
- },
- {
-  "serveCatalogueId": 10777,
-  "taskDtlId": 1897847,
-  "companyName": "四川伊娃云智科技有限公司",
-  "companyNameEn": "Sichuan Eva Cloud Intelligence Technology Co., Ltd.",
-  "companyAbbr": "",
-  "companyAddress": "成都市龙泉驿区成龙大道1666号经开区孵化园B2-2-103",
-  "companyAddressEn": "No. 1666 Chenglong Avenue, Longquanyi District, Chengdu, B2-2-103, Incubation Park, Economic Development Zone",
-  "tel": "028-84861230",
-  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20251021/1761025755166_1563*1172.jpg",
-  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20251021/1761025423321_1182*452.png",
-  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20251021/1761025423321_1182*452.png",
-  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20251021/1761025755166_1563*1172.jpg",
-  "isRecommend": 0,
-  "collectionsCount": 0,
-  "allCollectionsCount": 0,
-  "readNum": 84,
-  "productCount": 2,
-  "boothNum": "13-B17-3",
   "sectionName": "总展区",
   "sectionNameEn": null,
   "tradeId": null,
@@ -43365,6 +43365,41 @@
   ]
  },
  {
+  "serveCatalogueId": 11563,
+  "taskDtlId": 1881430,
+  "companyName": "深圳跃迁动力科技有限公司",
+  "companyNameEn": "Shenzhen Leap Dynamics Technology Co., Ltd.",
+  "companyAbbr": "",
+  "companyAddress": "深圳市宝安区新安街道海旺社区兴华一路19号前海HOP国际2409",
+  "companyAddressEn": "Room 2409, Qianhai HOP International, No.19 Xinghua 1st Road, Haiwang Community, Xin'an Subdistrict, Bao'an District, Shenzhen",
+  "tel": "18819385188",
+  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261111/1794402840129_810*1080.jpg",
+  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261111/1794401420172_7559*4252.jpg",
+  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261111/1794401420172_7559*4252.jpg",
+  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261111/1794402840129_810*1080.jpg",
+  "isRecommend": 0,
+  "collectionsCount": 0,
+  "allCollectionsCount": 0,
+  "readNum": 64,
+  "productCount": 0,
+  "boothNum": "14-H21",
+  "sectionName": "总展区",
+  "sectionNameEn": null,
+  "tradeId": null,
+  "tradeIdEn": null,
+  "tradeName": null,
+  "tradeNameEn": null,
+  "readNumInit": null,
+  "collectNumInit": null,
+  "tradeClassList": [
+   {
+    "tradeName": "人工智能与机器人",
+    "tradeNameEn": null,
+    "tradeId": 379
+   }
+  ]
+ },
+ {
   "serveCatalogueId": 10209,
   "taskDtlId": 1880599,
   "companyName": "北京灵生科技有限公司",
@@ -46200,41 +46235,6 @@
   ]
  },
  {
-  "serveCatalogueId": 11563,
-  "taskDtlId": 1881430,
-  "companyName": "深圳跃迁动力科技有限公司",
-  "companyNameEn": "Shenzhen Leap Dynamics Technology Co., Ltd.",
-  "companyAbbr": "",
-  "companyAddress": "深圳市宝安区新安街道海旺社区兴华一路19号前海HOP国际2409",
-  "companyAddressEn": "Room 2409, Qianhai HOP International, No.19 Xinghua 1st Road, Haiwang Community, Xin'an Subdistrict, Bao'an District, Shenzhen",
-  "tel": "18819385188",
-  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261111/1794402840129_810*1080.jpg",
-  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261111/1794401420172_7559*4252.jpg",
-  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261111/1794401420172_7559*4252.jpg",
-  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261111/1794402840129_810*1080.jpg",
-  "isRecommend": 0,
-  "collectionsCount": 0,
-  "allCollectionsCount": 0,
-  "readNum": 60,
-  "productCount": 0,
-  "boothNum": "14-H21",
-  "sectionName": "总展区",
-  "sectionNameEn": null,
-  "tradeId": null,
-  "tradeIdEn": null,
-  "tradeName": null,
-  "tradeNameEn": null,
-  "readNumInit": null,
-  "collectNumInit": null,
-  "tradeClassList": [
-   {
-    "tradeName": "人工智能与机器人",
-    "tradeNameEn": null,
-    "tradeId": 379
-   }
-  ]
- },
- {
   "serveCatalogueId": 10878,
   "taskDtlId": 1892593,
   "companyName": "海南江艺种业科技有限公司",
@@ -47001,6 +47001,41 @@
     "tradeName": "人工智能与机器人",
     "tradeNameEn": null,
     "tradeId": 379
+   }
+  ]
+ },
+ {
+  "serveCatalogueId": 10440,
+  "taskDtlId": 1881724,
+  "companyName": "深圳市闪烁未来新能源科技有限公司",
+  "companyNameEn": "Blink Future",
+  "companyAbbr": "",
+  "companyAddress": "广东省深圳市南山区松白路1008号港鸿基高新智能产业园A栋511",
+  "companyAddressEn": "/",
+  "tel": "13510239133",
+  "pic": "https://zhanzhiyun.oss-accelerate.aliyuncs.com/20230802/1690970909929_400*300.jpg",
+  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261111/1794387510043_400*300.jpg",
+  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261111/1794387510043_400*300.jpg",
+  "companyPic": "https://zhanzhiyun.oss-accelerate.aliyuncs.com/20230802/1690970909929_400*300.jpg",
+  "isRecommend": 0,
+  "collectionsCount": 0,
+  "allCollectionsCount": 0,
+  "readNum": 58,
+  "productCount": 0,
+  "boothNum": "6-A18",
+  "sectionName": "总展区",
+  "sectionNameEn": null,
+  "tradeId": null,
+  "tradeIdEn": null,
+  "tradeName": null,
+  "tradeNameEn": null,
+  "readNumInit": null,
+  "collectNumInit": null,
+  "tradeClassList": [
+   {
+    "tradeName": "新型电力、储能、充电",
+    "tradeNameEn": "",
+    "tradeId": 369
    }
   ]
  },
@@ -47981,41 +48016,6 @@
     "tradeName": "人工智能与机器人",
     "tradeNameEn": null,
     "tradeId": 379
-   }
-  ]
- },
- {
-  "serveCatalogueId": 10440,
-  "taskDtlId": 1881724,
-  "companyName": "深圳市闪烁未来新能源科技有限公司",
-  "companyNameEn": "Blink Future",
-  "companyAbbr": "",
-  "companyAddress": "广东省深圳市南山区松白路1008号港鸿基高新智能产业园A栋511",
-  "companyAddressEn": "/",
-  "tel": "13510239133",
-  "pic": "https://zhanzhiyun.oss-accelerate.aliyuncs.com/20230802/1690970909929_400*300.jpg",
-  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261111/1794387510043_400*300.jpg",
-  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261111/1794387510043_400*300.jpg",
-  "companyPic": "https://zhanzhiyun.oss-accelerate.aliyuncs.com/20230802/1690970909929_400*300.jpg",
-  "isRecommend": 0,
-  "collectionsCount": 0,
-  "allCollectionsCount": 0,
-  "readNum": 57,
-  "productCount": 0,
-  "boothNum": "6-A18",
-  "sectionName": "总展区",
-  "sectionNameEn": null,
-  "tradeId": null,
-  "tradeIdEn": null,
-  "tradeName": null,
-  "tradeNameEn": null,
-  "readNumInit": null,
-  "collectNumInit": null,
-  "tradeClassList": [
-   {
-    "tradeName": "新型电力、储能、充电",
-    "tradeNameEn": "",
-    "tradeId": 369
    }
   ]
  },
@@ -55490,7 +55490,7 @@
   "isRecommend": 0,
   "collectionsCount": 0,
   "allCollectionsCount": 0,
-  "readNum": 42,
+  "readNum": 44,
   "productCount": 1,
   "boothNum": null,
   "sectionName": null,
@@ -58080,7 +58080,7 @@
   "isRecommend": 0,
   "collectionsCount": 0,
   "allCollectionsCount": 0,
-  "readNum": 39,
+  "readNum": 40,
   "productCount": 1,
   "boothNum": "13-B05-14",
   "sectionName": "总展区",
@@ -59760,7 +59760,7 @@
   "isRecommend": 0,
   "collectionsCount": 0,
   "allCollectionsCount": 0,
-  "readNum": 35,
+  "readNum": 36,
   "productCount": 4,
   "boothNum": "15-C3-14",
   "sectionName": "总展区",
@@ -60196,6 +60196,41 @@
     "tradeName": "医药/生物技术与实验室",
     "tradeNameEn": "",
     "tradeId": 372
+   }
+  ]
+ },
+ {
+  "serveCatalogueId": 11245,
+  "taskDtlId": 1891685,
+  "companyName": "中车株洲电力机车有限公司",
+  "companyNameEn": "CRRC Zhuzhou Locomotive, Co., Ltd",
+  "companyAbbr": "",
+  "companyAddress": "湖南省株洲市田心路1号",
+  "companyAddressEn": "Tianxin Road, Zhuzhou City, Hunan Province, China",
+  "tel": "13107020686",
+  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261110/1794276706910_458*340.png",
+  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261110/1794276668494_1202*554.jpg",
+  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261110/1794276668494_1202*554.jpg",
+  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261110/1794276706910_458*340.png",
+  "isRecommend": 0,
+  "collectionsCount": 0,
+  "allCollectionsCount": 0,
+  "readNum": 34,
+  "productCount": 3,
+  "boothNum": "9-A036-2",
+  "sectionName": "总展区",
+  "sectionNameEn": null,
+  "tradeId": null,
+  "tradeIdEn": null,
+  "tradeName": null,
+  "tradeNameEn": null,
+  "readNumInit": null,
+  "collectNumInit": null,
+  "tradeClassList": [
+   {
+    "tradeName": "国之重器科技巨头产业链",
+    "tradeNameEn": "",
+    "tradeId": 365
    }
   ]
  },
@@ -60966,41 +61001,6 @@
     "tradeName": "智能制造与自动化",
     "tradeNameEn": "",
     "tradeId": 370
-   }
-  ]
- },
- {
-  "serveCatalogueId": 11245,
-  "taskDtlId": 1891685,
-  "companyName": "中车株洲电力机车有限公司",
-  "companyNameEn": "CRRC Zhuzhou Locomotive, Co., Ltd",
-  "companyAbbr": "",
-  "companyAddress": "湖南省株洲市田心路1号",
-  "companyAddressEn": "Tianxin Road, Zhuzhou City, Hunan Province, China",
-  "tel": "13107020686",
-  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261110/1794276706910_458*340.png",
-  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261110/1794276668494_1202*554.jpg",
-  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261110/1794276668494_1202*554.jpg",
-  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261110/1794276706910_458*340.png",
-  "isRecommend": 0,
-  "collectionsCount": 0,
-  "allCollectionsCount": 0,
-  "readNum": 33,
-  "productCount": 3,
-  "boothNum": "9-A036-2",
-  "sectionName": "总展区",
-  "sectionNameEn": null,
-  "tradeId": null,
-  "tradeIdEn": null,
-  "tradeName": null,
-  "tradeNameEn": null,
-  "readNumInit": null,
-  "collectNumInit": null,
-  "tradeClassList": [
-   {
-    "tradeName": "国之重器科技巨头产业链",
-    "tradeNameEn": "",
-    "tradeId": 365
    }
   ]
  },
