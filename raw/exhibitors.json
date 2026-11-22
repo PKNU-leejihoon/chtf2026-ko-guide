@@ -15,7 +15,7 @@
   "isRecommend": 0,
   "collectionsCount": 1,
   "allCollectionsCount": 1,
-  "readNum": 997,
+  "readNum": 1001,
   "productCount": 10,
   "boothNum": "14-H15",
   "sectionName": "总展区",
@@ -820,7 +820,7 @@
   "isRecommend": 0,
   "collectionsCount": 0,
   "allCollectionsCount": 0,
-  "readNum": 174,
+  "readNum": 175,
   "productCount": 1,
   "boothNum": "12-C13",
   "sectionName": "总展区",
@@ -2415,6 +2415,41 @@
   ]
  },
  {
+  "serveCatalogueId": 10225,
+  "taskDtlId": 1882510,
+  "companyName": "无锡灵掌机器人科技有限公司",
+  "companyNameEn": "Wuxi Dexteroushands Robotic Technology Co., Ltd.",
+  "companyAbbr": "",
+  "companyAddress": "江苏省无锡市新吴区海归小镇5号楼2楼",
+  "companyAddressEn": "2nd Floor, Building 5, Haiguizhen, Xinwu District, Wuxi City, Jiangsu Province, China",
+  "tel": "15606192490",
+  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261027/1793087452093_1080*720.jpg",
+  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261027/1793086418772_3412*1126.jpg",
+  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261027/1793086418772_3412*1126.jpg",
+  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261027/1793087452093_1080*720.jpg",
+  "isRecommend": 0,
+  "collectionsCount": 0,
+  "allCollectionsCount": 0,
+  "readNum": 108,
+  "productCount": 0,
+  "boothNum": "12-E34",
+  "sectionName": "总展区",
+  "sectionNameEn": null,
+  "tradeId": null,
+  "tradeIdEn": null,
+  "tradeName": null,
+  "tradeNameEn": null,
+  "readNumInit": null,
+  "collectNumInit": null,
+  "tradeClassList": [
+   {
+    "tradeName": "人工智能与机器人",
+    "tradeNameEn": null,
+    "tradeId": 379
+   }
+  ]
+ },
+ {
   "serveCatalogueId": 10498,
   "taskDtlId": 1881994,
   "companyName": "合十思维(北京)科技有限公司",
@@ -2573,41 +2608,6 @@
   "readNum": 109,
   "productCount": 2,
   "boothNum": "14-F105",
-  "sectionName": "总展区",
-  "sectionNameEn": null,
-  "tradeId": null,
-  "tradeIdEn": null,
-  "tradeName": null,
-  "tradeNameEn": null,
-  "readNumInit": null,
-  "collectNumInit": null,
-  "tradeClassList": [
-   {
-    "tradeName": "人工智能与机器人",
-    "tradeNameEn": null,
-    "tradeId": 379
-   }
-  ]
- },
- {
-  "serveCatalogueId": 10225,
-  "taskDtlId": 1882510,
-  "companyName": "无锡灵掌机器人科技有限公司",
-  "companyNameEn": "Wuxi Dexteroushands Robotic Technology Co., Ltd.",
-  "companyAbbr": "",
-  "companyAddress": "江苏省无锡市新吴区海归小镇5号楼2楼",
-  "companyAddressEn": "2nd Floor, Building 5, Haiguizhen, Xinwu District, Wuxi City, Jiangsu Province, China",
-  "tel": "15606192490",
-  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261027/1793087452093_1080*720.jpg",
-  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261027/1793086418772_3412*1126.jpg",
-  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261027/1793086418772_3412*1126.jpg",
-  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261027/1793087452093_1080*720.jpg",
-  "isRecommend": 0,
-  "collectionsCount": 0,
-  "allCollectionsCount": 0,
-  "readNum": 107,
-  "productCount": 0,
-  "boothNum": "12-E34",
   "sectionName": "总展区",
   "sectionNameEn": null,
   "tradeId": null,
@@ -4165,6 +4165,41 @@
   ]
  },
  {
+  "serveCatalogueId": 9890,
+  "taskDtlId": 1882603,
+  "companyName": "灵心巧匠(深圳)机器人有限公司",
+  "companyNameEn": "Linkerbot",
+  "companyAbbr": "",
+  "companyAddress": "广东省深圳市龙岗区坂田街道雅宝星河双子塔西塔2701A",
+  "companyAddressEn": "2701A, Xinghe Twin Towers (West Tower), Longgang District, Shenzhen, Guangdong, China",
+  "tel": "/",
+  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261019/1792390396638_540*181.png",
+  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261019/1792390390614_540*181.png",
+  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261019/1792390390614_540*181.png",
+  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261019/1792390396638_540*181.png",
+  "isRecommend": 0,
+  "collectionsCount": 0,
+  "allCollectionsCount": 0,
+  "readNum": 103,
+  "productCount": 2,
+  "boothNum": "12-B15",
+  "sectionName": "总展区",
+  "sectionNameEn": null,
+  "tradeId": null,
+  "tradeIdEn": null,
+  "tradeName": null,
+  "tradeNameEn": null,
+  "readNumInit": null,
+  "collectNumInit": null,
+  "tradeClassList": [
+   {
+    "tradeName": "人工智能与机器人",
+    "tradeNameEn": null,
+    "tradeId": 379
+   }
+  ]
+ },
+ {
   "serveCatalogueId": 10039,
   "taskDtlId": 1880965,
   "companyName": "吉林省吉翼具身智能机器人有限公司",
@@ -4498,41 +4533,6 @@
   "readNum": 100,
   "productCount": 0,
   "boothNum": "12-A5",
-  "sectionName": "总展区",
-  "sectionNameEn": null,
-  "tradeId": null,
-  "tradeIdEn": null,
-  "tradeName": null,
-  "tradeNameEn": null,
-  "readNumInit": null,
-  "collectNumInit": null,
-  "tradeClassList": [
-   {
-    "tradeName": "人工智能与机器人",
-    "tradeNameEn": null,
-    "tradeId": 379
-   }
-  ]
- },
- {
-  "serveCatalogueId": 9890,
-  "taskDtlId": 1882603,
-  "companyName": "灵心巧匠(深圳)机器人有限公司",
-  "companyNameEn": "Linkerbot",
-  "companyAbbr": "",
-  "companyAddress": "广东省深圳市龙岗区坂田街道雅宝星河双子塔西塔2701A",
-  "companyAddressEn": "2701A, Xinghe Twin Towers (West Tower), Longgang District, Shenzhen, Guangdong, China",
-  "tel": "/",
-  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261019/1792390396638_540*181.png",
-  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261019/1792390390614_540*181.png",
-  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261019/1792390390614_540*181.png",
-  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261019/1792390396638_540*181.png",
-  "isRecommend": 0,
-  "collectionsCount": 0,
-  "allCollectionsCount": 0,
-  "readNum": 102,
-  "productCount": 2,
-  "boothNum": "12-B15",
   "sectionName": "总展区",
   "sectionNameEn": null,
   "tradeId": null,
@@ -6475,6 +6475,41 @@
   ]
  },
  {
+  "serveCatalogueId": 10570,
+  "taskDtlId": 1881745,
+  "companyName": "深圳鳍源科技有限公司",
+  "companyNameEn": "QYSEA",
+  "companyAbbr": "",
+  "companyAddress": "深圳市龙岗区坂田街道雅南路1号星河领创天下二期一楼",
+  "companyAddressEn": "1/F, Phase 2, Galaxy Lingchuang Tianxia, No. 1 Yanan Road, Bantian Street, Longgang District, Shenzhen, Guangdong Province, China",
+  "tel": "18138838914",
+  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261103/1793672454769_1080*860.jpg",
+  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261103/1793671990297_2622*2316.png",
+  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261103/1793671990297_2622*2316.png",
+  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261103/1793672454769_1080*860.jpg",
+  "isRecommend": 0,
+  "collectionsCount": 0,
+  "allCollectionsCount": 0,
+  "readNum": 109,
+  "productCount": 3,
+  "boothNum": "12-C16",
+  "sectionName": "总展区",
+  "sectionNameEn": null,
+  "tradeId": null,
+  "tradeIdEn": null,
+  "tradeName": null,
+  "tradeNameEn": null,
+  "readNumInit": null,
+  "collectNumInit": null,
+  "tradeClassList": [
+   {
+    "tradeName": "人工智能与机器人",
+    "tradeNameEn": null,
+    "tradeId": 379
+   }
+  ]
+ },
+ {
   "serveCatalogueId": 10620,
   "taskDtlId": 1881925,
   "companyName": "博莱瑞思光电科技（深圳）有限公司",
@@ -7311,41 +7346,6 @@
     "tradeName": "消费电子",
     "tradeNameEn": "",
     "tradeId": 378
-   }
-  ]
- },
- {
-  "serveCatalogueId": 10570,
-  "taskDtlId": 1881745,
-  "companyName": "深圳鳍源科技有限公司",
-  "companyNameEn": "QYSEA",
-  "companyAbbr": "",
-  "companyAddress": "深圳市龙岗区坂田街道雅南路1号星河领创天下二期一楼",
-  "companyAddressEn": "1/F, Phase 2, Galaxy Lingchuang Tianxia, No. 1 Yanan Road, Bantian Street, Longgang District, Shenzhen, Guangdong Province, China",
-  "tel": "18138838914",
-  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261103/1793672454769_1080*860.jpg",
-  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261103/1793671990297_2622*2316.png",
-  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261103/1793671990297_2622*2316.png",
-  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261103/1793672454769_1080*860.jpg",
-  "isRecommend": 0,
-  "collectionsCount": 0,
-  "allCollectionsCount": 0,
-  "readNum": 107,
-  "productCount": 3,
-  "boothNum": "12-C16",
-  "sectionName": "总展区",
-  "sectionNameEn": null,
-  "tradeId": null,
-  "tradeIdEn": null,
-  "tradeName": null,
-  "tradeNameEn": null,
-  "readNumInit": null,
-  "collectNumInit": null,
-  "tradeClassList": [
-   {
-    "tradeName": "人工智能与机器人",
-    "tradeNameEn": null,
-    "tradeId": 379
    }
   ]
  },
@@ -9310,6 +9310,41 @@
   ]
  },
  {
+  "serveCatalogueId": 10125,
+  "taskDtlId": 1883030,
+  "companyName": "擎脑(上海)智能科技有限公司",
+  "companyNameEn": "Qingnao (Shanghai) Intelligent Technology Co., Ltd.，",
+  "companyAbbr": "擎脑科技",
+  "companyAddress": "上海市闵行区七宝宝龙城T2",
+  "companyAddressEn": "Tower T2, Qibao Powerlong, Minhang District, Shanghai, China",
+  "tel": "13671576500",
+  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261103/1793683079604_918*688.jpg",
+  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261026/1792983669990_1476*1107.jpg",
+  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261026/1792983669990_1476*1107.jpg",
+  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261103/1793683079604_918*688.jpg",
+  "isRecommend": 0,
+  "collectionsCount": 0,
+  "allCollectionsCount": 0,
+  "readNum": 96,
+  "productCount": 4,
+  "boothNum": "10-G71",
+  "sectionName": "总展区",
+  "sectionNameEn": null,
+  "tradeId": null,
+  "tradeIdEn": null,
+  "tradeName": null,
+  "tradeNameEn": null,
+  "readNumInit": null,
+  "collectNumInit": null,
+  "tradeClassList": [
+   {
+    "tradeName": "人工智能与机器人",
+    "tradeNameEn": null,
+    "tradeId": 379
+   }
+  ]
+ },
+ {
   "serveCatalogueId": 10161,
   "taskDtlId": 1881151,
   "companyName": "黄石邦柯科技股份有限公司",
@@ -9971,41 +10006,6 @@
     "tradeName": "消费电子",
     "tradeNameEn": "",
     "tradeId": 378
-   }
-  ]
- },
- {
-  "serveCatalogueId": 10125,
-  "taskDtlId": 1883030,
-  "companyName": "擎脑(上海)智能科技有限公司",
-  "companyNameEn": "Qingnao (Shanghai) Intelligent Technology Co., Ltd.，",
-  "companyAbbr": "擎脑科技",
-  "companyAddress": "上海市闵行区七宝宝龙城T2",
-  "companyAddressEn": "Tower T2, Qibao Powerlong, Minhang District, Shanghai, China",
-  "tel": "13671576500",
-  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261103/1793683079604_918*688.jpg",
-  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261026/1792983669990_1476*1107.jpg",
-  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261026/1792983669990_1476*1107.jpg",
-  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261103/1793683079604_918*688.jpg",
-  "isRecommend": 0,
-  "collectionsCount": 0,
-  "allCollectionsCount": 0,
-  "readNum": 95,
-  "productCount": 4,
-  "boothNum": "10-G71",
-  "sectionName": "总展区",
-  "sectionNameEn": null,
-  "tradeId": null,
-  "tradeIdEn": null,
-  "tradeName": null,
-  "tradeNameEn": null,
-  "readNumInit": null,
-  "collectNumInit": null,
-  "tradeClassList": [
-   {
-    "tradeName": "人工智能与机器人",
-    "tradeNameEn": null,
-    "tradeId": 379
    }
   ]
  },
@@ -23290,7 +23290,7 @@
   "isRecommend": 0,
   "collectionsCount": 0,
   "allCollectionsCount": 0,
-  "readNum": 99,
+  "readNum": 100,
   "productCount": 3,
   "boothNum": "15-D4-24",
   "sectionName": "总展区",
@@ -43260,6 +43260,41 @@
   ]
  },
  {
+  "serveCatalogueId": 11297,
+  "taskDtlId": 1954450,
+  "companyName": "灵心巧匠（深圳）机器人有限公司",
+  "companyNameEn": "LinkerBot",
+  "companyAbbr": "",
+  "companyAddress": "深圳市龙岗区坂田街道南坑社区雅星路8号星河WORLD双子塔.西塔2701A",
+  "companyAddressEn": "2701A, Xinghe Twin Towers (West Tower), Longgang District, Shenzhen, Guangdong, China",
+  "tel": "18124214404",
+  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261110/1794289999082_540*181.png",
+  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261110/1794289993088_540*181.png",
+  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261110/1794289993088_540*181.png",
+  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261110/1794289999082_540*181.png",
+  "isRecommend": 0,
+  "collectionsCount": 1,
+  "allCollectionsCount": 0,
+  "readNum": 68,
+  "productCount": 1,
+  "boothNum": "15-C5-5",
+  "sectionName": "总展区",
+  "sectionNameEn": null,
+  "tradeId": null,
+  "tradeIdEn": null,
+  "tradeName": null,
+  "tradeNameEn": null,
+  "readNumInit": null,
+  "collectNumInit": null,
+  "tradeClassList": [
+   {
+    "tradeName": "人工智能与机器人",
+    "tradeNameEn": null,
+    "tradeId": 379
+   }
+  ]
+ },
+ {
   "serveCatalogueId": 11301,
   "taskDtlId": 1954306,
   "companyName": "深圳膳小默科技有限公司",
@@ -44096,41 +44131,6 @@
     "tradeName": "新型电力、储能、充电",
     "tradeNameEn": "",
     "tradeId": 369
-   }
-  ]
- },
- {
-  "serveCatalogueId": 11297,
-  "taskDtlId": 1954450,
-  "companyName": "灵心巧匠（深圳）机器人有限公司",
-  "companyNameEn": "LinkerBot",
-  "companyAbbr": "",
-  "companyAddress": "深圳市龙岗区坂田街道南坑社区雅星路8号星河WORLD双子塔.西塔2701A",
-  "companyAddressEn": "2701A, Xinghe Twin Towers (West Tower), Longgang District, Shenzhen, Guangdong, China",
-  "tel": "18124214404",
-  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261110/1794289999082_540*181.png",
-  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261110/1794289993088_540*181.png",
-  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261110/1794289993088_540*181.png",
-  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261110/1794289999082_540*181.png",
-  "isRecommend": 0,
-  "collectionsCount": 1,
-  "allCollectionsCount": 0,
-  "readNum": 67,
-  "productCount": 1,
-  "boothNum": "15-C5-5",
-  "sectionName": "总展区",
-  "sectionNameEn": null,
-  "tradeId": null,
-  "tradeIdEn": null,
-  "tradeName": null,
-  "tradeNameEn": null,
-  "readNumInit": null,
-  "collectNumInit": null,
-  "tradeClassList": [
-   {
-    "tradeName": "人工智能与机器人",
-    "tradeNameEn": null,
-    "tradeId": 379
    }
   ]
  },
@@ -49175,6 +49175,41 @@
   ]
  },
  {
+  "serveCatalogueId": 11376,
+  "taskDtlId": 1882228,
+  "companyName": "深圳市智云译科技有限公司",
+  "companyNameEn": "Shenzhen Zhiyunyi Technology Co., Ltd.",
+  "companyAbbr": "智云译",
+  "companyAddress": "深圳市光明区凤凰街道欧菲光总部研发中心大厦B座802室",
+  "companyAddressEn": "Room 802, Building B, O-Film Headquarters R&D Center, Fenghuang Subdistrict, Guangming District, Shenzhen",
+  "tel": "18676689146",
+  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261110/1794306997624_1080*1920.jpg",
+  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261110/1794306730005_810*1080.jpg",
+  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261110/1794306730005_810*1080.jpg",
+  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261110/1794306997624_1080*1920.jpg",
+  "isRecommend": 0,
+  "collectionsCount": 0,
+  "allCollectionsCount": 0,
+  "readNum": 65,
+  "productCount": 1,
+  "boothNum": "////,15-C5-34",
+  "sectionName": "总展区",
+  "sectionNameEn": null,
+  "tradeId": null,
+  "tradeIdEn": null,
+  "tradeName": null,
+  "tradeNameEn": null,
+  "readNumInit": null,
+  "collectNumInit": null,
+  "tradeClassList": [
+   {
+    "tradeName": "消费电子",
+    "tradeNameEn": "",
+    "tradeId": 378
+   }
+  ]
+ },
+ {
   "serveCatalogueId": 11394,
   "taskDtlId": 1911598,
   "companyName": "广东中科实数科技有限公司",
@@ -49661,41 +49696,6 @@
     "tradeName": "深圳科技成果、未来前沿科技",
     "tradeNameEn": "",
     "tradeId": 368
-   }
-  ]
- },
- {
-  "serveCatalogueId": 11376,
-  "taskDtlId": 1882228,
-  "companyName": "深圳市智云译科技有限公司",
-  "companyNameEn": "Shenzhen Zhiyunyi Technology Co., Ltd.",
-  "companyAbbr": "智云译",
-  "companyAddress": "深圳市光明区凤凰街道欧菲光总部研发中心大厦B座802室",
-  "companyAddressEn": "Room 802, Building B, O-Film Headquarters R&D Center, Fenghuang Subdistrict, Guangming District, Shenzhen",
-  "tel": "18676689146",
-  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261110/1794306997624_1080*1920.jpg",
-  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261110/1794306730005_810*1080.jpg",
-  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261110/1794306730005_810*1080.jpg",
-  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261110/1794306997624_1080*1920.jpg",
-  "isRecommend": 0,
-  "collectionsCount": 0,
-  "allCollectionsCount": 0,
-  "readNum": 62,
-  "productCount": 1,
-  "boothNum": "////,15-C5-34",
-  "sectionName": "总展区",
-  "sectionNameEn": null,
-  "tradeId": null,
-  "tradeIdEn": null,
-  "tradeName": null,
-  "tradeNameEn": null,
-  "readNumInit": null,
-  "collectNumInit": null,
-  "tradeClassList": [
-   {
-    "tradeName": "消费电子",
-    "tradeNameEn": "",
-    "tradeId": 378
    }
   ]
  },
@@ -51450,6 +51450,41 @@
   ]
  },
  {
+  "serveCatalogueId": 11445,
+  "taskDtlId": 1954639,
+  "companyName": "广东利元亨智能装备股份有限公司",
+  "companyNameEn": "Guangdong Lyric Robot Automation Co., Ltd.",
+  "companyAbbr": "利元亨",
+  "companyAddress": "广东省惠州市惠城区马安镇新鹏路4号",
+  "companyAddressEn": "No.4 Xinpeng Road,  Ma'an Town, Huicheng District, Huizhou City, Guangdong Province",
+  "tel": "4009319913",
+  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261111/1794365643655_1080*405.jpg",
+  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261111/1794365018422_455*667.png",
+  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261111/1794365018422_455*667.png",
+  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261111/1794365643655_1080*405.jpg",
+  "isRecommend": 0,
+  "collectionsCount": 1,
+  "allCollectionsCount": 0,
+  "readNum": 55,
+  "productCount": 10,
+  "boothNum": "15-C7-8",
+  "sectionName": "总展区",
+  "sectionNameEn": null,
+  "tradeId": null,
+  "tradeIdEn": null,
+  "tradeName": null,
+  "tradeNameEn": null,
+  "readNumInit": null,
+  "collectNumInit": null,
+  "tradeClassList": [
+   {
+    "tradeName": "智能制造与自动化",
+    "tradeNameEn": "",
+    "tradeId": 370
+   }
+  ]
+ },
+ {
   "serveCatalogueId": 11449,
   "taskDtlId": 1910791,
   "companyName": "北京中博数智科技有限公司",
@@ -51796,41 +51831,6 @@
     "tradeName": "新材料",
     "tradeNameEn": null,
     "tradeId": 375
-   }
-  ]
- },
- {
-  "serveCatalogueId": 11445,
-  "taskDtlId": 1954639,
-  "companyName": "广东利元亨智能装备股份有限公司",
-  "companyNameEn": "Guangdong Lyric Robot Automation Co., Ltd.",
-  "companyAbbr": "利元亨",
-  "companyAddress": "广东省惠州市惠城区马安镇新鹏路4号",
-  "companyAddressEn": "No.4 Xinpeng Road,  Ma'an Town, Huicheng District, Huizhou City, Guangdong Province",
-  "tel": "4009319913",
-  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261111/1794365643655_1080*405.jpg",
-  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261111/1794365018422_455*667.png",
-  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261111/1794365018422_455*667.png",
-  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261111/1794365643655_1080*405.jpg",
-  "isRecommend": 0,
-  "collectionsCount": 1,
-  "allCollectionsCount": 0,
-  "readNum": 54,
-  "productCount": 10,
-  "boothNum": "15-C7-8",
-  "sectionName": "总展区",
-  "sectionNameEn": null,
-  "tradeId": null,
-  "tradeIdEn": null,
-  "tradeName": null,
-  "tradeNameEn": null,
-  "readNumInit": null,
-  "collectNumInit": null,
-  "tradeClassList": [
-   {
-    "tradeName": "智能制造与自动化",
-    "tradeNameEn": "",
-    "tradeId": 370
    }
   ]
  },
@@ -52850,6 +52850,41 @@
   ]
  },
  {
+  "serveCatalogueId": 11288,
+  "taskDtlId": 1882381,
+  "companyName": "深圳市好钜润科技有限公司",
+  "companyNameEn": "Shenzhen Haojurun Technology Co., Ltd.",
+  "companyAbbr": "好钜润",
+  "companyAddress": "深圳市南山区西丽街道科技北二路28号豪威大厦B405",
+  "companyAddressEn": "Room B405, Haowei Building, No.28 Keji North 2nd Road, Xili Subdistrict, Nanshan District, Shenzhen City",
+  "tel": "18680363682",
+  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261110/1794286924969_324*243.png",
+  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261110/1794286893191_205*203.png",
+  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261110/1794286893191_205*203.png",
+  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261110/1794286924969_324*243.png",
+  "isRecommend": 0,
+  "collectionsCount": 0,
+  "allCollectionsCount": 0,
+  "readNum": 53,
+  "productCount": 10,
+  "boothNum": "10-J7",
+  "sectionName": "总展区",
+  "sectionNameEn": null,
+  "tradeId": null,
+  "tradeIdEn": null,
+  "tradeName": null,
+  "tradeNameEn": null,
+  "readNumInit": null,
+  "collectNumInit": null,
+  "tradeClassList": [
+   {
+    "tradeName": "消费电子",
+    "tradeNameEn": "",
+    "tradeId": 378
+   }
+  ]
+ },
+ {
   "serveCatalogueId": 11507,
   "taskDtlId": 1882633,
   "companyName": "无锡凯伦纳弹簧有限公司",
@@ -53336,41 +53371,6 @@
     "tradeName": "人工智能与机器人",
     "tradeNameEn": null,
     "tradeId": 379
-   }
-  ]
- },
- {
-  "serveCatalogueId": 11288,
-  "taskDtlId": 1882381,
-  "companyName": "深圳市好钜润科技有限公司",
-  "companyNameEn": "Shenzhen Haojurun Technology Co., Ltd.",
-  "companyAbbr": "好钜润",
-  "companyAddress": "深圳市南山区西丽街道科技北二路28号豪威大厦B405",
-  "companyAddressEn": "Room B405, Haowei Building, No.28 Keji North 2nd Road, Xili Subdistrict, Nanshan District, Shenzhen City",
-  "tel": "18680363682",
-  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261110/1794286924969_324*243.png",
-  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261110/1794286893191_205*203.png",
-  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261110/1794286893191_205*203.png",
-  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261110/1794286924969_324*243.png",
-  "isRecommend": 0,
-  "collectionsCount": 0,
-  "allCollectionsCount": 0,
-  "readNum": 51,
-  "productCount": 10,
-  "boothNum": "10-J7",
-  "sectionName": "总展区",
-  "sectionNameEn": null,
-  "tradeId": null,
-  "tradeIdEn": null,
-  "tradeName": null,
-  "tradeNameEn": null,
-  "readNumInit": null,
-  "collectNumInit": null,
-  "tradeClassList": [
-   {
-    "tradeName": "消费电子",
-    "tradeNameEn": "",
-    "tradeId": 378
    }
   ]
  },
@@ -64575,6 +64575,41 @@
   ]
  },
  {
+  "serveCatalogueId": 11699,
+  "taskDtlId": 1954468,
+  "companyName": "Soar Advisory GmbH",
+  "companyNameEn": "Soar Advisory GmbH",
+  "companyAbbr": "翔瑞德国商务咨询",
+  "companyAddress": "Marcusallee 1628359 Bremen, Germany",
+  "companyAddressEn": "Marcusallee 1628359 Bremen, Germany",
+  "tel": "13397503361",
+  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261112/1794492977175_2096*624.png",
+  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261112/1794492845828_1998*735.png",
+  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261112/1794492845828_1998*735.png",
+  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261112/1794492977175_2096*624.png",
+  "isRecommend": 0,
+  "collectionsCount": 0,
+  "allCollectionsCount": 0,
+  "readNum": 30,
+  "productCount": 0,
+  "boothNum": "13-A1-3",
+  "sectionName": "总展区",
+  "sectionNameEn": null,
+  "tradeId": null,
+  "tradeIdEn": null,
+  "tradeName": null,
+  "tradeNameEn": null,
+  "readNumInit": null,
+  "collectNumInit": null,
+  "tradeClassList": [
+   {
+    "tradeName": "跨境电商",
+    "tradeNameEn": "",
+    "tradeId": 402
+   }
+  ]
+ },
+ {
   "serveCatalogueId": 11709,
   "taskDtlId": 1954941,
   "companyName": "深圳市正欣精酿啤酒有限公司",
@@ -65131,41 +65166,6 @@
     "tradeName": "医药/生物技术与实验室",
     "tradeNameEn": "",
     "tradeId": 372
-   }
-  ]
- },
- {
-  "serveCatalogueId": 11699,
-  "taskDtlId": 1954468,
-  "companyName": "Soar Advisory GmbH",
-  "companyNameEn": "Soar Advisory GmbH",
-  "companyAbbr": "翔瑞德国商务咨询",
-  "companyAddress": "Marcusallee 1628359 Bremen, Germany",
-  "companyAddressEn": "Marcusallee 1628359 Bremen, Germany",
-  "tel": "13397503361",
-  "pic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261112/1794492977175_2096*624.png",
-  "logo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261112/1794492845828_1998*735.png",
-  "companyLogo": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261112/1794492845828_1998*735.png",
-  "companyPic": "https://guanzhongxitong.oss-cn-beijing.aliyuncs.com/20261112/1794492977175_2096*624.png",
-  "isRecommend": 0,
-  "collectionsCount": 0,
-  "allCollectionsCount": 0,
-  "readNum": 29,
-  "productCount": 0,
-  "boothNum": "13-A1-3",
-  "sectionName": "总展区",
-  "sectionNameEn": null,
-  "tradeId": null,
-  "tradeIdEn": null,
-  "tradeName": null,
-  "tradeNameEn": null,
-  "readNumInit": null,
-  "collectNumInit": null,
-  "tradeClassList": [
-   {
-    "tradeName": "跨境电商",
-    "tradeNameEn": "",
-    "tradeId": 402
    }
   ]
  },
