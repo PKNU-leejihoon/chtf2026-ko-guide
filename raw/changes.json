@@ -451,5 +451,162 @@
     "booth": "15-A8-32,15-A8-33"
    }
   ]
+ },
+ {
+  "at": "2026-11-22T20:23+09:00",
+  "items": [
+   {
+    "type": "added",
+    "id": 10369
+   },
+   {
+    "type": "added",
+    "id": 11022
+   },
+   {
+    "type": "added",
+    "id": 10917
+   },
+   {
+    "type": "added",
+    "id": 10973
+   },
+   {
+    "type": "added",
+    "id": 11028
+   },
+   {
+    "type": "added",
+    "id": 11625
+   },
+   {
+    "type": "added",
+    "id": 11695
+   },
+   {
+    "type": "added",
+    "id": 11767
+   },
+   {
+    "type": "added",
+    "id": 11768
+   },
+   {
+    "type": "added",
+    "id": 11769
+   },
+   {
+    "type": "added",
+    "id": 11770
+   },
+   {
+    "type": "added",
+    "id": 11771
+   },
+   {
+    "type": "added",
+    "id": 11772
+   },
+   {
+    "type": "added",
+    "id": 11773
+   },
+   {
+    "type": "added",
+    "id": 11774
+   },
+   {
+    "type": "added",
+    "id": 11775
+   },
+   {
+    "type": "added",
+    "id": 11776
+   },
+   {
+    "type": "added",
+    "id": 11777
+   },
+   {
+    "type": "added",
+    "id": 11778
+   },
+   {
+    "type": "added",
+    "id": 11779
+   },
+   {
+    "type": "added",
+    "id": 11780
+   },
+   {
+    "type": "added",
+    "id": 11781
+   },
+   {
+    "type": "added",
+    "id": 11782
+   },
+   {
+    "type": "added",
+    "id": 11783
+   },
+   {
+    "type": "added",
+    "id": 11784
+   },
+   {
+    "type": "added",
+    "id": 11785
+   },
+   {
+    "type": "added",
+    "id": 11786
+   },
+   {
+    "type": "added",
+    "id": 11787
+   },
+   {
+    "type": "added",
+    "id": 11789
+   },
+   {
+    "type": "added",
+    "id": 11790
+   },
+   {
+    "type": "added",
+    "id": 11791
+   },
+   {
+    "type": "added",
+    "id": 11792
+   },
+   {
+    "type": "added",
+    "id": 11793
+   },
+   {
+    "type": "added",
+    "id": 11794
+   },
+   {
+    "type": "added",
+    "id": 11795
+   },
+   {
+    "type": "added",
+    "id": 11796
+   },
+   {
+    "type": "added",
+    "id": 11797
+   },
+   {
+    "type": "added",
+    "id": 11798
+   }
+  ]
  }
 ]
