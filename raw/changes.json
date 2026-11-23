@@ -608,5 +608,292 @@
     "id": 11798
    }
   ]
+ },
+ {
+  "at": "2026-11-23T21:36+09:00",
+  "items": [
+   {
+    "type": "added",
+    "id": 11801
+   },
+   {
+    "type": "added",
+    "id": 11799
+   },
+   {
+    "type": "added",
+    "id": 11802
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/jiangxiangpingxuan",
+    "title_cn": "第二十八届中国国际高新技术成果交易会奖项申报须知"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/quanqiu2",
+    "title_cn": "全球采购对接大会"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/gaoxinluntan",
+    "title_cn": "中国高新技术论坛"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/quanqiutourongzi2",
+    "title_cn": "全球投融资供需对接会"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/xincanpingxinjishuxinchengguo",
+    "title_cn": "第二十八届高交会新产品、新技术、新成果发布会"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/zhaongguogaoxinjishuluntan",
+    "title_cn": "专业技术讲座"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/luyanhuodong",
+    "title_cn": "项目路演活动"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/zhcsluntan",
+    "title_cn": "大模型与智能体的安全、伦理与治理"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/dikongluntan",
+    "title_cn": "第二十八届中国深圳高交会“大湾区低空论坛”"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/cxswy",
+    "title_cn": "大模型与智能体行业前沿应用论坛"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/touzidahui",
+    "title_cn": "2026深圳科技投资大会"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/shangwucan",
+    "title_cn": "2026深圳科技投资大会VIP午宴"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/networkSecurity",
+    "title_cn": "物理AI与机器人品类创新大会"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/sfsxlyq",
+    "title_cn": "首发首秀路演区"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/sanya_meeting",
+    "title_cn": "三亚崖州湾科技城高新区高新技术产业合作发展对接会(深圳)"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/hongshulinting",
+    "title_cn": "综合大会日程安排"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/shijierengongzhinenyingyongdahui",
+    "title_cn": "世界人工智能应用大会"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/gaojiaohuikekaoxingjishudahui",
+    "title_cn": "第28届高交会可靠性技术大会"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/_5E_duibiaochuangyiliu",
+    "title_cn": "5E双标创一流”经验交流大会"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/wunichuli",
+    "title_cn": "第三届污泥处理处置产业链座谈会"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/dianlishebeixiehuidaibiaohui",
+    "title_cn": "中国电力设备管理协会第二届第五次会员代表大会"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/faxianxinfanshiyuweilaichanyechuangxin",
+    "title_cn": "科学智能：发现新范式与未来产业创新 论坛议程"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/shengangjinrongqianyuehuodong",
+    "title_cn": "深港科技金融论坛暨重大项目签约活动议程"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/guangdongshengshizhengxingyekejichuangxindahui",
+    "title_cn": "第五届广东省市政行业科技创新大会"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/hainantouzihezuofangan",
+    "title_cn": "海南自由贸易港（深圳）投资合作交流会方案"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/gaojiyanxiuban",
+    "title_cn": "2026年国家技术转移中部中心高级技术经理人研修班"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/xinnengyuanchuangxin",
+    "title_cn": "第二届新能源工匠创新技术交流会-初步会议日程"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/xinxingdianlijishujiaoliuhui",
+    "title_cn": "数智赋能 节能降碳——新型电力系统下煤电机组灵活性能力提升技术交流会”-议程"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/smu_sliyazhoushangye",
+    "title_cn": "以尽责治理领导力，驱动长期价值增长"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/baigonghui",
+    "title_cn": "先进制造可靠性技术大会暨中国企业可靠性工程师年会“百工汇”"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/luntanjihuodong/dawanquqingnenguimohuayingyongchuangxinfenghui_yaoqinghan",
+    "title_cn": "氢能规模化应用创新峰会-邀请函"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/zhanlanyuzhanshi/guozhizhognqi",
+    "title_cn": "国之重器、科技巨头产业链"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/zhanlanyuzhanshi/guojichengguo",
+    "title_cn": "国际科技成果、省市科技成果"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/zhanlanyuzhanshi/keyanyuan",
+    "title_cn": "科研院所高校、产教融合、全国重点实验室及生物技术"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/zhanlanyuzhanshi/shenzhenkejichengguo",
+    "title_cn": "粤科技"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/zhanlanyuzhanshi/rengongzhineng",
+    "title_cn": "人工智能产业链"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/zhanlanyuzhanshi/jiqirenchanye",
+    "title_cn": "机器人产业链"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/zhanlanyuzhanshi/bandaoti",
+    "title_cn": "半导体与集成电路产业"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/zhanlanyuzhanshi/zhinengzhizao",
+    "title_cn": "AI 算力产业与数据中心"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/zhanlanyuzhanshi/dianzixiaofei",
+    "title_cn": "消费电子"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/zhanlanyuzhanshi/dikongjingji",
+    "title_cn": "低空经济与通用航空"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/zhanlanyuzhanshi/syht",
+    "title_cn": "亚洲航天展"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/zhanlanyuzhanshi/kuajingdianshang",
+    "title_cn": "亚洲氢能产业展"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/zhanlanyuzhanshi/shengwujishu",
+    "title_cn": "生物技术与化学工程"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/zhanlanyuzhanshi/gaoduanyiliao",
+    "title_cn": "高端医疗器械"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/zhanlanyuzhanshi/chunengdianchi",
+    "title_cn": "储能及电池工业"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/zhanlanyuzhanshi/guangchuchongdianzhuang",
+    "title_cn": "亚洲光储充及充电桩产业"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/zhanlanyuzhanshi/shuzinengyuan",
+    "title_cn": "智慧电力与数字能源"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/zhanlanyuzhanshi/shuiwuyuhuanjing",
+    "title_cn": "水务与环境、C³未来建筑大会"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/zhanlanyuzhanshi/shizhenggongcheng",
+    "title_cn": "市政工程"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/zhanlanyuzhanshi/guidao",
+    "title_cn": "轨道交通"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/zhanlanyuzhanshi/zhihuigangkou",
+    "title_cn": "智慧港口"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/zhanlanyuzhanshi/yazhouxincailiaochanyezhan",
+    "title_cn": "亚洲新材料产业展"
+   },
+   {
+    "type": "event_changed",
+    "url": "https://www.chtf.com/zhanlanyuzhanshi/alsh",
+    "title_cn": "亚洲生命科学与健康产业展"
+   }
+  ]
  }
 ]
