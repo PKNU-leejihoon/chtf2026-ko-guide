@@ -19,6 +19,7 @@ import os
 import re
 import sys
 import time
+from collections import Counter
 import urllib.parse
 import urllib.request
 
@@ -40,7 +41,7 @@ API_HEADERS = {
 PROJECT = "1150"
 EVENT_INDEX = "https://www.chtf.com/luntanjihuodong/gaoxinluntan"
 CJK = re.compile("[一-鿿]")
-NAV_API = "https://s.whte.cn/Cs/"
+NAV_API = "https://dh.whte.cn/"
 NAV_PROJECT = 12  # 공식 부스 내비게이션의 2026년 프로젝트 (https://s.whte.cn/zwzl/chtf/?id=12)
 SHOW_PAGES = {
     "guozhizhognqi": "国之重器、科技巨头产业链", "guojichengguo": "国际科技成果、省市科技成果",
@@ -200,15 +201,57 @@ def nav_get(path):
         return json.loads(r.read().decode("utf-8"))
 
 
+def nav_hall(name):
+    match = re.fullmatch(r"(\d+)号展?馆", name)
+    return int(match.group(1)) if match else None
+
+
+def nav_code(code, hall):
+    code = code.strip().upper()
+    if hall and re.fullmatch(r"[A-Z]+\d+(?:-[A-Z0-9]+)*", code):
+        return f"{hall}-{code}"
+    if hall and re.match(fr"^{hall}[A-Z]", code):
+        return f"{hall}-{code[len(str(hall)):]}"
+    return code
+
+
 def fetch_nav():
     """공식 부스 내비게이션에 입력된 부스. 주최 측이 전시 직전까지 채워 넣는 데이터다."""
     halls = []
     for a in nav_get(f"plan/listAreaByProjectId?projectId={NAV_PROJECT}") or []:
         rows = nav_get(f"plan/pagePlan?areaId={a['id']}").get("data") or []
-        named = [{"booth": (x.get("planBooth") or "").strip(), "name": (x.get("planName") or x.get("jcName") or "").strip(),
-                  "cid": str(x.get("catalogueId") or "")} for x in rows if x.get("planName") or x.get("jcName")]
-        halls.append({"id": a["id"], "name": a.get("areaName") or "", "total": len(rows), "named": named})
+        hall = nav_hall(a.get("areaName") or "")
+        codes = Counter(nav_code(x.get("planBooth") or "", hall) for x in rows)
+        named = []
+        for x in rows:
+            name = (x.get("planName") or x.get("jcName") or "").strip()
+            if not name:
+                continue
+            code = (x.get("planBooth") or "").strip()
+            named.append({"booth": code, "name": name, "cid": str(x.get("catalogueId") or ""),
+                          "id": x["id"] if code and codes[nav_code(code, hall)] == 1 else None})
+        halls.append({"id": a["id"], "name": a.get("areaName") or "", "total": len(rows), "named": named,
+                      "checkedAt": dt.datetime.now(KST).isoformat(timespec="minutes")})
     return halls
+
+
+def nav_public(nav, exhibitors):
+    companies = {str(x[0]): x for x in exhibitors}
+    result = []
+    for area in nav:
+        hall = nav_hall(area["name"])
+        targets = {}
+        for booth in area["named"]:
+            company = companies.get(booth["cid"])
+            code = nav_code(booth["booth"], hall)
+            if (company and hall in company[5] and isinstance(booth.get("id"), int)
+                    and code.startswith(f"{hall}-")
+                    and code in re.split(r"\s*[,，、/]\s*", company[4].upper().strip())):
+                targets.setdefault(code, []).append([company[0], booth["id"]])
+        result.append({"name": area["name"], "total": area["total"], "named": len(area["named"]),
+                       "hall": hall, "id": area["id"], "checkedAt": area.get("checkedAt"),
+                       "targets": {code: entries[0] for code, entries in targets.items() if len(entries) == 1}})
+    return result
 
 
 # ---------------------------------------------------------------- 번역
@@ -284,7 +327,14 @@ def build(now_iso):
     events_state = load(os.path.join(RAW, "events.json"), {"items": []})
 
     nav = load(os.path.join(RAW, "nav.json"), [])
-    nav_booth = {n["cid"]: n["booth"] for h in nav for n in h.get("named", []) if n.get("cid") and n.get("booth")}
+    nav_booths = {}
+    for area in nav:
+        hall = nav_hall(area["name"])
+        for entry in area["named"]:
+            if entry["cid"] and entry["booth"] and hall:
+                raw_code = entry["booth"].strip().upper()
+                code = nav_code(raw_code, hall)
+                nav_booths.setdefault(entry["cid"], {}).setdefault(raw_code, set()).add(code)
 
     def tr(s):
         if not s or not CJK.search(s):
@@ -312,7 +362,14 @@ def build(now_iso):
             name = tr(cn)
             if CJK.search(cn) and cn not in ko:
                 pending.add(cn)
-        booth = clean_booth(r.get("boothNum")) or nav_booth.get(str(r["serveCatalogueId"]), "")
+        booth = clean_booth(r.get("boothNum"))
+        if official := nav_booths.get(str(r["serveCatalogueId"])):
+            parts = re.split(r"\s*[,，、/]\s*", booth) if booth else list(official)
+            for i, part in enumerate(parts):
+                matches = official.get(part.upper(), ())
+                if len(matches) == 1:
+                    parts[i] = next(iter(matches))
+            booth = ",".join(parts)
         hs = halls_of(booth)
         cs = [cat(t["tradeName"]) for t in (r.get("tradeClassList") or [])]
         plist = []
@@ -366,7 +423,7 @@ def build(now_iso):
         "recent": recent,
         "eventPages": [{"url": e["url"], "title": e["title"], "ko": tr(e["title"]), "kind": e.get("kind", "event")} for e in events_state.get("items", [])],
         "nav": {"url": f"https://s.whte.cn/zwzl/chtf/?id={NAV_PROJECT}",
-                "halls": [{"name": h["name"], "total": h["total"], "named": len(h["named"])} for h in nav]},
+                "halls": nav_public(nav, X)},
         "x": X,
     }
     save(os.path.join(SITE, "data.json"), out, compact=True)
@@ -415,6 +472,11 @@ def collect():
     nav_old = {h["id"]: h for h in load(os.path.join(RAW, "nav.json"), [])}
     try:
         nav_new = fetch_nav()
+        nav_current = {h["id"]: h for h in nav_new}
+        if any(nav_current.get(i, {}).get("total", 0) < previous["total"] * .7
+               or len(nav_current.get(i, {}).get("named", [])) < len(previous["named"]) * .7
+               for i, previous in nav_old.items()):
+            raise ValueError("공식 지도 데이터가 크게 줄어 직전 확인본 유지")
         for h in nav_new:
             before = len((nav_old.get(h["id"]) or {}).get("named", []))
             if len(h["named"]) > before:
