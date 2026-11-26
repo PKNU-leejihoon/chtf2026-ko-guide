@@ -135,6 +135,14 @@ footer{margin-bottom:calc(58px + env(safe-area-inset-bottom,0px))}
 #hallMapTitle{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 #mapToProducts{flex:none}
 #mapHall{min-width:0;width:100%;flex:1 1 auto;font-weight:700;padding:7px 8px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font:inherit}
+.map-guide{position:absolute;inset:12px 64px auto 12px;z-index:2;display:grid;gap:8px;padding:14px;border-radius:10px;background:var(--surface);border:1px solid var(--line);box-shadow:0 4px 18px rgba(0,0,0,.22)}
+.map-guide ul{margin:0;padding-left:1.1em;display:grid;gap:6px;line-height:1.45}
+.map-guide .btn{justify-self:start}
+.map-legend{display:flex;flex-wrap:wrap;gap:4px 14px;margin:0;font-size:.85rem;color:var(--muted)}
+.map-legend i{display:inline-block;width:12px;height:12px;margin-right:5px;vertical-align:-1px;border-radius:3px}
+.lg-me{background:#2563eb;border-radius:50%!important;box-shadow:0 0 0 3px rgba(37,99,235,.2)}
+.lg-sel{background:#e5484d}
+.lg-hit{background:#ffd6d6;border:2px solid #e5484d}
 .linkish{border:0;background:none;padding:4px 0;color:var(--muted);font:inherit;font-size:.85rem;text-decoration:underline;text-align:left;cursor:pointer}
 .sheet-products{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scroll-snap-type:x proximity}
 .sheet-products a{flex:0 0 112px;display:grid;gap:4px;align-content:start;color:var(--ink);text-decoration:none;font-size:.82rem;line-height:1.3;scroll-snap-align:start}
@@ -152,7 +160,7 @@ footer{margin-bottom:calc(58px + env(safe-area-inset-bottom,0px))}
 .bt.sel text,.bt.sel .bc{fill:#fff}
 #meDot .acc{fill:rgba(37,99,235,.16);stroke:rgba(37,99,235,.55);stroke-width:1.5;vector-effect:non-scaling-stroke}
 #meDot .dot{fill:#2563eb;stroke:#fff;stroke-width:3;vector-effect:non-scaling-stroke}
-.map-ctrl{position:absolute;right:8px;bottom:8px;display:grid;gap:8px}
+.map-ctrl{position:absolute;z-index:3;right:8px;bottom:8px;display:grid;gap:8px}
 .map-ctrl button{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-size:1.25rem;font-weight:700;box-shadow:0 1px 4px rgba(0,0,0,.18);cursor:pointer}
 .booth-sheet{position:absolute;left:8px;right:60px;bottom:8px;max-height:58%;overflow:auto;display:grid;gap:6px;padding:12px 12px 10px;border-radius:10px;border:1px solid var(--line);border-top:4px solid #e5484d;background:var(--surface);box-shadow:0 4px 18px rgba(0,0,0,.22);overscroll-behavior:contain}
 .booth-sheet .cn{color:var(--muted)}
@@ -438,9 +446,20 @@ footer .wrap{padding-block:18px 28px;display:flex;flex-direction:column;gap:4px}
       <div class="hall-svg" id="hallSvgWrap">
         <svg id="hallSvg" role="img" aria-label="홀 부스 지도"></svg>
         <p class="map-hint" id="mapHint" hidden>지도는 두 손가락으로 움직이세요 · ⤢ 전체 화면</p>
-        <div class="map-ctrl"><button type="button" id="mapFull" aria-label="전체 화면">⤢</button><button type="button" id="mapMe" aria-label="내 위치로">◎</button><button type="button" id="mapIn" aria-label="확대">+</button><button type="button" id="mapOut" aria-label="축소">−</button></div>
+        <div class="map-guide" id="mapGuide" hidden>
+          <b>지도 사용법</b>
+          <ul>
+            <li><b>부스를 누르면</b> 기업과 전시 제품이 보입니다.</li>
+            <li><b>두 손가락</b>으로 지도를 움직이고 확대합니다. 한 손가락은 화면 스크롤입니다.</li>
+            <li><b>⤢ 전체 화면</b>에서는 한 손가락으로 움직입니다.</li>
+            <li><b>파란 점</b>이 내 위치입니다. ◎을 누르면 내 위치로 갑니다.</li>
+          </ul>
+          <button class="btn" type="button" id="mapGuideOk">확인</button>
+        </div>
+        <div class="map-ctrl"><button type="button" id="mapHelp" aria-label="지도 사용법">?</button><button type="button" id="mapFull" aria-label="전체 화면">⤢</button><button type="button" id="mapMe" aria-label="내 위치로">◎</button><button type="button" id="mapIn" aria-label="확대">+</button><button type="button" id="mapOut" aria-label="축소">−</button></div>
         <div class="booth-sheet" id="boothSheet" hidden></div>
       </div>
+      <p class="map-legend"><span><i class="lg-me"></i>내 위치</span><span><i class="lg-sel"></i>선택한 부스</span><span><i class="lg-hit"></i>검색 결과</span></p>
       <p class="note" id="mapFix" role="status"></p>
     </article>
     <details class="card" id="meeting">
@@ -1180,6 +1199,14 @@ window.addEventListener("chtf:fix",e=>{
     if(v)setVB([v[0]-k/2,v[1]-HM.vb[3]*k/HM.vb[2]/2,k,HM.vb[3]*k/HM.vb[2]]);
   }
   $("#mapFull").onclick=()=>setFull(!full());
+  const guide=$("#mapGuide");
+  $("#mapHelp").onclick=()=>{guide.hidden=!guide.hidden};
+  // 안내 카드나 지도를 처음 만지면 닫고 다시 띄우지 않는다
+  const seen=()=>{if(guide.hidden)return;guide.hidden=true;try{localStorage.setItem("chtf26-map-guide","seen")}catch{}};
+  guide.addEventListener("click",seen);
+  svg.addEventListener("touchstart",seen,{passive:true});
+  svg.addEventListener("pointerdown",seen);
+  try{guide.hidden=localStorage.getItem("chtf26-map-guide")==="seen"}catch{guide.hidden=false}
   document.addEventListener("keydown",e=>{if(e.key==="Escape"&&full())setFull(false)});
   window.addEventListener("hashchange",()=>{if(full())setFull(false)});
   $("#mapQ").addEventListener("input",e=>{if(HM.area)searchMap(e.target.value)});
