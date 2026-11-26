@@ -65,6 +65,7 @@ NAME_RULES = """중국 박람회 참가 기업의 이름을 한국 관람객용 
 - 공식 영문명이 있으면 그 영문 브랜드를 짧게 쓴다(Co., Ltd., Technology Co. 같은 법인 꼬리와 지역명은 뺀다). 예: Beijing Inspire Technology Co.,Ltd. → Inspire Robots(널리 쓰는 브랜드명을 알면 그것), Shenzhen Hongkai Industrial Technology Co., Ltd. → Hongkai Technology
 - 영문명이 없으면 Pinyin 브랜드 + 업종을 영어로. 예: 杭州炬坤机器人有限公司 → Jukun Robotics
 - 대학·연구소·정부 기관은 공식 영문명. 예: 浙江大学 → Zhejiang University
+- 회사가 아닌 구역·행사 이름은 짧은 한국어로. 예: 论坛区 → 포럼 구역, 成果展示区-5号馆 → 성과 전시 구역(5관), 光明区 → Guangming 구 공동관
 - 한자 금지. 한 줄에 하나.
 입력은 '### 번호' 줄 다음에 '원문 | 영문명'. 출력은 '### 번호' 줄 다음에 표시 이름만."""
 
@@ -72,7 +73,11 @@ NAME_RULES = """중국 박람회 참가 기업의 이름을 한국 관람객용 
 def names(workers):
     ex = load(os.path.join(ROOT, "raw", "exhibitors.json"), [])
     done = load(NAMES, {})
-    todo = [r for r in ex if (r.get("companyName") or "").strip() not in done and HAN.search(r.get("companyName") or "")]
+    # 지도에만 있는 부스(기업 목록에 연결되지 않은 이름)도 함께
+    nav = [{"companyName": b[7], "companyNameEn": ""} for h in load(os.path.join(ROOT, "raw", "nav.json"), [])
+           for b in h.get("booths", []) if b[7]]
+    todo = list({(r.get("companyName") or "").strip(): r for r in ex + nav
+                 if (r.get("companyName") or "").strip() not in done and HAN.search(r.get("companyName") or "")}.values())
     batches = [todo[i:i + 60] for i in range(0, len(todo), 60)]
 
     def run(batch):

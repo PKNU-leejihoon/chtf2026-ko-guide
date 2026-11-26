@@ -299,7 +299,8 @@ def hall_geo(hall):
     return [geo(u0, v0), geo(u0, v1), geo(u1, v0)]  # 위=서, 왼쪽=남
 
 
-def nav_public(nav, exhibitors, tr=lambda s: s):
+def nav_public(nav, exhibitors, tr=lambda s: s, names=None):
+    names = names or {}
     companies = {str(x[0]): x for x in exhibitors}
     result = []
     for area in nav:
@@ -318,7 +319,7 @@ def nav_public(nav, exhibitors, tr=lambda s: s):
                        "r": HALL_RECT.get(hall), "g": hall_geo(hall) if hall in HALL_RECT else None,
                        # [부스 id, x, y, w, h, 부스 번호, 기업 id(없으면 0), 기업 id가 없을 때만 한글·중국어 이름]
                        "b": [[i, x, y, w, h, nav_code(code, hall), int(cid) if cid in companies else 0,
-                              *(["", ""] if cid in companies else [tr(name), name])]
+                              *(["", ""] if cid in companies else [names.get(name) or tr(name), name])]
                              for i, x, y, w, h, code, cid, name in area.get("booths", [])]})
     return result
 
@@ -450,12 +451,12 @@ def long_texts(details, prods):
 # ---------------------------------------------------------------- 빌드
 CATMAP = {
     "人工智能与机器人": "AI·로봇", "智能制造与自动化": "스마트 제조·자동화", "新材料": "신소재",
-    "新型电力、储能、充电": "전력·에너지저장·충전", "低空经济与商业航天": "저고도 경제·상업 우주",
-    "消费电子": "소비자 전자", "AI 算力产业与数据中心": "AI 컴퓨팅·데이터센터", "半导体与集成电路": "반도체·IC",
-    "医药/生物技术与实验室": "의약·바이오·실험실", "科研院所高校": "연구기관·대학", "新质生产力": "신질 생산력",
-    "数字产业": "디지털 산업", "深圳科技成果、未来前沿科技": "선전 기술성과·미래기술",
-    "节能环保和绿色低碳": "에너지절약·환경·저탄소", "国之重器科技巨头产业链": "국가 핵심장비·테크 대기업",
-    "国际科技与省市科技": "국제·지역 기술성과", "清洁能源、氢能产业": "청정에너지·수소", "水务与环境": "수처리·환경",
+    "新型电力、储能、充电": "전력·에너지저장·충전", "低空经济与商业航天": "드론·저고도·민간 우주",
+    "消费电子": "소비자 가전", "AI 算力产业与数据中心": "AI 컴퓨팅·데이터센터", "半导体与集成电路": "반도체·IC",
+    "医药/生物技术与实验室": "의약·바이오·실험실", "科研院所高校": "연구기관·대학", "新质生产力": "첨단 산업 전환",
+    "数字产业": "디지털 산업", "深圳科技成果、未来前沿科技": "선전 기술·미래 기술",
+    "节能环保和绿色低碳": "에너지 절감·친환경", "国之重器科技巨头产业链": "국가 전략 장비·빅테크",
+    "国际科技与省市科技": "해외·중국 지역 기술", "清洁能源、氢能产业": "청정에너지·수소", "水务与环境": "수처리·환경",
     "交通运输与物流科技创新": "교통·물류 기술", "智慧农业与数字乡村": "스마트 농업", "金融服务": "금융 서비스",
     "未来建筑、智能建造": "미래 건축·스마트 건설", "跨境电商": "크로스보더 이커머스", "港口物流交通": "항만·물류·교통",
 }
@@ -593,7 +594,7 @@ def build(now_iso):
         "recent": recent,
         "eventPages": [{"url": e["url"], "title": e["title"], "ko": tr(e["title"]), "kind": e.get("kind", "event")} for e in events_state.get("items", [])],
         "nav": {"url": f"https://s.whte.cn/zwzl/chtf/?id={NAV_PROJECT}",
-                "halls": nav_public(nav, X, tr)},
+                "halls": nav_public(nav, X, tr, names)},
         "x": X,
     }
     save(os.path.join(SITE, "data.json"), out, compact=True)

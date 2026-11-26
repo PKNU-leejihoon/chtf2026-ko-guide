@@ -8,6 +8,7 @@
     "bindings": [{ "name": "ROOM", "class_name": "VenueRoom" }, { "name": "MEETINGS", "class_name": "MeetingReminder" }]
   },
   "migrations": [{ "tag": "v1", "new_sqlite_classes": ["VenueRoom"] }, { "tag": "v2", "new_sqlite_classes": ["MeetingReminder"] }],
+  "triggers": { "crons": ["*/20 * * * *"] },
   "ratelimits": [
     { "name": "REQUESTS", "namespace_id": "20261126", "simple": { "limit": 600, "period": 60 } }
   ]

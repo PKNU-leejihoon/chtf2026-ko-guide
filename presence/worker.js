@@ -81,5 +81,15 @@ export default {
     }
     const people = await env.ROOM.getByName("chtf2026").update(body.token, body.device, body.zone);
     return people === null ? new Response(null, { status: 400, headers }) : Response.json({ people }, { headers });
+  },
+  // GitHub 예약 실행이 몇 시간씩 밀려서, 행사 기간에는 여기서 20분마다 데이터 갱신 워크플로를 실행한다
+  async scheduled(event, env, ctx) {
+    if (!env.GH_TOKEN || event.scheduledTime > Date.parse("2026-11-29T00:00:00+08:00")) return;
+    ctx.waitUntil(fetch("https://api.github.com/repos/PKNU-leejihoon/chtf2026-ko-guide/actions/workflows/update-and-deploy.yml/dispatches", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${env.GH_TOKEN}`, Accept: "application/vnd.github+json",
+                 "X-GitHub-Api-Version": "2022-11-28", "User-Agent": "chtf2026-guide-cron" },
+      body: JSON.stringify({ ref: "main" })
+    }).then(r => { if (!r.ok) console.log("dispatch failed", r.status); }));
   }
 };
