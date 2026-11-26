@@ -8,7 +8,7 @@ self.addEventListener("install", event => {
   event.waitUntil((async()=>{
     const cache=await caches.open(cacheName);
     await cache.addAll(catalog.map(url=>new Request(url,{cache:"reload"})));
-    if((await caches.keys()).some(key=>key.startsWith("chtf26-field-")))await self.skipWaiting();
+    if((await caches.keys()).some(key=>key!==cacheName&&/^chtf26-(field|location)-/.test(key)))await self.skipWaiting();
   })());
 });
 

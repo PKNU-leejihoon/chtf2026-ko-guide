@@ -106,6 +106,23 @@ footer{margin-bottom:calc(58px + env(safe-area-inset-bottom,0px))}
 .destination{display:grid;gap:14px;max-width:740px}
 .destination .booth{width:fit-content;max-width:100%;white-space:normal;overflow-wrap:anywhere;font-size:clamp(1.7rem,7vw,3rem);padding-inline:12px}
 .destination .cn{color:var(--muted);font-size:1.2rem;overflow-wrap:anywhere}
+.hall-overview{display:grid;gap:7px}
+.hall-overview p{margin:0}
+.hall-switch{display:flex;gap:8px;flex-wrap:wrap}
+.hall-switch [aria-pressed="true"]{color:var(--accent);border-color:var(--accent)}
+#hallProducts{grid-template-columns:repeat(auto-fill,minmax(min(100%,200px),1fr))}
+@media(max-width:640px){
+  #hallProducts{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  #hallProducts .product{padding:9px;gap:6px}
+  #hallProducts .product img{height:104px}
+  #hallProducts .product h3{font-size:.94rem}
+  #hallProducts .filters .btn{padding:6px;font-size:.8rem}
+}
+.map-viewer{display:grid;gap:10px}
+.map-viewer iframe{display:block;width:100%;height:min(67dvh,660px);border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+.list-hall-control{display:grid;gap:4px}
+.list-hall-control label{font-weight:700}
+.list-hall-control select{width:100%;min-height:44px;padding:7px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font:inherit}
 .destination.show-sign .cn{font-size:clamp(1.8rem,8vw,3.6rem);color:var(--ink)}
 .dest-title{overflow-wrap:anywhere}
 .public-list .co .booth{font-size:1rem;white-space:normal;overflow-wrap:anywhere}
@@ -306,8 +323,8 @@ footer .wrap{padding-block:18px 28px;display:flex;flex-direction:column;gap:4px}
 </header>
 <nav class="tabs" aria-label="주 메뉴">
   <div class="wrap">
-    <a href="#map" data-v="map">홀·지도</a>
-    <a href="#find?scope=all" data-v="search">검색</a>
+    <a href="#map" data-v="map">지도</a>
+    <a href="#find?scope=all" data-v="search">전시 목록</a>
     <a href="#mine" data-v="mine">저장<span class="count" id="mineCount" hidden>0</span></a>
     <a href="#home" data-v="guide">현장 안내</a>
   </div>
@@ -387,21 +404,24 @@ footer .wrap{padding-block:18px 28px;display:flex;flex-direction:column;gap:4px}
   </section>
 
   <!-- EXPLORE: map + finder + shows -->
-  <section class="view" id="v-explore">
-    <div id="find" class="field-search">
-      <h2>기업·부스 찾기</h2>
-      <div class="search"><input id="q" type="search" aria-label="기업·제품·부스 검색" placeholder="기업명, 제품명, 12-A25" autocomplete="off"></div>
-      <div class="field-links"><a id="productSearchLink" href="#products">제품 사진·규격 검색</a><a href="#shows">전문전 목록</a></div>
-    </div>
+  <section class="view" id="v-locationmap" hidden aria-label="전시장 지도">
     <div class="card location">
       <p id="hereLabel" role="status">내 위치 · 홀 미지정</p>
-      <a id="currentHallLink" hidden>내 홀 기업 보기</a>
+      <a id="currentHallLink" hidden>내 홀 지도</a>
     </div>
     <details class="card" id="livePresence">
       <summary><b>다른 관람객 위치</b> <span class="note" id="presenceCount"></span></summary>
       <div class="location-people" id="presencePeople"><p>관람객 위치 확인 중</p></div>
     </details>
     <aside class="card" id="sharedHall" aria-label="공유받은 위치" hidden></aside>
+    <article class="card map-viewer" id="hallMapViewer" hidden>
+      <div class="section-h">
+        <h2 id="hallMapTitle" tabindex="-1">홀 지도</h2>
+        <a class="btn" id="mapToProducts" href="#find">이 홀의 제품</a>
+      </div>
+      <iframe id="hallMapFrame" title="공식 전시관 지도" referrerpolicy="no-referrer"></iframe>
+      <a id="hallMapExternal" href="#" target="_blank" rel="noopener">지도 새 창에서 열기</a>
+    </article>
     <details class="card hall-picker" id="map" open>
       <summary><b>홀 선택</b> <span class="note" id="hallSelection"></span></summary>
       <div class="hall-tools">
@@ -421,20 +441,30 @@ footer .wrap{padding-block:18px 28px;display:flex;flex-direction:column;gap:4px}
         <li><b>택시·호출차량</b> · 택시는 두 등록홀 동쪽 지하철 출입구 인근, 호출차량은 남쪽 광장 동쪽과 두 등록홀 동쪽 지정 구역에서 승하차합니다.</li>
         <li><a href="https://www.chtf.com/liaojiegaojiaohui/zhanqu/jieshao/">공식 배치도 원문</a> · <a href="https://www.shenzhen-world.com/overview/entrance/index.html">전시장 출입구 안내</a></li>
       </ul>
-      <div class="plan-legend"><span><i></i>한국 기업 부스 있음</span><span>등록 기업 수</span><a id="navLink" href="https://s.whte.cn/zwzl/chtf/?id=12" target="_blank" rel="noopener">공식 부스 지도 (일부 관)</a></div>
+      <div class="plan-legend"><span><i></i>한국 기업 부스 있음</span><span>참가 기업 수</span><a id="navLink" href="https://s.whte.cn/zwzl/chtf/?id=12" target="_blank" rel="noopener">공식 부스 지도</a></div>
     </details>
+  </section>
+
+  <section class="view" id="v-explore" hidden>
+    <div id="find" class="field-search">
+      <h2>전시 목록</h2>
+      <div class="search"><input id="q" type="search" aria-label="기업·제품·부스 검색" placeholder="기업명, 제품명, 12-A25" autocomplete="off"></div>
+      <div class="field-links"><a id="productSearchLink" href="#products">제품 사진·규격 검색</a><a href="#shows">전문전 목록</a></div>
+    </div>
+    <div class="list-hall-control"><label for="fHall">전시관</label><select id="fHall" aria-label="전시관"></select></div>
     <div class="section-h" id="hallResults"><h2 id="resultsTitle" tabindex="-1">전체 박람회 · 등록 기업</h2><span class="note" id="resCount" role="status"></span></div>
+    <div class="card hall-overview" id="hallOverview" hidden></div>
     <div class="field-links">
       <a href="#find?scope=all" id="allHallsLink" hidden>전체 박람회 검색</a>
     </div>
-    <div class="field-links" id="hallMapLinks" hidden></div>
+    <div class="hall-switch" id="hallSwitch" aria-label="홀에서 볼 정보" hidden>
+      <button class="btn" id="showHallProducts" aria-pressed="true">제품</button>
+      <button class="btn" id="showHallCompanies" aria-pressed="false">기업</button>
+      <span class="field-links" id="hallMapLinks"></span>
+    </div>
     <div class="finder">
       <details class="card side">
         <summary><b>검색 범위·필터</b></summary>
-        <div>
-          <h4>전시관</h4>
-          <select id="fHall" aria-label="전시관"></select>
-        </div>
         <div>
           <h4>분야</h4>
           <select id="fCat" aria-label="분야"></select>
@@ -449,6 +479,8 @@ footer .wrap{padding-block:18px 28px;display:flex;flex-direction:column;gap:4px}
       </details>
       <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
         <div class="results public-list" id="results"><div class="empty">기업 목록을 불러오는 중…</div></div>
+        <div class="product-grid" id="hallProducts" hidden></div>
+        <button class="btn more" id="hallProductMore" hidden>제품 더 보기</button>
       </div>
     </div>
 
@@ -491,6 +523,8 @@ footer .wrap{padding-block:18px 28px;display:flex;flex-direction:column;gap:4px}
     </div>
   </section>
 </main>
+
+
 
 <footer>
   <div class="wrap">
@@ -754,37 +788,38 @@ const PICKWHY=new Map(); // company id -> curator's reason, from PICKS
 const S={view:"explore",hotCat:"",hotLimit:30,day:26,evTag:null,q:"",fHall:"",fCat:"",fKr:false,quick:null,limit:40};
 const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 let MINE=new Set(store.get("chtf26-mine",[]));
-let currentHall=0;
+let currentHall=0, viewedMapHall=0;
+let hallTab="products", hallProductLimit=24;
 let boothReturn="";
 const $=s=>document.querySelector(s);
 const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const fmt=n=>n.toLocaleString("ko-KR");
 
 /* ---------- routing ---------- */
-const VIEWS=["home","products","hot","explore","events","mine","news","booth"];
+const VIEWS=["home","products","hot","locationmap","explore","events","mine","news","booth"];
 // old tab hashes (and links from p/ pages) land on the section inside the merged view
-const ALIAS={field:"home",routes:"home",map:"explore",layout:"explore",find:"explore",shows:"explore"};
+const ALIAS={field:"home",routes:"home",find:"explore",shows:"explore"};
 function route(){
   const [h,query]=location.hash.slice(1).split("?");
   const params=new URLSearchParams(query);
   const shared=h.match(/^here\/(\d+)$/)?.[1];
-  const hall=h.match(/^hall\/(\d+)$/)?.[1]||shared;
+  const hall=h.match(/^hall\/(\d+)$/)?.[1];
+  const mapHall=h.match(/^map\/(\d+)$/)?.[1]||shared;
   const booth=h.match(/^booth\/(\d+)$/)?.[1];
-  S.view=booth?"booth":hall?"explore":(ALIAS[h]||(VIEWS.includes(h)&&h!=="booth"?h:"explore"));
-  if(hall||h==="map"||!h||(h==="find"&&query)){
+  const mapView=!h||h==="map"||h==="layout"||mapHall;
+  S.view=mapView?"locationmap":booth?"booth":hall?"explore":(ALIAS[h]||(VIEWS.includes(h)&&h!=="booth"?h:"explore"));
+  if(hall||(h==="find"&&query)){
+    hallTab=params.get("tab")==="companies"?"companies":"products";
+    hallProductLimit=24;
     Object.assign(S,{fHall:hall==="0"||HALLS[hall]?hall:"",q:params.get("q")||"",fCat:params.get("category")||"",
       fKr:params.has("kr"),quick:params.has("quick")&&QUICK[+params.get("quick")]?+params.get("quick"):null,limit:40});
   }
   VIEWS.forEach(v=>{$("#v-"+v).hidden=v!==S.view});
-  const tab=S.view==="explore"?(h==="find"?"search":"map"):S.view==="products"||S.view==="booth"?"search":S.view==="mine"?"mine":"guide";
+  const tab=S.view==="locationmap"?"map":["explore","products","booth"].includes(S.view)?"search":S.view==="mine"?"mine":"guide";
   document.querySelectorAll("nav.tabs a").forEach(a=>a.setAttribute("aria-current",a.dataset.v===tab?"page":"false"));
-  if(S.view==="explore"){
-    if(!h||h==="map"||h==="layout")$("#map").open=true;
-    if(h==="layout")setMapMode(true);
-    if(hall||h==="find")$("#map").open=false;
-    syncControls();
-    renderPlan();
-  }
+  if(S.view==="explore")syncControls();
+  if(S.view==="locationmap")renderMapPage(h==="layout"?0:Number(mapHall)||currentHall,Number(params.get("booth")));
+  else $("#hallMapFrame").removeAttribute("src");
   renderSharedHall(shared,params);
   if(S.view==="booth")renderBooth(+booth,params.get("hall"));
   if(S.view==="products"){
@@ -800,10 +835,12 @@ function route(){
   if(S.view==="mine")renderMine();
   if(S.view==="news")renderNews();
   if(h==="shows")$("#shows").open=true;
-  if(h==="layout")$("#map").scrollIntoView();
+  if(mapHall&&params.has("booth")&&!$("#hallMapViewer").hidden)$("#hallMapViewer").scrollIntoView();
+  else if(h==="layout")$("#map").scrollIntoView();
   else if(h==="shows"||h==="field"||h==="routes")document.getElementById(h).scrollIntoView();
   else window.scrollTo(0,0);
   if(hall&&DATA)$("#resultsTitle").focus({preventScroll:true});
+  if(mapHall&&DATA)$("#hallMapTitle").focus({preventScroll:true});
   if(booth&&DATA)$("#destination h2")?.focus({preventScroll:true});
 }
 document.addEventListener("click",e=>{if(e.target.closest('a[href="#shows"]'))$("#shows").open=true});
@@ -851,14 +888,14 @@ function renderPlan(){
   for(const [h,c,r] of [...LAYOUT].sort((a,b)=>a[0]-b[0])){
     const H=HALLS[h], n=hallCount(h), minor=h>=17;
     const col=h===17?"11 / span 2":c;
-    html+=`<a href="#hall/${h}" class="hall${minor?" minor":""}" style="--col:${col};--row:${r===1?1:3};order:${h}" aria-current="${S.fHall===String(h)?"page":"false"}">
+    html+=`<a href="#map/${h}" class="hall${minor?" minor":""}" style="--col:${col};--row:${r===1?1:3};order:${h}" aria-current="${viewedMapHall===h?"page":"false"}">
       ${hallHasKr(h)?'<span class="dot" title="한국 기업"></span>':""}
       <span class="hn">${h}관</span><span class="hz">${esc(H.z)}</span>
       <span class="hc">${n===null?"…":n?fmt(n)+"곳":"목록 없음"}</span>
       ${currentHall===h?'<span class="here">내 위치</span>':""}</a>`;
   }
   el.innerHTML=html;
-  $("#hallSelection").textContent=HALLS[S.fHall]?`${S.fHall}관 · ${HALLS[S.fHall].z}`:"";
+  $("#hallSelection").textContent=HALLS[viewedMapHall]?`${viewedMapHall}관 · ${HALLS[viewedMapHall].z}`:"";
 }
 function findByKey(k){if(!DATA)return null;for(const x of DATA.x){if(x[3].includes(k)||x[2].includes(k)||x[1].includes(k))return x}return null}
 function setMapMode(physical){
@@ -872,6 +909,33 @@ function officialMapLink(area,id=0){
   const data=encodeURIComponent(JSON.stringify({areaId:area.id,id}));
   return `https://s.whte.cn/zwzl/chtf/plan.html?data=${data}`;
 }
+function mapLink(hall,id=0,label=hall+"관 지도"){
+  return `<a class="btn" href="#map/${hall}${id?"?booth="+id:""}">${esc(label)}</a>`;
+}
+function renderMapPage(hall,id=0){
+  viewedMapHall=hall;
+  const area=DATA?.nav?.halls.find(h=>h.hall===hall);
+  const frame=$("#hallMapFrame");
+  const viewer=$("#hallMapViewer");
+  const showMap=Boolean(area||HALLS[hall]);
+  viewer.hidden=!showMap;
+  $("#map").open=!area;
+  if(!area)setMapMode(true);
+  if(showMap){
+    const booth=area&&Object.entries(area.targets).find(([,target])=>target[1]===id);
+    $("#hallMapTitle").textContent=booth?`${hall}관 지도 · ${booth[0]}`:`${hall}관 지도`;
+    $("#mapToProducts").href="#hall/"+hall;
+    $("#hallMapExternal").hidden=!area;
+    frame.hidden=!area;
+    if(area){
+      const url=officialMapLink(area,booth?id:0);
+      if(frame.getAttribute("src")!==url)frame.src=url;
+      $("#hallMapExternal").href=url;
+    }
+  }
+  if(!area)frame.removeAttribute("src");
+  renderPlan();
+}
 function fieldTime(iso){
   return iso?new Intl.DateTimeFormat("ko-KR",{timeZone:"Asia/Shanghai",month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).format(new Date(iso)):"확인 시각 미상";
 }
@@ -880,9 +944,33 @@ function renderHallMapLinks(hall){
   el.hidden=!hall;
   if(!hall)return;
   const area=DATA.nav?.halls.find(h=>h.hall===hall);
-  el.innerHTML=area?`<a href="${officialMapLink(area)}">공식 ${hall}관 부스 지도</a><span class="note">지도에서 ${Object.keys(area.targets).length}개 부스 확인 가능</span>`
-    :'<a href="#layout">한글 전체 배치도</a>';
+  el.innerHTML=area?mapLink(hall):'<a class="btn" href="#layout">전체 배치도</a>';
 }
+function renderHallOverview(hall){
+  const el=$("#hallOverview");
+  el.hidden=!hall;
+  if(!hall)return;
+  const now=new Date(Date.now()+8*3600*1000);
+  const minute=now.getUTCHours()*60+now.getUTCMinutes();
+  const localDay=now.getUTCFullYear()===2026&&now.getUTCMonth()===10?now.getUTCDate():0;
+  const opens=localDay===26?570:540;
+  const hours=[26,27,28].includes(localDay)
+    ?(minute<opens?`오늘 ${localDay===26?"09:30":"09:00"} 개장`:minute<960?"관람 중 · 16:00 입장 마감":minute<1020?"입장 마감 · 17:00 폐장":"오늘 관람 종료"):"";
+  const localEvents=EVENTS.flatMap(event=>{
+    if(event.d!==localDay||!new RegExp(`(?:^|\\D)${hall}(?:号馆|号会议室)`).test(event.pcn||""))return [];
+    const time=event.t.match(/^(\d\d):(\d\d)[–-](\d\d):(\d\d)$/);
+    if(!time)return [];
+    return [{event,start:(+time[1])*60+(+time[2]),end:(+time[3])*60+(+time[4])}];
+  }).sort((a,b)=>a.start-b.start);
+  const ongoing=localEvents.filter(item=>item.start<=minute&&minute<item.end);
+  const next=localEvents.find(item=>item.start>minute);
+  el.innerHTML=`<p><b>${esc(HALLS[hall].z)}</b></p>
+    ${hours?`<p class="note">${hours}</p>`:""}
+    ${ongoing.map(({event})=>`<p><b>진행 중</b> · ${esc(event.title)} <span class="note">${esc(event.t)}</span></p>`).join("")}
+    ${next?`<p><b>다음 행사</b> · ${esc(next.event.t.split("–")[0])} ${esc(next.event.title)}</p>`:""}
+    ${!ongoing.length&&!next?'<p class="note">예정된 공개 일정 없음</p>':`<a href="#events" data-goday="${localDay}">행사 일정</a>`}`;
+}
+setInterval(()=>{if(S.view==="explore")renderHallOverview(HALLS[S.fHall]?+S.fHall:0)},60_000);
 $("#listHalls").addEventListener("click",()=>setMapMode(false));
 $("#mapHalls").addEventListener("click",()=>setMapMode(true));
 window.addEventListener("chtf:position",event=>{
@@ -893,10 +981,9 @@ window.addEventListener("chtf:position",event=>{
   $("#hereLabel").textContent="내 위치 · "+message;
   const link=$("#currentHallLink");
   link.hidden=!hall;
-  link.href="#hall/"+hall;
-  if(changed&&S.view==="explore")renderPlan();
+  link.href="#map/"+hall;
+  if(changed&&S.view==="locationmap"&&(!location.hash||location.hash==="#map"))renderMapPage(hall);
   if(changed&&S.view==="mine")renderMine();
-  if(hall&&!location.hash)location.hash="hall/"+hall;
   if(people===undefined)return;
   const box=$("#presencePeople"), count=$("#presenceCount");
   if(!zone){
@@ -918,7 +1005,7 @@ window.addEventListener("chtf:position",event=>{
       item.textContent=person.device+" · ";
       if(h&&HALLS[h]){
         const destination=document.createElement("a");
-        destination.href="#hall/"+h;
+        destination.href="#map/"+h;
         destination.textContent=name;
         item.append(destination);
       }else item.append(name);
@@ -1037,11 +1124,13 @@ function finderHash(hall=S.fHall){
   if(S.fCat)params.set("category",S.fCat);
   if(S.fKr)params.set("kr","1");
   if(S.quick!==null)params.set("quick",S.quick);
+  if(hallTab==="companies")params.set("tab","companies");
   if(!hall&&!params.toString())params.set("scope","all");
   return (hall?"#hall/"+hall:"#find")+(params.toString()?"?"+params:"");
 }
 function updateFinder(){
   S.limit=40;
+  hallProductLimit=24;
   history.replaceState(null,"",finderHash());
   renderQuick();
   renderFind();
@@ -1053,7 +1142,6 @@ function setupFinder(){
   $("#fCat").innerHTML=`<option value="">전체 분야</option>`+CATS.map((c,i)=>[c,i]).sort((a,b)=>cc[b[1]]-cc[a[1]]).map(([c,i])=>`<option value="${i}">${esc(c)} (${cc[i]})</option>`).join("");
   $("#q").addEventListener("input",()=>{
     S.q=$("#q").value;S.quick=null;
-    $("#map").open=false;
     updateFinder();
   });
   $("#fHall").addEventListener("change",()=>{location.hash=finderHash($("#fHall").value)});
@@ -1069,13 +1157,14 @@ function renderQuick(){
     $("#quick").querySelector(`[data-i="${i}"]`).focus();
   }));
 }
-function filtered(){
+function filtered(useText=true){
   const q=S.q.normalize("NFKC").trim().toLowerCase(); const terms=q?q.split(/\s+/):[];
   const syn=S.quick!==null?QUICK[S.quick][1].map(s=>s.toLowerCase()):null;
   return DATA.x.filter(x=>{
     if(S.fHall!==""){const h=+S.fHall; if(h===0?x[5].length:!x[5].includes(h))return false;}
     if(S.fCat!==""&&!x[6].includes(+S.fCat))return false;
     if(S.fKr&&!x[7])return false;
+    if(!useText)return true;
     const hay=x[10];
     if(syn&&!syn.some(s=>hay.includes(s)))return false;
     for(const t of terms)if(!hay.includes(t))return false;
@@ -1097,29 +1186,29 @@ const PRODUCT_PICKS={
   59739:"안경 없이 보는 27인치 라이트필드 3D 화면. 제조사가 제시한 권장 관람 거리는 0.5–2m입니다.",
   59472:"6축 로봇팔로 커피를 만들고 재료 교체·세척과 원격 상태 확인을 지원하는 3세대 모델입니다."
 };
-function productCard(p,x){
+function productCard(p,x,hall,compact=false){
   const [id,,title,original,en,pic,spec]=p;
   const on=MINE.has(x[0]);
+  const booth=boothCodes(x,hall).join(", ")||x[4];
   const model=spec&&![title,original,en,"-","/", "无", "暂无"].includes(spec)?spec:"";
   return `<article class="card product">
     ${pic.startsWith("https://")?`<img src="${esc(pic)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" alt="">`:""}
     <h3>${esc(title)}</h3>
-    ${[...new Set([original,en])].filter(n=>n&&n!==title).map(n=>`<p class="note">${esc(n)}</p>`).join("")}
-    ${PRODUCT_PICKS[id]?`<p class="note">${esc(PRODUCT_PICKS[id])}</p>`:""}
-    ${model?`<p class="note"><b>모델·규격</b> ${esc(model)}</p>`:""}
-    <p><span class="booth${x[4]?"":" none"}">${esc(x[4]||"부스 미정")}</span> <a href="#booth/${x[0]}">${esc(x[1])}</a></p>
+    ${compact?"":[...new Set([original,en])].filter(n=>n&&n!==title).map(n=>`<p class="note">${esc(n)}</p>`).join("")}
+    ${!compact&&PRODUCT_PICKS[id]?`<p class="note">${esc(PRODUCT_PICKS[id])}</p>`:""}
+    ${!compact&&model?`<p class="note"><b>모델·규격</b> ${esc(model)}</p>`:""}
+    <p><span class="booth${booth?"":" none"}">${esc(booth||"부스 미정")}</span> <a href="${boothHash(x,hall)}">${esc(x[1])}</a></p>
     <div class="filters">
-      <a class="btn" href="https://e.chtf.com/#/exhDetails/${encodeURIComponent(id)}" target="_blank" rel="noopener">공식 제품 상세 ↗</a>
+      ${hallMapFor(x,hall)}
+      <a class="btn" href="https://e.chtf.com/#/exhDetails/${encodeURIComponent(id)}" target="_blank" rel="noopener">제품 상세</a>
       <button class="starbtn" data-star="${x[0]}" aria-pressed="${on}">${on?"★ 담음":"☆ 담기"}</button>
     </div>
   </article>`;
 }
-function renderProducts(){
-  if(!DATA||productLoading)return;
-  if(!products){
-    productLoading=true;
-    $("#productCount").textContent="제품 목록을 불러오는 중…";
-    fetch("products.json",{cache:"no-cache"}).then(r=>{
+function loadProducts(){
+  if(products||productLoading)return;
+  productLoading=true;
+  fetch("products.json",{cache:"no-cache"}).then(r=>{
       if(!r.ok)throw new Error("제품 목록 응답 오류");
       return r.json();
     }).then(list=>{
@@ -1129,13 +1218,20 @@ function renderProducts(){
       }).sort((a,b)=>Number(Boolean(PRODUCT_PICKS[b[0][0]]))-Number(Boolean(PRODUCT_PICKS[a[0][0]]))
         ||Number(Boolean(b[1][4]))-Number(Boolean(a[1][4])));
       productLoading=false;
-      renderProducts();
+      if(S.view==="products")renderProducts();
+      if(S.view==="explore")renderFind();
     }).catch(()=>{
       productLoading=false;
-      $("#productCount").textContent="제품 목록을 불러오지 못했어요.";
-      $("#productResults").innerHTML='<button class="btn" id="retryProducts">다시 불러오기</button>';
-      $("#retryProducts").addEventListener("click",renderProducts,{once:true});
+      const target=S.view==="products"?$("#productResults"):$("#hallProducts");
+      target.innerHTML='<button class="btn" type="button">제품 다시 불러오기</button>';
+      target.firstElementChild.addEventListener("click",loadProducts,{once:true});
     });
+}
+function renderProducts(){
+  if(!DATA)return;
+  if(!products){
+    $("#productCount").textContent="제품 불러오는 중…";
+    loadProducts();
     return;
   }
   const query=$("#productQuery").value.normalize("NFKC").toLowerCase().trim();
@@ -1144,10 +1240,30 @@ function renderProducts(){
   const matches=products.filter(([,x,hay])=>
     (!hall||x[5].includes(+hall))&&(!cat||x[6].includes(+cat))&&terms.every(t=>hay.includes(t)));
   $("#productCount").textContent=`검색 결과 ${fmt(matches.length)}개 · 전체 ${fmt(products.length)}개`;
-  $("#productResults").innerHTML=matches.length?matches.slice(0,productLimit).map(([p,x])=>productCard(p,x)).join("")
+  $("#productResults").innerHTML=matches.length?matches.slice(0,productLimit).map(([p,x])=>productCard(p,x,hall)).join("")
     :'<div class="empty">검색 조건에 맞는 제품이 없어요.</div>';
   $("#productMore").hidden=matches.length<=productLimit;
 }
+function renderHallProducts(hall){
+  if(!products){
+    $("#hallProducts").innerHTML='<div class="empty">제품 불러오는 중…</div>';
+    loadProducts();
+    return;
+  }
+  const companies=new Set(filtered(false).map(x=>x[0]));
+  const terms=S.q.normalize("NFKC").trim().toLowerCase().split(/\s+/).filter(Boolean);
+  const synonyms=S.quick===null?null:QUICK[S.quick][1].map(x=>x.toLowerCase());
+  const matches=products.filter(([,x,hay])=>companies.has(x[0])&&terms.every(t=>hay.includes(t))
+    &&(!synonyms||synonyms.some(t=>hay.includes(t))));
+  $("#resCount").textContent=`제품 ${fmt(matches.length)}개`;
+  $("#hallProducts").innerHTML=matches.length?matches.slice(0,hallProductLimit).map(([p,x])=>productCard(p,x,hall,true)).join("")
+    :'<div class="empty">표시할 제품이 없습니다.</div>';
+  $("#hallProductMore").hidden=matches.length<=hallProductLimit;
+}
+$("#showHallProducts").addEventListener("click",()=>{hallTab="products";updateFinder()});
+$("#showHallCompanies").addEventListener("click",()=>{hallTab="companies";updateFinder()});
+$("#hallProductMore").addEventListener("click",()=>{hallProductLimit+=24;renderFind()});
+$("#hallProducts").addEventListener("error",event=>{if(event.target.tagName==="IMG")event.target.hidden=true},true);
 function resetProductLimit(){
   productLimit=24;
   renderProducts();
@@ -1172,6 +1288,13 @@ function boothCodes(x,hall){
 const byBooth=new Intl.Collator("en",{numeric:true,sensitivity:"base"});
 function boothHash(x,hall){
   return `#booth/${x[0]}`+(hall&&x[5].includes(+hall)?`?hall=${hall}`:"");
+}
+function hallMapFor(x,requestedHall){
+  const hall=Number(requestedHall)||x[5][0];
+  const area=DATA.nav?.halls.find(h=>h.hall===hall);
+  if(!area)return "";
+  const target=boothCodes(x,hall).map(code=>area.targets[code.toUpperCase()]).find(entry=>entry?.[0]===x[0]);
+  return mapLink(hall,target?.[1]||0,target?"지도에서 부스 보기":hall+"관 지도");
 }
 async function shareLink(title,url,fallback,status){
   const feedback=document.getElementById(status);
@@ -1203,7 +1326,7 @@ function renderBooth(id,requestedHall){
   const area=DATA.nav?.halls.find(h=>h.hall===hall);
   const exactMapLinks=codes.flatMap(code=>{
     const target=area?.targets[code.toUpperCase()];
-    return target?.[0]===id?[`<a class="btn" href="${officialMapLink(area,target[1])}">${esc(code)} 공식 지도에서 보기</a>`]:[];
+    return target?.[0]===id?[mapLink(hall,target[1],code+" 지도에서 보기")]:[];
   }).join("");
   const detailURL=new URL(boothHash(x,requestedHall),location.href);
   detailURL.search="";
@@ -1227,7 +1350,7 @@ function renderBooth(id,requestedHall){
     <p class="note" id="shareStatus" role="status" hidden></p>
     <div class="field-links">
       ${x[5].map(h=>`<a href="#hall/${h}">${h}관 기업 목록</a>`).join("")}
-      ${exactMapLinks|| (area?`<a href="${officialMapLink(area)}">공식 ${hall}관 부스 지도</a>`:'<a href="#layout">한글 전체 배치도</a>')}
+      ${exactMapLinks|| (area?mapLink(hall):'<a href="#layout">한글 전체 배치도</a>')}
     </div>
     ${x[8].length?`<div><h3>전시 제품</h3><ul>${x[8].slice(0,8).map(p=>`<li>${esc(p[0])}</li>`).join("")}</ul><a href="#products" data-product-query="${esc(x[3]||x[1])}">제품 사진·규격 보기</a></div>`:""}
     <div class="field-links"><a href="https://e.chtf.com/#/exhorDetails/${id}">공식 기업 페이지</a><a href="https://github.com/PKNU-leejihoon/chtf2026-ko-guide/issues/new?${esc(report.toString())}">부스 정보 정정</a></div>
@@ -1249,7 +1372,7 @@ function coCard(x,rank,hall){
     <div class="tags">${why!==undefined?'<span class="tag pick">추천</span>':""}${x[7]?'<span class="tag kr">한국 기업</span>':""}${x[6].map(c=>`<span class="tag">${esc(CATS[c])}</span>`).join("")}</div>
     ${why?`<p class="prods"><span>추천 이유 · </span>${esc(why)}</p>`:""}
     ${prods.length?`<p class="prods"><span>전시 제품 · </span>${prods.slice(0,8).map(p=>esc(p[0])).join(" · ")}${prods.length>8?` <span>외 ${prods.length-8}개</span>`:""} · <a href="#products" data-product-query="${esc(x[3]||x[1])}">제품 사진·규격</a></p>`:""}
-    <div class="links"><a href="https://e.chtf.com/#/exhorDetails/${x[0]}" target="_blank" rel="noopener">공식 기업 페이지 (중국어)</a><a href="https://papago.naver.com/?sk=zh-CN&tk=ko&st=${encodeURIComponent(x[3]+"\n"+prods.slice(0,20).map(p=>p[1]).join("\n"))}" target="_blank" rel="noopener">파파고로 원문 번역</a></div>
+    <div class="links">${hallMapFor(x,hall)}<a href="https://e.chtf.com/#/exhorDetails/${x[0]}" target="_blank" rel="noopener">공식 기업 페이지</a></div>
   </article>`;
 }
 function renderFind(){
@@ -1262,7 +1385,20 @@ function renderFind(){
   $("#allHallsLink").href=finderHash("");
   const productQuery=new URLSearchParams({q:S.q,hall:hall||""});
   $("#productSearchLink").href="#products?"+productQuery;
+  $("#hallSwitch").hidden=false;
+  $("#showHallProducts").setAttribute("aria-pressed",hallTab==="products");
+  $("#showHallCompanies").setAttribute("aria-pressed",hallTab==="companies");
+  renderHallOverview(hall);
   renderHallMapLinks(hall);
+  const showProducts=hallTab==="products";
+  $("#results").hidden=showProducts;
+  $("#hallProducts").hidden=!showProducts;
+  $("#hallProductMore").hidden=true;
+  if(showProducts){
+    $("#resCount").textContent="";
+    renderHallProducts(hall);
+    return;
+  }
   const list=filtered();
   const firstCodes=new Map(hall?list.map(x=>[x[0],boothCodes(x,hall).sort(byBooth.compare)[0]||""]):[]);
   list.sort(hall?(a,b)=>byBooth.compare(firstCodes.get(a[0]),firstCodes.get(b[0]))||byBooth.compare(a[1],b[1]):byViews);
@@ -1324,7 +1460,15 @@ window.addEventListener("online",renderOffline);
 window.addEventListener("offline",renderOffline);
 renderOffline();
 renderShows(); renderDays(); renderEvents(); renderRoutes(); renderHomeEvents(); updateMineCount(); route();
-if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
+if("serviceWorker" in navigator){
+  let controller=navigator.serviceWorker.controller;
+  navigator.serviceWorker.addEventListener("controllerchange",()=>{
+    const next=navigator.serviceWorker.controller;
+    if(controller&&next&&next!==controller)location.reload();
+    controller=next;
+  });
+  navigator.serviceWorker.register("sw.js").catch(()=>{});
+}
 fetch("data.json",{cache:"no-cache"}).then(r=>r.json()).then(d=>{
   CATS=d.cats; DATA=d;
   renderOffline();
