@@ -57,7 +57,7 @@ jobs:
 
       - name: 오프라인 자료 버전 지정
         run: |
-          revision=$(sha256sum site/index.html site/data.json site/products.json site/sw.js | sha256sum | cut -d' ' -f1)
+          revision=$(sha256sum site/index.html site/data.json site/products.json site/location.css site/location.js site/venue.js site/sw.js | sha256sum | cut -d' ' -f1)
           sed -i "s/BUILD_REVISION/$revision/" site/sw.js
 
       - uses: actions/configure-pages@v5

@@ -1,0 +1,10 @@
+html.location-locked body > :not(#locationGate):not(noscript){display:none!important}
+#locationGate{
+  box-sizing:border-box;width:min(calc(100% - 32px),540px);margin:clamp(25px,12vh,130px) auto;
+  padding:clamp(16px,5vw,32px);background:Canvas;color:CanvasText;border:1px solid #8d99a9;
+  border-radius:14px;line-height:1.6;overflow-wrap:anywhere
+}
+#locationGate h1{font-size:clamp(1.35rem,5.5vw,1.85rem)}
+#locationGate button{padding:10px 16px;border:0;border-radius:8px;background:#125cae;color:white;font:inherit;font-weight:700}
+#locationGate button:focus-visible{outline:2px solid #125cae;outline-offset:3px}
+#locationGate [role=status]{min-height:2em;margin-bottom:0}

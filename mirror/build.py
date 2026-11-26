@@ -6,12 +6,14 @@ sys.path.insert(0, REPO)
 import update as U  # 번역 캐시 유틸 재사용
 OUT = os.path.join(REPO, "site", "p")
 CJK = re.compile("[一-鿿]")
-SEC = {"about": "고교회 소개", "expo": "전시·전문전", "forum": "포럼·행사", "visit": "참관 안내", "exhibit": "참가사 안내", "sponsor": "협찬·제휴", "media": "뉴스·미디어", "etc": "기타"}
+SEC = {"about": "소개", "expo": "전시·전문전", "forum": "포럼·행사", "visit": "참관 안내", "exhibit": "참가사 안내", "sponsor": "협찬·제휴", "media": "뉴스·미디어", "etc": "기타"}
 ORDER = ["visit", "forum", "expo", "about", "media", "exhibit", "sponsor", "etc"]
 e = lambda s: html.escape(str(s or ""), quote=True)
 ko = U.load(os.path.join(REPO, "i18n", "ko.json"), {})
 mt = U.load(os.path.join(REPO, "i18n", "mt_cache.json"), {})
-imgs = U.load(os.path.join(ROOT, "img_map.json"), {})
+image_text = U.load(os.path.join(ROOT, "img_text.json"), {})
+layout_src = "https://www.chtf.com/uploads/allimg/202606/9-260611142225117.jpg"
+event_name = "The 28th China Hi-Tech Fair"
 stats = {"ko": 0, "mt": 0}
 
 
@@ -69,10 +71,24 @@ def link(h, known):
 
 
 def img_tag(src, alt=""):
-    local = imgs.get(src)
-    if local:
-        return f'<img src="../{e(local)}" alt="{e(alt)}" loading="lazy">'
     return f'<img src="{e(src)}" alt="{e(alt)}" loading="lazy" referrerpolicy="no-referrer">'
+
+
+def image_figure(src, alt):
+    if src == layout_src:
+        return '<p><a href="../index.html#layout"><b>한글 전체 배치도 열기</b></a></p>'
+    rows = image_text.get(src, [])
+    transcript = ""
+    if rows:
+        transcript = (
+            '<details class="img-text"' + (' open' if len(rows) < 9 else '') + '>'
+            '<summary>사진 속 한글 번역</summary><ul>'
+            + "".join(f"<li>{e(text)}</li>" for text in rows)
+            + "</ul></details>"
+        )
+    return (f'<figure><a href="{e(src)}" referrerpolicy="no-referrer" aria-label="원본 이미지 크게 보기">'
+            + img_tag(src, alt) + '</a><figcaption>원본 이미지</figcaption>'
+            + transcript + "</figure>")
 
 
 def render_blocks(p, known):
@@ -104,7 +120,7 @@ def render_blocks(p, known):
                 continue
             out.append(f'<p><a href="{e(h)}"{" target=_blank rel=noopener" if ext else ""}>{e(tr(b["x"]))}{" ↗" if ext else ""}</a></p>')
         elif t == "img":
-            out.append(f"<figure>{img_tag(b['src'], b.get('alt'))}</figure>")
+            out.append(image_figure(b["src"], b.get("alt")))
         elif t == "video":
             out.append(f'<p><a href="{e(b["src"])}" target="_blank" rel="noopener">영상 보기 ↗</a></p>')
         elif t == "table":
@@ -130,15 +146,17 @@ main{padding-block:26px 56px}h1{font-size:1.65rem;line-height:1.35;margin:4px 0 
 .card{display:grid;grid-template-columns:120px minmax(0,1fr);gap:12px;background:var(--s);border:1px solid var(--l);border-radius:8px;padding:10px;margin:8px 0;text-decoration:none;color:inherit}.card span{display:flex;flex-direction:column;gap:2px;min-width:0}.card small{color:var(--m)}.card em{font-style:normal;font-size:.86rem;color:var(--m)}.card b{line-height:1.4}
 .grp{margin-top:26px}.list{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:6px 18px;list-style:none;padding:0}
 .sc td{min-width:0}.tag{display:inline-block;background:var(--c);border-radius:4px;padding:0 6px;font-size:.76rem;color:var(--m)}
+figure figcaption{font-size:.82rem;color:var(--m);margin-top:8px}.img-text{background:var(--s);border:1px solid var(--l);border-radius:8px;padding:10px 12px;margin-top:8px}.img-text summary{cursor:pointer;font-weight:700}.img-text li{white-space:pre-line;overflow-wrap:anywhere}
 footer{border-top:1px solid var(--l);color:var(--m);font-size:.8rem}footer .w{padding-block:16px 28px}"""
 
 
 def page(title, body, orig=None, sec=None, depth=""):
-    top = f'<header><div class="w"><a class="h" href="../index.html"><b>고교회 2026 관람 노트</b></a><a href="index.html">공식 안내 한글판</a><a href="schedule.html">행사 일정</a><a href="../index.html#find">기업 찾기</a></div></header>'
+    top = f'<header><div class="w"><a class="h" href="../index.html"><b>{event_name}</b></a><a href="index.html">공식 안내 한글판</a><a href="schedule.html">행사 일정</a><a href="../index.html#find">기업 찾기</a></div></header>'
     meta = ""
     if sec or orig:
-        meta = '<div class="meta">' + (f'<a href="index.html#{sec}">{e(SEC[sec])}</a>' if sec else "") + (f'<a href="{e(orig)}" target="_blank" rel="noopener">공식 원문 ↗</a>' if orig else "") + "<span>비공식 번역</span></div>"
-    return f'<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>{e(title)} · 고교회 2026 한글판</title><link rel="stylesheet" href="style.css"></head><body>{top}<main class="w"><h1>{e(title)}</h1>{meta}{body}</main><footer><div class="w">비공식 한국어 번역본입니다. 내용과 일정은 공식 사이트(chtf.com)를 기준으로 확인하세요. 등록·신청은 공식 페이지에서만 진행됩니다. 권리자의 삭제 요청은 <a href="https://github.com/PKNU-leejihoon/chtf2026-ko-guide/issues">GitHub Issues</a>로 받습니다.</div></footer></body></html>'
+        meta = '<div class="meta">' + (f'<a href="index.html#{sec}">{e(SEC[sec])}</a>' if sec else "") + (f'<a href="{e(orig)}" target="_blank" rel="noopener">공식 원문 ↗</a>' if orig else "") + "</div>"
+    access = '<link rel="stylesheet" href="../location.css"><script src="../venue.js" defer></script><script src="../location.js" defer></script>'
+    return f'<!doctype html><html lang="ko" class="location-locked"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>{e(title)} · {event_name}</title><link rel="stylesheet" href="style.css">{access}</head><body><noscript>안내를 열려면 자바스크립트와 위치 서비스를 켜 주세요.</noscript>{top}<main class="w"><h1>{e(title)}</h1>{meta}{body}</main><footer><div class="w"><a href="https://www.chtf.com/">공식 사이트</a> · <a href="https://github.com/PKNU-leejihoon/chtf2026-ko-guide/issues">정보 정정</a></div></footer></body></html>'
 
 
 def schedule(meets):

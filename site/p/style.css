@@ -10,4 +10,5 @@ main{padding-block:26px 56px}h1{font-size:1.65rem;line-height:1.35;margin:4px 0 
 .card{display:grid;grid-template-columns:120px minmax(0,1fr);gap:12px;background:var(--s);border:1px solid var(--l);border-radius:8px;padding:10px;margin:8px 0;text-decoration:none;color:inherit}.card span{display:flex;flex-direction:column;gap:2px;min-width:0}.card small{color:var(--m)}.card em{font-style:normal;font-size:.86rem;color:var(--m)}.card b{line-height:1.4}
 .grp{margin-top:26px}.list{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:6px 18px;list-style:none;padding:0}
 .sc td{min-width:0}.tag{display:inline-block;background:var(--c);border-radius:4px;padding:0 6px;font-size:.76rem;color:var(--m)}
+figure figcaption{font-size:.82rem;color:var(--m);margin-top:8px}.img-text{background:var(--s);border:1px solid var(--l);border-radius:8px;padding:10px 12px;margin-top:8px}.img-text summary{cursor:pointer;font-weight:700}.img-text li{white-space:pre-line;overflow-wrap:anywhere}
 footer{border-top:1px solid var(--l);color:var(--m);font-size:.8rem}footer .w{padding-block:16px 28px}

@@ -6,3 +6,4 @@ mirror/.cache/
 mirror/img_work/
 mirror/.venv/
 mirror/bin/
+presence/.wrangler/
