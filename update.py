@@ -501,7 +501,7 @@ def build(now_iso):
                 nav_booths.setdefault(entry["cid"], {}).setdefault(raw_code, set()).add(code)
 
     llm = load(os.path.join(I18N, "llm_ko.json"), {})  # i18n/llm_translate.py (Claude) 번역
-    names = load(os.path.join(I18N, "llm_names.json"), {})
+    llm_names = load(os.path.join(I18N, "llm_names.json"), {})
 
     def tr(s):
         if not s or not CJK.search(s):
@@ -531,8 +531,8 @@ def build(now_iso):
                 pending.add(cn)
         # 중국 기업은 한글 음역 대신 영문 브랜드명(i18n/llm_names.json)으로 보여 주고, 한글 이름은 검색용으로 남긴다
         alias = ""
-        if not kr and names.get(cn):
-            alias, name = (name if name != names[cn] else ""), names[cn]
+        if not kr and llm_names.get(cn):
+            alias, name = (name if name != llm_names[cn] else ""), llm_names[cn]
         booth = clean_booth(r.get("boothNum"))
         if official := nav_booths.get(str(r["serveCatalogueId"])):
             parts = re.split(r"\s*[,，、/]\s*", booth) if booth else list(official)
@@ -594,7 +594,7 @@ def build(now_iso):
         "recent": recent,
         "eventPages": [{"url": e["url"], "title": e["title"], "ko": tr(e["title"]), "kind": e.get("kind", "event")} for e in events_state.get("items", [])],
         "nav": {"url": f"https://s.whte.cn/zwzl/chtf/?id={NAV_PROJECT}",
-                "halls": nav_public(nav, X, tr, names)},
+                "halls": nav_public(nav, X, tr, llm_names)},
         "x": X,
     }
     save(os.path.join(SITE, "data.json"), out, compact=True)
