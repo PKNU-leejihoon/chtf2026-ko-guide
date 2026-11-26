@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>고교회 2026 관람 노트 · 선전 하이테크 박람회 한국어 가이드</title>
-<meta name="description" content="제28회 중국 국제 하이테크 성과 교역회(CHTF, 2026.11.26–28, 선전) 비공식 한국어 가이드. 전시관별 주제, 포럼·행사 일정, 관심사별 동선, 참가기업 1,877곳 부스·제품 검색.">
+<meta name="description" content="제28회 중국 국제 하이테크 성과 교역회(CHTF, 2026.11.26–28, 선전) 비공식 한국어 가이드. 입장·교통, 현장 추천 동선, 포럼·행사 일정, 참가기업 부스·제품 검색.">
 <meta property="og:title" content="고교회 2026 관람 노트">
 <meta property="og:description" content="선전 하이테크 박람회(CHTF 2026) 비공식 한국어 가이드: 전시관, 포럼 일정, 참가기업 검색">
 <meta property="og:type" content="website">
@@ -79,7 +79,7 @@ details.card summary{cursor:pointer;padding:2px 0}
 details.card[open] summary{margin-bottom:12px}
 details.card .lede{margin-bottom:12px}
 details.card .filters{margin-bottom:12px}
-#map,#find,#shows,#routes{scroll-margin-top:64px}
+#map,#find,#shows,#routes,#field{scroll-margin-top:64px}
 
 /* booth plate */
 .booth{display:inline-block;font-family:var(--f-mono);font-weight:600;font-size:.82rem;background:var(--ink);color:var(--surface);border-radius:4px;padding:1px 7px;white-space:nowrap}
@@ -176,6 +176,9 @@ details.card .filters{margin-bottom:12px}
 .route .path i{font-style:normal;color:var(--muted)}
 .route p{margin:0;font-size:.9rem}
 .route .sub{font-size:.78rem;font-weight:700;letter-spacing:.06em;color:var(--muted);margin-top:4px}
+.route summary{cursor:pointer;font-weight:700}
+#fieldRoutes{align-items:start}
+#fieldRoutes .route p{margin:8px 0}
 
 /* finder */
 .finder{display:grid;grid-template-columns:250px minmax(0,1fr);gap:20px;align-items:start}
@@ -220,7 +223,7 @@ footer .wrap{padding-block:18px 28px;display:flex;flex-direction:column;gap:4px}
     </div>
     <div class="facts">
       <div class="fact"><b>11.26–28</b><span>목–토</span></div>
-      <div class="fact"><b id="factCo">1,877</b><span>온라인 등록 기업</span></div>
+      <div class="fact"><b id="factCo">–</b><span>온라인 등록 기업</span></div>
       <div class="fact"><b>16</b><span>전시관(1–16관)</span></div>
     </div>
   </div>
@@ -238,28 +241,43 @@ footer .wrap{padding-block:18px 28px;display:flex;flex-direction:column;gap:4px}
 <main class="wrap">
   <!-- HOME -->
   <section class="view" id="v-home">
-    <div class="intro">
-      <h2>고교회(CHTF)는 어떤 행사인가</h2>
-      <p>1999년부터 매년 선전에서 열리는 중국 최대 규모의 과학기술 전시회예요. 제품 전시와 함께 <b>기술 성과 거래, 투자 상담, 포럼</b>이 한자리에서 열리는 자리라서, 부스마다 시제품인지 이미 팔고 있는 제품인지, 누구를 상대로 나왔는지를 보면 중국 기술 산업의 흐름이 잘 보입니다. 올해 제28회는 11/26–28 선전 국제회의전시센터(바오안)에서 전시면적 40만㎡ 규모로 열립니다. <a href="p/liaojiegaojiaohui-zynr-gaikuang.html">공식 소개 한글판</a></p>
-    </div>
-    <aside class="deadline" aria-label="관람 안내">
-      <b>관람 안내</b>
+    <aside class="deadline" aria-labelledby="entry-title">
+      <b id="entry-title">입장·교통</b> <span class="note">선전 현지 시각 · 한국보다 1시간 느림</span>
       <ul>
-        <li>입장은 11/26 09:30, 11/27~28 09:00부터이고 매일 <b>16:00에 입장 마감</b>, 17:00에 폐장합니다. 지하철 12·20호선 국전역(国展站)은 남측, 국전북역(国展北站)은 북측 등록홀과 바로 연결됩니다.</li>
-        <li>외국인은 <b>남측 등록홀 유인 창구</b>에서 증명서 절차를 밟습니다.</li>
-        <li><b>11/25(수) 12:00</b>에 무료 입장권 등록이 끝납니다. 이후에는 공식 온라인 채널이나 남측 등록홀에서 120위안에 구매합니다.</li>
-        <li>무료 교통권은 <b>11/23(월)까지</b> 등록한 중국 본토 휴대전화 번호 사용자에게만 제공됩니다.</li>
+        <li><b>여권 원본과 사전 등록 QR</b>을 준비하세요. 국제 방문객의 입장·배지 확인 창구는 <b>남측 등록홀 관람객 서비스처(南登录大厅观众服务处)</b>입니다.</li>
+        <li>11/26 <b>09:30</b>, 11/27–28 <b>09:00</b> 개장. 매일 <b>16:00 입장 마감</b>, 17:00 폐장. 11/28 신규 매표·등록은 <b>15:00 마감</b>입니다.</li>
+        <li>무료 사전등록은 11/25 12:00에 마감됐습니다. 미등록 국제 방문객은 남측 창구에서 현장 등록과 <b>120위안</b> 입장권 구매를 문의하세요. 유료 전자권은 행사 기간 재입장 가능합니다.</li>
+        <li>지하철 12·20호선 <b>국전역(国展站) C1·C2</b>는 남측 등록홀, <b>국전북역(国展北站) C1·C2</b>는 북측 등록홀에 연결됩니다. 택시에 보여줄 주소는 <span lang="zh">深圳国际会展中心（宝安）南登录大厅，宝安区展城路1号</span>입니다.</li>
       </ul>
-      <a href="p/canguanzhiyin-ruchangxuzhiX.html">입장 안내</a> · <a href="p/canguanzhiyin-gonggao.html">입장권 공지</a> · <a href="p/canguanzhiyin-jiaotongzhiyinX.html">교통 안내</a>
+      <a href="p/canguanzhiyin-ruchangxuzhiX.html">입장 수칙</a> · <a href="p/canguanzhiyin-gonggao.html">입장권 공지</a> · <a href="https://www.chtf.com/english/Info/ForVisitors/Notice/">국제 관람객 공지·연락처</a> · <a href="p/canguanzhiyin-jiaotongzhiyinX.html">교통 안내</a>
     </aside>
+    <div class="section-h">
+      <h2>전시장 안에서</h2>
+      <div class="filters">
+        <a class="btn" href="#field">날짜별 추천 동선</a>
+        <a class="btn" href="#map">전시관 지도</a>
+        <a class="btn" href="#events">포럼·로드쇼</a>
+        <a class="btn" href="https://www.chtf.com/live/">공식 생중계</a>
+      </div>
+    </div>
+    <p class="note">중앙 통로를 따라 전시관을 이동합니다. 1–17관 2층은 테이크아웃, 3층은 식사 구역입니다. <a href="p/canguanzhiyin-guanneicanyindianX.html">식음 시설</a> · <a href="p/liaojiegaojiaohui-zhanqu-jieshao.html">공식 전시구역 배치도</a> · <a href="p/meitizhiyin-zuixingonggao.html">최신 공지</a> · <a href="https://www.sz.gov.cn/cn/xxgk/zfxxgj/zwdt/content/post_13079207.html">선전시 개막 소식</a></p>
+    <section id="field" aria-labelledby="field-title">
+      <div class="section-h"><h2 id="field-title">날짜별 추천 동선</h2><span class="note">두 시간 기준 · 부스를 누르면 기업·전시 제품을 확인할 수 있어요</span></div>
+      <div class="routes" id="fieldRoutes"></div>
+      <p class="note">현장 시연을 보고 싶을 때는 <span lang="zh">现在可以看演示吗？</span>라고 물어보세요. 보고서에는 부스 번호·모델명과 함께 수치의 측정 조건, 실제 적용 사례를 적어 두면 나중에 비교하기 쉽습니다.</p>
+    </section>
+    <div class="section-h"><h2>놓치기 아까운 행사</h2><a href="#events">포럼·행사 전체 보기</a></div>
+    <div class="card"><ul class="picklist" id="homeEvents"></ul></div>
     <div class="section-h"><h2>올해는 어떤 분야가 큰가</h2><span class="note">온라인 등록 기업의 분야 분포 · 한 기업이 여러 분야에 들 수 있어요 · 누르면 그 분야 기업을 봅니다</span></div>
     <div class="card"><div class="bars catbars" id="catBars"><span class="note">불러오는 중…</span></div></div>
     <div class="section-h"><h2>가장 많이 본 부스 TOP 5</h2><a href="#hot">인기 부스 전체 순위</a></div>
     <div class="card"><ul class="picklist" id="homeHot"><li><span class="note">불러오는 중…</span></li></ul></div>
     <div class="section-h"><h2>관심사별로 둘러보기</h2><span class="note">어느 관부터 돌고 어떤 부스와 세션을 챙기면 좋은지</span></div>
     <div class="routes" id="routes"></div>
-    <div class="section-h"><h2>놓치기 아까운 행사</h2><a href="#events">포럼·행사 전체 보기</a></div>
-    <div class="card"><ul class="picklist" id="homeEvents"></ul></div>
+    <div class="intro">
+      <h2>고교회(CHTF)는 어떤 행사인가</h2>
+      <p>1999년부터 선전에서 열리는 과학기술 전시회예요. 제품 전시와 함께 기술 성과 거래, 투자 상담, 포럼이 열립니다. 올해 안내 범위와 주최 정보는 <a href="p/liaojiegaojiaohui-zynr-gaikuang.html">공식 소개 한글판</a>에서 볼 수 있습니다.</p>
+    </div>
   </section>
 
   <!-- HOT -->
@@ -274,7 +292,7 @@ footer .wrap{padding-block:18px 28px;display:flex;flex-direction:column;gap:4px}
     <p class="lede">전시관을 누르면 그 관의 주제와 분야 구성, 들러볼 만한 부스가 나옵니다. 부스 번호는 <span class="booth">12-B19</span>처럼 <b>관 번호-구역</b> 형식이에요. 남·북 등록홀에서 입장하고, 지하철 12·20호선 국전역(国展站)과 국전북역(国展北站)이 각 등록홀과 연결됩니다.</p>
     <div id="map">
       <div class="plan-scroll"><div class="plan" id="plan"></div></div>
-      <div class="plan-legend"><span><i></i>한국 기업 부스 있음</span><span>숫자 = 통합 목록에 부스가 등록된 기업 수</span><a id="navLink" href="https://s.whte.cn/zwzl/chtf/?id=12" target="_blank" rel="noopener">공식 부스 지도 (입력 진행 중)</a></div>
+      <div class="plan-legend"><span><i></i>한국 기업 부스 있음</span><span>숫자 = 통합 목록에 부스가 등록된 기업 수</span><a href="p/liaojiegaojiaohui-zhanqu-jieshao.html">공식 전시구역 배치도</a><a id="navLink" href="https://s.whte.cn/zwzl/chtf/?id=12" target="_blank" rel="noopener">공식 부스 지도 (일부 관)</a></div>
     </div>
     <div class="hall-detail" id="hallDetail"></div>
 
@@ -315,7 +333,7 @@ footer .wrap{padding-block:18px 28px;display:flex;flex-direction:column;gap:4px}
 
   <!-- EVENTS -->
   <section class="view" id="v-events" hidden>
-    <p class="lede">공식 사이트의 포럼·행사 페이지 19개를 읽고, 배울 거리가 있는 것만 골라 정리했어요. 회의실 이름은 현장에서 물어볼 수 있게 중국어 원문도 같이 적었습니다. 연사는 대부분 "섭외 예정(拟邀)" 단계라서 바뀔 수 있어요. 빠짐없는 목록은 <a href="p/schedule.html">공식 행사 일정 한글판</a>에 있습니다.</p>
+    <p class="lede">시간은 선전 현지 시각입니다. 중국어 회의실 이름을 직원에게 보여 주세요. 일부 포럼은 전시 입장권과 별도로 신청하거나 초청을 받아야 합니다. 일정표와 상세 공지가 다른 경우 카드에 함께 적었습니다. <a href="p/schedule.html">공식 동시행사 일정 한글판</a> · <a href="p/luntanjihuodong-sfsxlyq.html">16관 로드쇼 상세</a> · <a href="https://www.chtf.com/live/">공식 생중계</a></p>
     <div class="daybar" id="daybar"></div>
     <div class="filters" id="evFilters" aria-label="분야"></div>
     <div class="timeline" id="timeline"></div>
@@ -343,7 +361,7 @@ footer .wrap{padding-block:18px 28px;display:flex;flex-direction:column;gap:4px}
 <footer>
   <div class="wrap">
     <span>출처: 고교회 공식 사이트 chtf.com의 전시관 배치도·초청 범위·포럼 페이지, 공식 전시기업 시스템(e.chtf.com)의 기업·부스·제품 목록. 기업·부스·제품과 행사 페이지 목록은 주기적으로 다시 확인해 반영합니다. 개인이 정리한 비공식 자료이며, 부스와 일정은 현장에서 바뀔 수 있습니다.</span>
-    <span>공식 데이터 확인 <span class="mono" id="factChecked">–</span> · <a href="#news">업데이트 소식</a><span class="count" id="newsCount" hidden>0</span> · <a href="p/index.html">공식 안내 한글판</a> · <a href="p/schedule.html">공식 행사 일정 한글판</a></span>
+    <span>공식 데이터 확인 <span class="mono" id="factChecked">–</span> (한국시간) · <a href="#news">업데이트 소식</a><span class="count" id="newsCount" hidden>0</span> · <a href="p/index.html">공식 안내 한글판</a> · <a href="p/schedule.html">공식 동시행사 일정 한글판</a></span>
     <span>공식: <a href="https://www.chtf.com/" target="_blank" rel="noopener">www.chtf.com</a> · 전시기업 검색 <a href="https://e.chtf.com/#/exhibitor" target="_blank" rel="noopener">e.chtf.com</a></span>
   </div>
 </footer>
@@ -388,58 +406,63 @@ const PICKS={
 };
 const EVTAGS=["AI","로봇","저고도","에너지","투자","제조","바이오","기타"];
 const EVENTS=[
- {d:26,t:"09:00–12:00",star:1,title:"중국 하이테크 포럼 · 개막 세션",cn:"中国高新技术论坛 开幕式",place:"남측 등록홀 LM103(ABC)",pcn:"南登录大厅 LM103(ABC)厅",tags:["AI","로봇"],
+ {d:26,t:"09:00–12:00",title:"중국 하이테크 포럼 · 개막 세션",cn:"中国高新技术论坛 开幕式",place:"남측 등록홀 LM103(ABC)",pcn:"南登录大厅 LM103(ABC)厅",tags:["AI","로봇"],reg:"초청제",source:"https://www.chtf.com/luntanjihuodong/gaoxinluntan/",
   learn:"올해 메인 포럼. 주제는 'AI가 이끄는 미래 산업: 기술 돌파에서 현장 적용까지'예요.",
   prog:["AI가 '도구'에서 '노동력'으로: 제조업 지능화와 협동로봇 확산이 공급망에 주는 변화","물리 AI와 스스로 진화하는 로봇: 자율 운동 제어, 경량 소재, 유연한 생체모방 관절","물리 AI·에이전트·로봇의 협업: 휴머노이드, 범용·특수 로봇의 '범용 두뇌'","로봇의 기반인 반도체: 칩·센서·컨트롤러·전력소자 국산화","신에너지·저고도 경제와 로봇의 결합: 순찰·물류·보안 응용"]},
- {d:26,t:"13:30–17:30",star:1,title:"AI 로봇 기술혁신·응용 서밋",cn:"AI赋能机器人技术创新与场景应用峰会",place:"남측 등록홀 LM103(ABC)",pcn:"南登录大厅 LM103(ABC)厅",tags:["로봇","투자"],
+ {d:26,t:"13:30–17:30",title:"AI 로봇 기술혁신·응용 서밋",cn:"AI赋能机器人技术创新与场景应用峰会",place:"남측 등록홀 LM103(ABC)",pcn:"南登录大厅 LM103(ABC)厅",tags:["로봇","투자"],reg:"초청제 · 상세안은 17:30, 동시행사표는 17:00 종료로 표기",source:"https://www.chtf.com/luntanjihuodong/gaoxinluntan/",
   learn:"중국 하이테크 포럼의 오후 세션이에요. 로봇 산업의 지금과 돈의 흐름을 한 번에 볼 수 있어요.",
   prog:["13:30 신제품·신기술 발표: 로봇 완제품, 핵심 부품, 알고리즘. 뇌-컴퓨터 인터페이스 외골격, 감성형 가정용 로봇 데모, 협약식","14:00 기조연설 '체화지능과 로봇 신생태계': 감속기·서보·로봇 손 국산화, 멀티모달 대모델로 만드는 로봇의 범용 두뇌","16:30 대담 '로봇 분야 투자 논리': 휴머노이드 밸류에이션, 양산 시점, 리스크 관리"]},
- {d:26,t:"09:00–17:05",star:1,title:"WAIAC 세계 인공지능 응용대회 · 메인 포럼",cn:"2026WAIAC世界人工智能应用大会 主论坛",place:"1층 부겐빌레아 B홀",pcn:"一楼 勒杜鹃B厅",tags:["AI"],
+ {d:26,t:"09:00–17:05",star:1,title:"WAIAC 세계 인공지능 응용대회 · 메인 포럼",cn:"2026WAIAC世界人工智能应用大会 主论坛",place:"1층 부겐빌레아 B홀",pcn:"一楼 勒杜鹃B厅",tags:["AI"],reg:"개별 상세안 기준 · 참가 조건 현장 확인",source:"https://www.chtf.com/luntanjihuodong/shijierengongzhinenyingyongdahui/",
   learn:"1,500석 규모의 대형 AI 포럼. 15분짜리 기조연설 20개가 이어져요. 연사 명단은 주최 측이 '본인 확인 전'이라고 밝힌 예정안입니다.",
   prog:["10:00 다이충하이 (중국공정원 원사, 칭화대 정보학원장): 지각 지능에서 인지 지능으로","10:15 마크 지롤라미 (영국 왕립공학원, 앨런 튜링 연구소 수석과학자): 신뢰 가능한 AI","10:30 리카이푸 (01.AI 창업자): 대모델 상용화의 다음 단계, 데모에서 납품까지","10:45 폴 김 (스탠퍼드 교육대학원 부학장): AI 시대의 교육 재설계","11:30 타오린 (테슬라 글로벌 부사장): 스마트 전동화와 AI 공급망","13:40 이후: 드론 산업의 다음 10년, 뇌-컴퓨터 인터페이스(중국과학원 자동화연구소), 베이더우 위치정보와 AI, AI 헬스케어 상용화","27–28일에는 분과 포럼이 열려요"]},
- {d:26,t:"09:00–17:30",title:"2026 선전 과학기술 투자대회",cn:"2026深圳科技投资大会",place:"전시센터 내 (세부 장소 미공지)",pcn:"深圳国际会展中心",tags:["투자"],
+ {d:26,t:"09:00–17:00",title:"2026 선전 과학기술 투자대회",cn:"2026深圳科技投资大会",place:"맹그로브 C홀",pcn:"红树林厅 C",tags:["투자"],source:"https://www.chtf.com/luntanjihuodong/touzidahui/",
   learn:"중국 국유자본과 VC가 어떤 기술에 돈을 넣는지 볼 수 있는 자리예요.",
   prog:["09:00 전시관 투어 · 10:00 축사","13:50 《2026 과학기술 산업·투자 트렌드 백서》 발표와 해설","14:10 테크 기업 주제발표 · 15:45 투자사 주제발표","16:25 고위급 원탁토론"],
-  reg:"사전 등록 필요: yuyue.wjx.com/vm/PS1Gzan.aspx"},
- {d:26,t:"14:00–17:30",star:1,title:"신뢰 가능한 AI: 대모델·에이전트의 안전·윤리·거버넌스",cn:"2026 AI先锋论坛·可信AI：大模型与智能体的安全、伦理与治理",place:"14호 회의실 A홀",pcn:"14号会议室A厅",tags:["AI"],
+  reg:"사전 신청 · 동시행사표 3,800위안. 상세안은 17:30 종료로 표기"},
+ {d:26,t:"14:00–17:30",star:1,title:"신뢰 가능한 AI · 대모델과 에이전트",cn:"2026 AI先锋论坛·可信AI：大模型与智能体的安全、伦理与治理",place:"14호 회의실 A홀",pcn:"14号会议室A厅",tags:["AI"],reg:"무료 · 해양 AI 세션과 일부 시간이 같은 회의실로 표기돼 현장 확인",source:"https://www.chtf.com/luntanjihuodong/zhcsluntan/",
   learn:"선전시 인공지능학회가 주최해요. 원칙론보다 '측정하고 추적할 수 있는 거버넌스'와 기업 사례에 초점을 둡니다.",
   prog:["리빈 (선전대): 대모델로 하는 위변조 탐지. AI 생성 이미지, 딥페이크 얼굴, 신분증 위조","웨이쉐타오 (남방과기대): AI 윤리를 엔지니어링으로 옮기기","구량 (선전 데이터거래소): 데이터 유통과 AI 산업","주샤오광 (ZTE): AI 윤리 심사 체계 구축 사례","CAICT 중국정보통신연구원 (섭외 중): 최신 AI 안전 리스크와 대응","15:50 원탁토론: '믿을 수 있는 모델'에서 '믿을 수 있는 응용'으로"]},
- {d:26,t:"14:00–17:00",title:"대만구(大湾区) 저고도 경제 포럼",cn:"大湾区低空论坛",place:"저고도 경제 전용 회의장",pcn:"低空经济专场会场",tags:["저고도"],
-  learn:"드론, eVTOL, 저고도 인프라와 공역 관리를 다뤄요. CRSC(중국통신신호), 차이나유니콤, 중국우정, 남방과기대가 참여합니다.",
-  prog:["14:15 정부·전문가 주제강연 (국가발전개혁위, 민항총국, 국가우정국 등 섭외 중)","16:15 '선전 저고도 경제 글로벌 본부기지' 발표와 협약식","16:45 원탁토론: 저고도 신인프라, 공역 혁신, 드론 공급·응용 생태계"]},
+ {d:26,t:"14:00–14:50",star:1,title:"대만구 저고도 경제 포럼",cn:"大湾区低空论坛",place:"남측 등록홀 LM104 ABC",pcn:"南登 LM104 ABC",tags:["저고도"],reg:"무료 · 동시행사표 기준. 상세안은 17:00 종료로 표기",source:"https://www.chtf.com/luntanjihuodong/dikongluntan/",
+  learn:"드론·eVTOL 운용, 저고도 인프라와 공역 관리를 다룹니다."},
  {d:26,t:"13:00–17:00",title:"첨단 제조 신뢰성 기술대회",cn:"先进制造可靠性技术应用大会",place:"남측 등록홀 1층 LM101ABC",pcn:"南登录大厅一层 LM101ABC会议室",tags:["제조"],
   learn:"베이항(北航) 신뢰성센터가 주관해요. 신뢰성 표준, 백서, 설계 도구 발표와 제조업 사례가 나옵니다. 9관 1층에 신뢰성 기술·장비 전문관이 26–28일 열려요.",
-  reg:"참가비 299위안 (만찬 포함, 전시 기업 무료)"},
+  reg:"동시행사표는 무료, 상세안은 만찬 포함 299위안으로 안내. 일반 세션 입장은 현장 확인",source:"https://www.chtf.com/luntanjihuodong/gaojiaohuikekaoxingjishudahui/"},
  {d:26,t:"14:00–17:00",title:"싼야 야저우만 과학기술도시 협력 설명회",cn:"三亚崖州湾科技城高新区高新技术产业合作发展对接会",place:"13호 회의실 AB",pcn:"13号会议室AB",tags:["투자"],
   learn:"하이난 자유무역항의 관세와 자금 이동 실무, 종자·심해 기술 분야 투자 기회를 소개해요.",
-  reg:"QR 등록. 관람 사전등록은 11/25 12:00까지"},
+  reg:"무료 · 행사 상세 페이지의 QR로 신청",source:"https://www.chtf.com/luntanjihuodong/sanya_meeting/"},
  {d:26,t:"14:30–17:00",title:"'5E 벤치마킹' 전력설비 교류회",cn:"5E对标创一流经验交流大会",place:"5관 5호 회의실 C홀",pcn:"5号馆5号会议室C厅",tags:["에너지"],
-  learn:"중국전력설비관리협회가 주관해요. 다탕, 화룬전력, CGN, 푸칭 원전, 하얼빈 터빈 등의 운영 우수사례를 발표합니다."},
- {d:26,t:"09:00–12:15",title:"물·수자원 종합대회 개막",cn:"综合大会（红树林厅A）",place:"맹그로브 A홀",pcn:"红树林厅A",tags:["기타"],
-  learn:"선전 환경수무그룹이 주관해요. 원사 4명의 기조보고, 절수 기술 발표, 혁신 사례 발표 후 전시장을 순회합니다."},
+  learn:"중국전력설비관리협회가 주관해요. 다탕, 화룬전력, CGN, 푸칭 원전, 하얼빈 터빈 등의 운영 우수사례를 발표합니다.",reg:"동시행사표 1,000위안",source:"https://www.chtf.com/luntanjihuodong/_5E_duibiaochuangyiliu/"},
+ {d:26,t:"09:00–12:00",title:"물·수자원 종합대회 개막",cn:"综合大会（红树林厅A）",place:"맹그로브 A홀",pcn:"红树林厅A",tags:["기타"],
+  learn:"절수·수처리 기술 발표와 적용 사례를 볼 수 있어요.",reg:"무료 · 동시행사표 기준",source:"https://www.chtf.com/luntanjihuodong/hongshulinting/"},
  {d:26,t:"09:30–12:00",star:1,title:"신제품 첫 공개 로드쇼 · 오전",cn:"新产品首发首秀路演区",place:"16관 로드쇼 구역",pcn:"16号馆新产品首发首秀路演区",tags:["로봇","AI"],
-  learn:"무료로 볼 수 있는 30분짜리 발표가 이어져요. 신제품을 처음 공개하는 자리입니다.",
+  learn:"신제품을 처음 공개하는 30분 단위 발표입니다.",reg:"무료",
   prog:["09:30 디지털 저작권 등록·거래 (중국기술거래소)","10:00 '로봇을 다시 상상하다': QKM (李群智能)","10:30 AI 신제품 발표: 만델브로 (曼德勃罗)","11:00 우주 지능 컴퓨팅 제품 발표: 쑤저우 미웨이","11:30 시각장애인 보조 로봇 AILOOK: 산둥 주거 로봇"]},
- {d:26,t:"14:00–17:00",title:"산학융합·과학교육 포럼",cn:"第三届产教融合与科教融汇论坛",place:"16관 로드쇼 구역",pcn:"16号馆新产品首发首秀路演区",tags:["기타"],learn:"광둥성 산학융합촉진회가 주최해요."},
- {d:27,t:"09:30–12:10",star:1,title:"신제품 첫 공개 로드쇼 · 오전",cn:"新产品首发首秀路演区",place:"16관 로드쇼 구역",pcn:"16号馆新产品首发首秀路演区",tags:["AI","로봇","바이오"],
-  prog:["09:30 의료기기 정밀제조: 생체 고분자 마이크로스피어 (선전정보직업기술대)","10:00 VERA-AI: 프라이버시 컴퓨팅 기반 병원 실사용 데이터 인프라 (선전이공대)","10:30 공지(共绩) AI 학습·추론 원스톱 플랫폼 (칭화대 스핀오프)","10:50 홍콩-선전 혁신과학기술단지(HSITP) 설명회","11:15 드론 종합 방어 시스템 (톈진 중안스퉁)","11:40 음성 해설에서 대화형 AI 도슨트로 (홍콩중문대)"]},
- {d:27,t:"13:30–17:00",title:"신제품 첫 공개 로드쇼 · 오후",cn:"新产品首发首秀路演区",place:"16관 로드쇼 구역",pcn:"16号馆新产品首发首秀路演区",tags:["로봇","바이오"],
+ {d:26,t:"14:00–17:00",title:"산학융합·과학교육 포럼",cn:"第三届产教融合与科教融汇论坛",place:"16관 로드쇼 구역",pcn:"16号馆新产品首发首秀路演区",tags:["기타"],learn:"광둥성 산학융합촉진회가 주최해요.",reg:"무료"},
+ {d:26,t:"09:00–12:00",title:"아시아·태평양 수소에너지 응용 서밋",cn:"亚太氢能产业融合发展论坛暨2026大湾区氢能规模化应用创新峰会",place:"8관 로드쇼 A구역",pcn:"8号馆路演区A",tags:["에너지"],learn:"산업 현장 수소 활용과 규모화 사례를 다룬 개막 세션입니다. 전문전 상세안에 26일 오후와 27일 세션도 나옵니다.",reg:"개막 세션 무료 · 동시행사표는 09:00, 상세안은 09:30 시작으로 표기",source:"https://www.chtf.com/luntanjihuodong/dawanquqingnenguimohuayingyongchuangxinfenghui_yaoqinghan/"},
+ {d:26,t:"14:00–17:25",title:"과학 AI · 발견의 새 방법과 미래 산업",cn:"科学智能：发现新范式与未来产业创新",place:"14호 회의실 B홀",pcn:"14号会议室B厅",tags:["AI"],reg:"개별 상세안 기준 · 참가 조건 현장 확인",source:"https://www.chtf.com/luntanjihuodong/faxianxinfanshiyuweilaichanyechuangxin/"},
+ {d:26,t:"14:00–17:30",title:"선전·홍콩 과학기술 금융 포럼",cn:"深港科技金融论坛暨重大项目签约活动",place:"18관 회의구역 CC101ABC",pcn:"18号会议室 CC101ABC",tags:["투자"],reg:"무료 · 동시행사표 기준",source:"https://www.chtf.com/luntanjihuodong/shengangjinrongqianyuehuodong/"},
+ {d:27,t:"09:00–17:00",title:"풍력 공급망과 AI 적용 포럼",cn:"风电工程供应链与AI赋能论坛",place:"5호 회의실 C홀",pcn:"5号会议室 C",tags:["에너지","AI","제조"],reg:"무료 · 동시행사표 기준",source:"https://www.chtf.com/public/html/2029110912.html"},
+ {d:27,t:"09:30–12:00",star:1,title:"남방과기대 연구 성과 발표회",cn:"南科启新・智汇湾区 —— 南方科技大学重磅科技成果发布会",place:"14호 회의실 A홀",pcn:"14号会议室 A",tags:["기타"],learn:"대학의 기술이전·사업화 사례를 살펴볼 수 있는 연구 성과 발표입니다.",reg:"무료 · 동시행사표 기준",source:"https://www.chtf.com/meet/"},
+ {d:27,t:"14:00–17:00",title:"여성 연구자·창업가 AI 포럼",cn:"AI先锋论坛·巾帼智创 2026",place:"14호 회의실 C홀",pcn:"14号会议室 C",tags:["AI"],reg:"무료 · 동시행사표 기준",source:"https://www.chtf.com/public/html/2029110906.html"},
+ {d:27,t:"09:30–12:10",star:1,title:"신제품 첫 공개 로드쇼 · 오전",cn:"新产品首发首秀路演区",place:"16관 로드쇼 구역",pcn:"16号馆新产品首发首秀路演区",tags:["AI","로봇","바이오"],reg:"무료",
+  prog:["09:30 의료기기 정밀제조 (선전정보직업기술대)","09:45 다각도 분광 측색기","10:00 VERA-AI: 프라이버시 컴퓨팅 기반 병원 실사용 데이터 인프라 (선전이공대)","10:30 공지(共绩) AI 학습·추론 플랫폼 (칭화대 스핀오프)","10:50 홍콩-선전 혁신과학기술단지(HSITP) 설명회","11:15 드론 종합 방어 시스템 (톈진 중안스퉁)","11:40 음성 해설에서 대화형 AI 도슨트로 (홍콩중문대)"]},
+ {d:27,t:"13:30–17:00",title:"신제품 첫 공개 로드쇼 · 오후",cn:"新产品首发首秀路演区",place:"16관 로드쇼 구역",pcn:"16号馆新产品首发首秀路演区",tags:["로봇","바이오"],reg:"무료 세션과 초청 시상식이 섞여 있음 · 상세 시간표 확인",
   prog:["13:30 '50만 명의 가장 힘든 일을 대신하는 로봇 2.0': 완나 로봇","14:00 혁신 바이오의약·세포치료 포럼","15:00 대만구 바이오의약 산학 포럼","15:00 해외 진출 '백비둘기상' 시상"]},
- {d:27,t:"14:00–17:20",star:1,title:"대모델·AI 에이전트 산업 응용 포럼",cn:"大模型与智能体行业前沿应用论坛",place:"14호 회의실 B홀",pcn:"14号会议室B厅",tags:["AI","로봇"],
+ {d:27,t:"14:00–17:20",star:1,title:"대모델·AI 에이전트 산업 응용 포럼",cn:"大模型与智能体行业前沿应用论坛",place:"14호 회의실 B홀",pcn:"14号会议室B厅",tags:["AI","로봇"],reg:"개별 상세안 기준 · 참가 조건 현장 확인",source:"https://www.chtf.com/luntanjihuodong/cxswy/",
   learn:"학계와 산업계 발표가 섞인 실전형 포럼이에요. 에이전트와 체화지능을 실제로 어디에 쓰는지 볼 수 있어요.",
   prog:["후바오톈 (하얼빈공대 선전): 언어지능 중심의 멀티모달 대모델과 인간-기계 상호작용","웨리쥔 (푸톈실험실, 텐센트 Robotics X 체화지능 플랫폼 책임자): 여러 로봇 몸체를 아우르는 체화지능 오픈 플랫폼","샤충쿤 (중산대): VLA(시각-언어-행동) 모델로 복강경 장면 이해와 자율 조작","런융 (아이플라이텍 의료 홍콩연구원)","차이냐오 물류: AI와 로봇이 만드는 산업 가치","신화즈윈: 관광 특화 대모델과 에이전트 구축 경험","선전이(深诣) 로봇: 강화학습으로 스스로 진화하는 산업용 체화지능","16:25 원탁토론: 에이전트에서 대모델 산업 적용까지"]},
- {d:27,t:"14:00–17:00",title:"물리 AI·로봇 카테고리 혁신대회 (LKK)",cn:"2026洛可可物理AI与机器人品类创新大会",place:"13호 회의실 AB홀",pcn:"13号会议室AB厅",tags:["로봇"],
+ {d:27,t:"14:00–17:00",title:"LKK 체화지능 로봇 제품 혁신대회",cn:"2026洛可可具身智能机器人品类创新大会",place:"13호 회의실 AB홀",pcn:"13号会议室 AB",tags:["로봇"],reg:"본행사 무료 · 같은 시간 15호 회의실 E 분과는 초청제",source:"https://www.chtf.com/public/html/2029110907.html",
   learn:"중국 최대 산업디자인 그룹 LKK(洛可可)가 주최해요. 로봇을 '어떤 제품으로 만들어 팔 것인가'의 관점에서 봅니다.",
   prog:["14:05 리판충 (LKK 컨설팅 CEO): 물리 AI 시대의 카테고리 혁신","14:35 딩닝 (선전 AI·로봇연구원 상무부원장): 지능에는 왜 몸이 필요한가","14:55 JLC (嘉立创): 체화지능 하드웨어 혁신 지원","15:15 리샤오후이 (具身风暴 CEO): 로봇은 인체를 어떻게 이해하나","15:35 장젠후이 (LKK 부총재): 로봇 신카테고리 정의","16:05 자웨이 (LKK 창업자): AI로 하는 카테고리 혁신"]},
- {d:28,t:"10:00–11:00",title:"신제품 첫 공개 로드쇼",cn:"新产品首发首秀路演区",place:"16관 로드쇼 구역",pcn:"16号馆新产品首发首秀路演区",tags:["로봇","AI"],
+ {d:28,t:"10:00–11:00",star:1,title:"신제품 첫 공개 로드쇼",cn:"新产品首发首秀路演区",place:"16관 로드쇼 구역",pcn:"16号馆新产品首发首秀路演区",tags:["로봇","AI"],reg:"무료 · 공식 일정 각 세션 300석",
   prog:["10:00 정교한 조작으로 산업 현장 문제 해결: 완나 로봇","10:30 물리 AI 운영체제 신제품 발표: 쒀천 과기 (12-B22)"]},
  {d:27,t:"시간 미공개",title:"2026 중국 국제 AIDC 컴퓨팅 액체냉각 대회",cn:"2026中国国际AIDC算力液冷大会",place:"전시센터 내 (세부 장소 미공지)",pcn:"深圳国际会展中心（宝安）",tags:["AI","에너지"],
-  learn:"AI 컴퓨팅·데이터센터 액체냉각전의 동시 행사예요. 액체냉각 산업체인 기업과 학계가 모입니다."},
+  learn:"AI 컴퓨팅·데이터센터 전문전의 동시 행사입니다. 시간·회의실은 현장 확인이 필요합니다.",source:"https://www.asia-cpdc.com/concurrent/"},
  {d:0,t:"날짜 미공개",title:"2026 글로벌 데이터센터 녹색발전 대회",cn:"2026全球数据中心绿色发展大会",place:"전시센터 내 (세부 장소 미공지)",pcn:"深圳国际会展中心（宝安）",tags:["AI","에너지"],
-  learn:"공개된 순서는 13:30부터 17:00까지예요. 날짜는 아직 나오지 않았습니다.",
+  learn:"전문전의 공개 안건은 13:30–17:00입니다. 날짜와 회의실은 현장에서 확인하세요.",source:"https://www.asia-cpdc.com/concurrent/",
   prog:["PUE·액체냉각 의무 정책 해설","콜드플레이트 단상 액체냉각과 기존 공랭 개조 비용","침지식 단상·이상 냉각과 폐열 회수","칩 단위 마이크로채널·공랭 혼합 구조","누설 방지·부식·운영 신뢰성","초대형 AI 연산센터 전면 침지 구축 사례"]},
  {d:0,t:"11월 중",title:"2026 신뢰 가능 토큰 클라우드 서비스 포럼",cn:"2026可信Token云服务论坛",place:"전시센터 내 (세부 장소 미공지)",pcn:"深圳国际会展中心（宝安）",tags:["AI"],
-  learn:"중국정보통신연구원(CAICT)이 주관해요. 토큰 과금 표준, AI 에이전트 운영 평가, 슈퍼노드 성능 기준을 다룹니다."},
+  learn:"중국정보통신연구원(CAICT)이 주관해요. 토큰 과금 표준, AI 에이전트 운영 평가, 슈퍼노드 성능 기준을 다룹니다.",source:"https://www.asia-cpdc.com/concurrent/"},
  {d:0,t:"26–28일",star:1,title:"글로벌 구매 매칭대회",cn:"全球采购对接大会",place:"전용 상담 구역",pcn:"专属商贸对接区",tags:["투자"],
   learn:"바이어가 원하는 조건을 내면 주최 측이 공급사를 골라 1:1 현장 상담을 잡아 줘요. 로봇, AI, 반도체, 신소재, 저고도, 액체냉각, 수소, ESS 등 20여 분야가 대상입니다. 중국 공급처를 찾는다면 가장 실속 있는 프로그램이에요.",reg:"바이어 사전 신청 (공식 사이트 '全球采购对接大会' 페이지)"},
  {d:0,t:"26–28일",title:"글로벌 투자·융자 매칭회",cn:"全球投融资供需对接会",place:"전시센터 내",pcn:"深圳国际会展中心",tags:["투자"],
@@ -447,19 +470,29 @@ const EVENTS=[
  {d:0,t:"27–28일",title:"WAIAC 분과 포럼",cn:"WAIAC 分论坛",place:"전시센터 내",pcn:"深圳国际会展中心",tags:["AI"],
   learn:"AI 인재 평가, AI 음성 기술 산업화, AI와 크로스보더 무역 등을 다뤄요. 세부 일정은 공식 사이트 공지를 확인하세요."}
 ];
+const FIELD_ROUTES=[
+ {t:"11/26 오후 · 신기한 로봇",path:[12,14],p:"12관에서 4족 로봇·로봇 손·휴머노이드, 14관에서 로봇 밴드와 생체모방 전시를 보세요. 구동부가 움직이는 장면, 센서 위치, 실제 시연과 전시 모형의 차이를 기록해 두면 좋아요.",
+  booths:[11014,9839,10242,10844,9769,9761,10286,9747,10133]},
+ {t:"11/27 오전 · 생산·공정관리",path:[12,14,13],p:"비전 검사 → 가상 시운전 → AMR·재고 관리 순으로 공정의 앞뒤를 연결해 보세요. 실제 현장 적용 전후 불량률, 택트타임, 셋업 기간을 물어보면 보고서에 쓸 근거가 됩니다.",
+  booths:[10002,9849,9729,10683,10418,10039,10865,10090]},
+ {t:"11/27 오후 · 공항 통신전자",path:[11,13,15],p:"라이다, 관성항법, 무선 탐지, 5G 전용망, 풍속 라이다를 비교해 보세요. 공항 적용을 염두에 두고 탐지 거리·오탐률의 측정 조건과 통신 장애 시 대응을 물어보세요.",
+  booths:[10170,9888,10151,11157,10135,10769,10664,11039]},
+ {t:"11/28 오전 · 체험형 전시",path:[10,14,13,15],p:"홀로그램, 커피 로봇, 뇌파 레이싱, 자전거 로봇을 중심으로 둘러보세요. 시간이 짧으면 14관에 집중하거나 16관 10:00–11:00 로봇·물리 AI 로드쇼를 먼저 보세요.",
+  booths:[10537,11252,10464,9751,10644,10656,11329,10752,10219,11308]}
+];
 const ROUTES=[
  {t:"AI·로봇을 깊게",path:[12,14,16],p:"12관에서 부품(감속기, 서보, 로봇 손)과 완제품 로봇을 보고, 14관에서 AI 응용과 체화지능, 16관 로드쇼에서 신제품 발표를 보세요.",
-  booths:["云深处","李群智能","加速进化","因时科技","伽利略","工业人快速成型"],ev:"26일 오후 AI 로봇 서밋 (LM103) · 27일 오후 대모델·에이전트 포럼 (14호 B) · 27일 오후 LKK 물리 AI 대회 (13호 AB)"},
+  booths:["云深处","李群智能","加速进化","因时科技","伽利略","工业人快速成型"],ev:"27일 오후 대모델·에이전트 포럼 (14호 B, 참가 문의) · LKK 체화지능 로봇 대회 (13호 AB, 무료)"},
  {t:"AI 인프라·반도체",path:[6,14,16,4],p:"6관은 AI 서버와 데이터센터 액체냉각이 중심이에요. 14관에서 AI 연산 장비를, 16관과 4관에서 반도체를 봅니다.",
   booths:["华为终端","磐石浩海","蓝芯算力","长辉智算","第四十四研究所","航顺芯片"],ev:"26일 오후 신뢰 가능한 AI 포럼 (14호 A)"},
  {t:"에너지·배터리·전력",path:[8,6,5],p:"8관에서 ESS·배터리·수소를, 6관에서 송변배전과 충전을, 5관에서 스마트 그리드를 봅니다.",
   booths:["宁德时代","科洛超低温","伊莱诺瓦","ABR"],ev:"26일 오후 5E 벤치마킹 교류회 (5관)"},
  {t:"저고도 경제·우주",path:[11,15,13,9],p:"11관에서 상업 우주와 eVTOL을 보고, 15관 D4·D6 구역의 드론·위성 스타트업으로 이어 가세요. 9관에는 국가 항공우주 계열이 있어요.",
-  booths:["中科密位","魔方卫星","亿航智舫","西安航天三沃","文昌国际航天城"],ev:"26일 오후 대만구 저고도 포럼"},
+  booths:["中科密位","魔方卫星","亿航智舫","西安航天三沃","文昌国际航天城"],ev:"26일 14:00 대만구 저고도 포럼 (남측 LM104 ABC)"},
  {t:"IoT·디바이스",path:[10,15,14],p:"10관 소비자 전자(스마트홈·웨어러블), 15관 광둥 기업(IoT 모듈, MCU), 14관 스마트 제조 순서로 돌아보세요. 기업 찾기에서 'IoT'를 눌러 보세요.",
   booths:["有方科技","航顺芯片","鸿蒙生态","杭州星尘"],ev:"16관 로드쇼에서 디바이스 신제품 발표를 확인하세요"},
- {t:"한국 기업·한국관",path:[14,10,8],p:"KOTRA 한국관(14-C301)에 8곳, 시흥산업진흥원 공동관(10-D6)에 10곳, 8관에 ABR이 있어요. 중국 바이어 반응을 보거나 현지 정보를 얻기 좋아요.",
-  booths:["I&C Technology","纽禄美卡","Siheung Industrial","ABR"],ev:"기업 찾기에서 '한국 기업만'을 체크하면 21곳이 모두 나와요"},
+ {t:"한국 기업·한국관",path:[14,13,10,8],p:"14관 KOTRA 한국관(14-C301), 10관 시흥산업진흥원 공동관(10-D6), 13관 개별 등록 기업과 8관 ABR이 있어요.",
+  booths:["I&C Technology","Neuromeka","Siheung Industrial","SOUND PLATFORM","XL8AI","ABR"],ev:"기업 찾기의 ‘한국 기업만’ 필터에서 최신 등록 업체와 기관을 볼 수 있어요."},
  {t:"대학·연구소·투자",path:[16,13,15],p:"16관은 대학과 국가 실험실, 13관은 각 성·시와 해외 국가관, 15관은 선전 각 구 공동관이에요. 기술이전이나 공동연구 상대를 찾기 좋아요.",
   booths:["深圳清华大学研究院","北京大学深圳研究生院","香港中文大学(深圳)","港深创新及科技园"],ev:"26일 선전 과학기술 투자대회 · 27일 오전 HSITP 설명회 (16관)"}
 ];
@@ -595,7 +628,7 @@ const fmt=n=>n.toLocaleString("ko-KR");
 /* ---------- routing ---------- */
 const VIEWS=["home","hot","explore","events","mine","news"];
 // old tab hashes (and links from p/ pages) land on the section inside the merged view
-const ALIAS={routes:"home",map:"explore",find:"explore",shows:"explore"};
+const ALIAS={field:"home",routes:"home",map:"explore",find:"explore",shows:"explore"};
 function route(){
   const h=(location.hash||"").slice(1);
   S.view=VIEWS.includes(h)?h:(ALIAS[h]||"home");
@@ -693,7 +726,7 @@ document.addEventListener("click",e=>{
 
 /* ---------- events ---------- */
 function renderDays(){
-  const days=[[26,"11/26 목","개막일"],[27,"11/27 금","둘째 날"],[28,"11/28 토","마지막 날"],[0,"상시","26–28일"]];
+  const days=[[26,"11/26 목","개막일"],[27,"11/27 금","둘째 날"],[28,"11/28 토","마지막 날"],[0,"그 외","상시·미정"]];
   $("#daybar").innerHTML=days.map(([d,a,b])=>`<button data-d="${d}" aria-pressed="${S.day===d}"><b>${a}</b><span>${b} · ${EVENTS.filter(e=>e.d===d).length}건</span></button>`).join("");
   $("#daybar").querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{S.day=+b.dataset.d;renderDays();renderEvents()}));
   $("#evFilters").innerHTML=`<button class="fchip" data-t="" aria-pressed="${!S.evTag}">전체</button>`+EVTAGS.map(t=>`<button class="fchip" data-t="${t}" aria-pressed="${S.evTag===t}">${t}</button>`).join("");
@@ -710,18 +743,31 @@ function renderEvents(){
       ${e.learn?`<p class="learn">${esc(e.learn)}</p>`:""}
       ${e.prog?`<ul class="prog">${e.prog.map(p=>`<li>${esc(p)}</li>`).join("")}</ul>`:""}
       ${e.reg?`<div class="reg">${esc(e.reg)}</div>`:""}
+      ${e.source?`<a class="note" href="${esc(e.source)}">공식 상세 안내 ↗</a>`:e.place==="16관 로드쇼 구역"?'<a class="note" href="p/luntanjihuodong-sfsxlyq.html">16관 로드쇼 시간표 ↗</a>':""}
       <div class="meta">${e.star?'<span class="tag pick">추천</span>':""}${e.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div>
     </div></article>`).join(""):`<div class="empty">이 날짜에는 해당 분야 행사가 없어요.</div>`;
 }
 
 /* ---------- routes ---------- */
+function routeBooths(booths){
+  return booths.map(k=>{
+    const x=typeof k==="number"?BYID.get(k):findByKey(k);
+    return x?`<li><span class="booth${x[4]?"":" none"}">${esc(x[4]||"미정")}</span><div><div class="nm"><a href="#find" data-goid="${x[0]}">${esc(x[1])}</a></div><div class="why">${esc(x[8][0]?.[0]||x[2])}</div></div></li>`:"";
+  }).join("")||'<li><span class="note">전시기업 데이터가 필요합니다.</span></li>';
+}
 function renderRoutes(){
+  $("#fieldRoutes").innerHTML=FIELD_ROUTES.map((r,i)=>`<details class="route"${$("#fieldRoutes").children[i]?.open?" open":""}>
+    <summary>${esc(r.t)}</summary>
+    <p class="note">${r.path.map(h=>h+"관").join(" → ")}</p>
+    <p>${esc(r.p)}</p>
+    <ul class="picklist">${routeBooths(r.booths)}</ul>
+  </details>`).join("");
   $("#routes").innerHTML=ROUTES.map(r=>`<article class="route">
     <h3>${esc(r.t)}</h3>
     <div class="path">${r.path.map(h=>`<b>${h}관</b>`).join("<i>→</i>")}</div>
     <p>${esc(r.p)}</p>
     <div class="sub">부스</div>
-    <ul class="picklist">${r.booths.map(k=>{const x=findByKey(k);return x?`<li><span class="booth${x[4]?"":" none"}">${esc(x[4]||"미정")}</span><div><div class="nm"><a href="#find" data-goid="${x[0]}">${esc(x[1])}</a></div><div class="why">${esc(x[2])}</div></div></li>`:""}).join("")||'<li><span class="note">목록을 불러오는 중…</span></li>'}</ul>
+    <ul class="picklist">${routeBooths(r.booths)}</ul>
     <div class="sub">세션</div><p class="note" style="margin:0">${esc(r.ev)}</p>
   </article>`).join("");
 }
@@ -846,6 +892,8 @@ fetch("data.json",{cache:"no-cache"}).then(r=>r.json()).then(d=>{
   CATS=d.cats; DATA=d;
   d.x.forEach(x=>{x[10]=(x[1]+" "+x[2]+" "+x[3]+" "+(x[4]||"")+" "+x[8].map(p=>p[0]+" "+p[1]).join(" ")).toLowerCase();BYID.set(x[0],x)});
   $("#factCo").textContent=fmt(d.x.length);
+  const mappedHalls=(d.nav?.halls||[]).map(h=>navHall(h.name));
+  $("#navLink").textContent=mappedHalls.length?`공식 부스 지도 (${mappedHalls.join("·")})`:"공식 부스 지도";
   $("#factChecked").textContent=fmtTime(d.checkedAt);
   const nn=(d.recent&&d.recent[0])?d.recent[0].items.length+d.recent[0].more:0;
   if(nn){$("#newsCount").textContent=nn;$("#newsCount").hidden=false;}

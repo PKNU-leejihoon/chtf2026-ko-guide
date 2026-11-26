@@ -143,7 +143,7 @@ def page(title, body, orig=None, sec=None, depth=""):
 
 def schedule(meets):
     names = {"2026-11-26": "11월 26일 (목)", "2026-11-27": "11월 27일 (금)", "2026-11-28": "11월 28일 (토)"}
-    out = ['<p>공식 사이트의 행사 일정표를 그대로 옮겼습니다. 주최 측이 수정하면 자동으로 반영됩니다.</p>']
+    out = ['<p>공식 동시행사표의 시간·장소·참가 조건을 선전 현지 시각으로 옮겼습니다. 16관 신제품 발표는 <a href="luntanjihuodong-sfsxlyq.html">별도 로드쇼 시간표</a>에서 확인할 수 있습니다. <a href="../index.html#events">추천 포럼·로드쇼</a> · <a href="https://www.chtf.com/live/">공식 생중계</a></p>']
     for d in sorted({m["meet_date"] for m in meets}):
         out.append(f"<h2>{names.get(d, d)}</h2><div class='tw sc'><table><tr><td>시간</td><td>행사</td><td>장소</td><td>참가</td></tr>")
         for m in sorted((x for x in meets if x["meet_date"] == d), key=lambda x: (x["start_time"], x["sort"])):
@@ -170,8 +170,8 @@ def main():
     for p in pages:
         t = tr(p["title"])
         open(os.path.join(OUT, slug(p["url"]) + ".html"), "w", encoding="utf-8").write(page(t, NOTES.get(slug(p["url"]), "") + render_blocks(p, known), p["url"], p["sec"]))
-    open(os.path.join(OUT, "schedule.html"), "w", encoding="utf-8").write(page("행사 일정 전체", schedule(meets), "https://www.chtf.com/meet/"))
-    idx = ['<p>공식 사이트의 올해 안내 페이지와 이미지 속 글자를 한국어로 옮겼습니다. 참관 등록과 참가 신청은 공식 페이지로 연결됩니다. 뉴스 본문은 공식 사이트 밖의 위챗 글이라 제목과 요약만 옮겼고, 로고와 일부 작은 글자는 원문 그대로 둡니다.</p><p><a href="schedule.html"><b>행사 일정 전체 보기</b></a></p>']
+    open(os.path.join(OUT, "schedule.html"), "w", encoding="utf-8").write(page("공식 동시행사 일정", schedule(meets), "https://www.chtf.com/meet/"))
+    idx = ['<p>공식 사이트의 올해 안내 페이지와 이미지 속 글자를 한국어로 옮겼습니다. 참관 등록과 참가 신청은 공식 페이지로 연결됩니다. 뉴스 본문은 공식 사이트 밖의 위챗 글이라 제목과 요약만 옮겼고, 로고와 일부 작은 글자는 원문 그대로 둡니다.</p><p><a href="schedule.html"><b>공식 동시행사 일정</b></a> · <a href="luntanjihuodong-sfsxlyq.html">16관 로드쇼</a> · <a href="https://www.chtf.com/live/">공식 생중계</a></p>']
     for s in ORDER:
         L = [p for p in pages if p["sec"] == s]
         if L:
