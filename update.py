@@ -123,8 +123,45 @@ def fetch_exhibitors():
 
 
 def fetch_products(cid):
-    d = post_form("serveProduct/getByServeCatalogueId", {"serveCatalogueId": cid, "page": 1, "rows": 20})
-    return [(r.get("productName") or "").strip() for r in (d.get("rows") or []) if (r.get("productName") or "").strip()]
+    rows, page = [], 1
+    while True:
+        data = post_form("serveProduct/getByServeCatalogueId", {"serveCatalogueId": cid, "page": page, "rows": 100})
+        chunk = data.get("rows") or []
+        rows.extend(chunk)
+        if len(rows) >= int(data["total"]) or not chunk:
+            break
+        page += 1
+    if len(rows) != int(data["total"]) or len({r["serveProductId"] for r in rows}) != len(rows):
+        raise ValueError("공식 제품 목록이 일부만 반환됨")
+    products = []
+    for r in rows:
+        name = (r.get("productName") or r.get("productNameEn") or "").strip()
+        if not name:
+            continue
+        pic = (r.get("pic") or "").split(",", 1)[0].strip()
+        spec = (r.get("productSpec") or "").strip()
+        products.append([name, r["serveProductId"], (r.get("productNameEn") or "").strip(),
+                         pic if pic.startswith("https://") else "", spec if len(spec) <= 100 and "<" not in spec else ""])
+    return products
+
+
+def product_name(row):
+    return row if isinstance(row, str) else row[0]
+
+
+def refresh_products(new, prods):
+    refetch = [
+        cid for cid, r in new.items()
+        if str(cid) not in prods or len(prods[str(cid)]) != (r.get("productCount") or 0)
+        or any(isinstance(p, str) for p in prods[str(cid)])
+    ]
+    with cf.ThreadPoolExecutor(8) as pool:
+        for cid, res in zip(refetch, pool.map(lambda c: _safe(fetch_products, c), refetch)):
+            if res is not None:
+                before = prods.get(str(cid), [])
+                prods[str(cid)] = res
+                if [product_name(p) for p in before] != [product_name(p) for p in res]:
+                    yield cid
 
 
 def page_main_text(raw):
@@ -263,7 +300,7 @@ def build(now_iso):
             cats.append(k)
         return cidx[k]
 
-    X, hall_count, hall_cats, cat_count, kr_halls, nohall = [], {}, {}, {}, set(), 0
+    X, catalog, hall_count, hall_cats, cat_count, kr_halls, nohall = [], [], {}, {}, {}, set(), 0
     pending = set()
     for r in ex:
         cn = (r.get("companyName") or "").strip()
@@ -279,8 +316,12 @@ def build(now_iso):
         hs = halls_of(booth)
         cs = [cat(t["tradeName"]) for t in (r.get("tradeClassList") or [])]
         plist = []
-        for p in prods.get(str(r["serveCatalogueId"]), []):
-            plist.append([tr(p), p])
+        for row in prods.get(str(r["serveCatalogueId"]), []):
+            p = product_name(row)
+            title = tr(p)
+            plist.append([title, p])
+            if isinstance(row, list):
+                catalog.append([row[1], r["serveCatalogueId"], title, p, *row[2:]])
             if CJK.search(p) and p not in ko:
                 pending.add(p)
         X.append([r["serveCatalogueId"], name, en, cn, booth, hs, cs, 1 if kr else 0, plist, r.get("readNum") or 0])
@@ -329,6 +370,7 @@ def build(now_iso):
         "x": X,
     }
     save(os.path.join(SITE, "data.json"), out, compact=True)
+    save(os.path.join(SITE, "products.json"), catalog, compact=True)
     save(os.path.join(I18N, "pending.json"), sorted(pending))
     return len(X), len(pending)
 
@@ -352,15 +394,9 @@ def collect():
         if cid not in new:
             items.append({"type": "removed", "id": cid, "name_cn": o.get("companyName"), "booth": clean_booth(o.get("boothNum"))})
 
-    # 제품: 새 기업이거나 제품 수가 바뀐 기업만 다시 받는다
-    refetch = [cid for cid, r in new.items()
-               if str(cid) not in prods or (old.get(cid) or {}).get("productCount") != r.get("productCount")]
-    with cf.ThreadPoolExecutor(8) as pool:
-        for cid, res in zip(refetch, pool.map(lambda c: _safe(fetch_products, c), refetch)):
-            if res is not None:
-                if str(cid) in prods and prods[str(cid)] != res and old.get(cid):
-                    items.append({"type": "products", "id": cid})
-                prods[str(cid)] = res
+    for cid in refresh_products(new, prods):
+        if cid in old:
+            items.append({"type": "products", "id": cid})
 
     # 행사 페이지
     ev_old = {e["url"]: e for e in load(os.path.join(RAW, "events.json"), {"items": []}).get("items", [])}
@@ -388,7 +424,7 @@ def collect():
         print("부스 내비게이션 수집 실패:", e, file=sys.stderr)
 
     save(os.path.join(RAW, "exhibitors.json"), list(new.values()))
-    save(os.path.join(RAW, "prod_by_cat.json"), prods)
+    save(os.path.join(RAW, "prod_by_cat.json"), prods, compact=True)
     save(os.path.join(RAW, "events.json"), {"at": now, "items": ev_new})
     save(os.path.join(RAW, "meta.json"), {"checkedAt": now})
     if items:
@@ -400,7 +436,7 @@ def collect():
     ko = load(os.path.join(I18N, "ko.json"), {})
     mt = load(os.path.join(I18N, "mt_cache.json"), {})
     strings = [r.get("companyName", "").strip() for r in new.values()]
-    strings += [p for v in prods.values() for p in v] + [e["title"] for e in ev_new]
+    strings += [product_name(p) for cid in new for p in prods.get(str(cid), [])] + [e["title"] for e in ev_new]
     need = [s for s in strings if s and CJK.search(s) and s not in ko and s not in mt]
     if need:
         save(os.path.join(I18N, "mt_cache.json"), mt_translate(need, mt))

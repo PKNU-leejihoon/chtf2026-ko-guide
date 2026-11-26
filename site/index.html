@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>고교회 2026 관람 노트 · 선전 하이테크 박람회 한국어 가이드</title>
-<meta name="description" content="제28회 중국 국제 하이테크 성과 교역회(CHTF, 2026.11.26–28, 선전) 비공식 한국어 가이드. 입장·교통, 현장 추천 동선, 포럼·행사 일정, 참가기업 부스·제품 검색.">
+<meta name="description" content="제28회 중국 국제 하이테크 성과 교역회(CHTF, 2026.11.26–28, 선전) 한국어 가이드. 전시 제품 사진·모델·부스 검색, 현장 동선, 포럼·행사 일정.">
 <meta property="og:title" content="고교회 2026 관람 노트">
 <meta property="og:description" content="선전 하이테크 박람회(CHTF 2026) 비공식 한국어 가이드: 전시관, 포럼 일정, 참가기업 검색">
 <meta property="og:type" content="website">
@@ -205,6 +205,16 @@ details.card .filters{margin-bottom:12px}
 .starbtn[aria-pressed="true"]{background:var(--pick);border-color:var(--pick);color:#fff}
 .more{align-self:center}
 .empty{padding:30px;text-align:center;color:var(--muted);background:var(--surface);border:1px dashed var(--line);border-radius:var(--r)}
+.product-controls{display:flex;flex-wrap:wrap;gap:8px}
+.product-controls .search{flex:1 1 260px}
+.product-controls select{flex:1 1 140px;min-width:0;max-width:100%;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--surface);font:inherit;color:var(--ink)}
+#productCount{margin:0}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,235px),1fr));gap:12px}
+.product{display:flex;flex-direction:column;gap:8px;overflow-wrap:anywhere;min-width:0}
+.product img{width:100%;height:136px;display:block;object-fit:contain;border-radius:6px;background:var(--bg)}
+.product h3{font-size:1rem}
+.product p{margin:0}
+.product .filters{margin-top:auto;align-items:center}
 .mine-hall{display:flex;flex-direction:column;gap:8px}
 .mine-hall h3{font-size:1rem;display:flex;gap:8px;align-items:center}
 textarea#mineText{width:100%;min-height:140px;font-family:var(--f-mono);font-size:.82rem;border:1px solid var(--line);border-radius:8px;padding:10px;background:var(--surface);color:var(--ink)}
@@ -231,6 +241,7 @@ footer .wrap{padding-block:18px 28px;display:flex;flex-direction:column;gap:4px}
 <nav class="tabs" aria-label="보기">
   <div class="wrap">
     <a href="#home" data-v="home">개요</a>
+    <a href="#products" data-v="products">제품 찾기</a>
     <a href="#hot" data-v="hot">인기 부스</a>
     <a href="#map" data-v="explore">전시관·기업 찾기</a>
     <a href="#events" data-v="events">포럼·행사</a>
@@ -254,6 +265,7 @@ footer .wrap{padding-block:18px 28px;display:flex;flex-direction:column;gap:4px}
     <div class="section-h">
       <h2>전시장 안에서</h2>
       <div class="filters">
+        <a class="btn primary" href="#products">전시 제품 둘러보기</a>
         <a class="btn" href="#field">날짜별 추천 동선</a>
         <a class="btn" href="#map">전시관 지도</a>
         <a class="btn" href="#events">포럼·로드쇼</a>
@@ -278,6 +290,28 @@ footer .wrap{padding-block:18px 28px;display:flex;flex-direction:column;gap:4px}
       <h2>고교회(CHTF)는 어떤 행사인가</h2>
       <p>1999년부터 선전에서 열리는 과학기술 전시회예요. 제품 전시와 함께 기술 성과 거래, 투자 상담, 포럼이 열립니다. 올해 안내 범위와 주최 정보는 <a href="p/liaojiegaojiaohui-zynr-gaikuang.html">공식 소개 한글판</a>에서 볼 수 있습니다.</p>
     </div>
+  </section>
+
+  <section class="view" id="v-products" hidden aria-labelledby="productTitle">
+    <div class="intro">
+      <h2 id="productTitle">전시 제품 찾기</h2>
+      <p class="lede">공식 카탈로그에 등록된 제품의 사진, 모델·규격, 전시 부스입니다. 비교해 볼 만한 제품에는 한글 요약을 붙였어요. 수치는 참가사 공개 자료 기준입니다. <a href="https://e.chtf.com/#/exhibit">공식 제품 카탈로그</a></p>
+    </div>
+    <div class="product-controls">
+      <div class="search"><input id="productQuery" type="search" aria-label="제품 검색" placeholder="제품명, 모델명, 회사, 부스 번호" autocomplete="off"></div>
+      <select id="productHall" aria-label="제품 전시관"><option value="">전체 전시관</option></select>
+      <select id="productCategory" aria-label="기업 분야"><option value="">전체 기업 분야</option></select>
+    </div>
+    <div class="filters" aria-label="제품 빠른 검색">
+      <button class="fchip" data-product-query="로봇 손">로봇 손</button>
+      <button class="fchip" data-product-query="라이다">라이다</button>
+      <button class="fchip" data-product-query="액체냉각">액체냉각</button>
+      <button class="fchip" data-product-query="홀로그램">홀로그램</button>
+      <button class="fchip" data-product-query="">검색·필터 초기화</button>
+    </div>
+    <p class="note" id="productCount" role="status"></p>
+    <div class="product-grid" id="productResults" aria-label="전시 제품 목록"></div>
+    <button class="btn more" id="productMore" hidden>제품 24개 더 보기</button>
   </section>
 
   <!-- HOT -->
@@ -626,7 +660,7 @@ const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",
 const fmt=n=>n.toLocaleString("ko-KR");
 
 /* ---------- routing ---------- */
-const VIEWS=["home","hot","explore","events","mine","news"];
+const VIEWS=["home","products","hot","explore","events","mine","news"];
 // old tab hashes (and links from p/ pages) land on the section inside the merged view
 const ALIAS={field:"home",routes:"home",map:"explore",find:"explore",shows:"explore"};
 function route(){
@@ -635,6 +669,7 @@ function route(){
   VIEWS.forEach(v=>{$("#v-"+v).hidden=v!==S.view});
   document.querySelectorAll("nav.tabs a").forEach(a=>a.setAttribute("aria-current",a.dataset.v===S.view?"page":"false"));
   if(S.view==="explore")renderFind();
+  if(S.view==="products")renderProducts();
   if(S.view==="hot")renderHot();
   if(S.view==="mine")renderMine();
   if(S.view==="news")renderNews();
@@ -840,6 +875,90 @@ function filtered(){
     return true;
   });
 }
+
+/* ---------- products ---------- */
+let products=null, productLoading=false, productLimit=24;
+const PRODUCT_PICKS={
+  61512:"높이 1.8m, 무게 78kg의 산업용 휴머노이드. 참가사는 IP66 방진·방수와 −20~55°C 동작 범위를 제시합니다.",
+  60798:"22자유도 직접구동 로봇 손. 6축 손끝 촉각으로 잡고 있는 물체에 가해지는 힘을 감지합니다.",
+  57551:"23개 능동 자유도와 750g 무게의 직접구동 로봇 손. 정밀 조립과 원격 조작에 쓰입니다.",
+  57303:"높이 95cm, 무게 19.5kg의 교육용 휴머노이드. 산업용 모델과 크기·용도를 비교해 보세요.",
+  58001:"식품 알루미늄 포장의 외관과 밀봉 상태를 검사합니다. 참가사 발표 처리량은 분당 300개입니다.",
+  58590:"로봇·센서·실린더가 있는 생산라인을 가상으로 만들고 PLC와 실시간으로 연결해 시운전할 수 있습니다.",
+  58550:"1550nm 광섬유 라이다. 참가사는 최대 1.5km 탐지 거리를 제시합니다. 시연에서는 대상과 측정 조건을 확인해 보세요.",
+  60617:"무선부·기저대역·5G 코어를 하나로 묶은 전용망 기지국입니다.",
+  59739:"안경 없이 보는 27인치 라이트필드 3D 화면. 제조사가 제시한 권장 관람 거리는 0.5–2m입니다.",
+  59472:"6축 로봇팔로 커피를 만들고 재료 교체·세척과 원격 상태 확인을 지원하는 3세대 모델입니다."
+};
+function productCard(p,x){
+  const [id,,title,original,en,pic,spec]=p;
+  const on=MINE.has(x[0]);
+  const model=spec&&![title,original,en,"-","/", "无", "暂无"].includes(spec)?spec:"";
+  return `<article class="card product">
+    ${pic.startsWith("https://")?`<img src="${esc(pic)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" alt="">`:""}
+    <h3>${esc(title)}</h3>
+    ${[...new Set([original,en])].filter(n=>n&&n!==title).map(n=>`<p class="note">${esc(n)}</p>`).join("")}
+    ${PRODUCT_PICKS[id]?`<p class="note">${esc(PRODUCT_PICKS[id])}</p>`:""}
+    ${model?`<p class="note"><b>모델·규격</b> ${esc(model)}</p>`:""}
+    <p><span class="booth${x[4]?"":" none"}">${esc(x[4]||"부스 미정")}</span> <a href="#find" data-goid="${x[0]}">${esc(x[1])}</a></p>
+    <div class="filters">
+      <a class="btn" href="https://e.chtf.com/#/exhDetails/${encodeURIComponent(id)}" target="_blank" rel="noopener">공식 제품 상세 ↗</a>
+      <button class="starbtn" data-star="${x[0]}" aria-pressed="${on}">${on?"★ 담음":"☆ 담기"}</button>
+    </div>
+  </article>`;
+}
+function renderProducts(){
+  if(!DATA||productLoading)return;
+  if(!products){
+    productLoading=true;
+    $("#productCount").textContent="제품 목록을 불러오는 중…";
+    fetch("products.json",{cache:"no-cache"}).then(r=>{
+      if(!r.ok)throw new Error("제품 목록 응답 오류");
+      return r.json();
+    }).then(list=>{
+      products=list.flatMap(p=>{
+        const x=BYID.get(p[1]);
+        return x?[[p,x,[...p.slice(2,5),p[6],...x.slice(1,5)].join(" ").normalize("NFKC").toLowerCase()]]:[];
+      }).sort((a,b)=>Number(Boolean(PRODUCT_PICKS[b[0][0]]))-Number(Boolean(PRODUCT_PICKS[a[0][0]]))
+        ||Number(Boolean(b[1][4]))-Number(Boolean(a[1][4])));
+      productLoading=false;
+      renderProducts();
+    }).catch(()=>{
+      productLoading=false;
+      $("#productCount").textContent="제품 목록을 불러오지 못했어요.";
+      $("#productResults").innerHTML='<button class="btn" id="retryProducts">다시 불러오기</button>';
+      $("#retryProducts").addEventListener("click",renderProducts,{once:true});
+    });
+    return;
+  }
+  const query=$("#productQuery").value.normalize("NFKC").toLowerCase().trim();
+  const terms=query.split(/\s+/).filter(Boolean);
+  const hall=$("#productHall").value, cat=$("#productCategory").value;
+  const matches=products.filter(([,x,hay])=>
+    (!hall||x[5].includes(+hall))&&(!cat||x[6].includes(+cat))&&terms.every(t=>hay.includes(t)));
+  $("#productCount").textContent=`검색 결과 ${fmt(matches.length)}개 · 전체 ${fmt(products.length)}개`;
+  $("#productResults").innerHTML=matches.length?matches.slice(0,productLimit).map(([p,x])=>productCard(p,x)).join("")
+    :'<div class="empty">검색 조건에 맞는 제품이 없어요.</div>';
+  $("#productMore").hidden=matches.length<=productLimit;
+}
+function resetProductLimit(){
+  productLimit=24;
+  renderProducts();
+}
+$("#productQuery").addEventListener("input",resetProductLimit);
+$("#productHall").addEventListener("change",resetProductLimit);
+$("#productCategory").addEventListener("change",resetProductLimit);
+$("#productMore").addEventListener("click",()=>{productLimit+=24;renderProducts()});
+$("#productResults").addEventListener("error",e=>{if(e.target.tagName==="IMG")e.target.hidden=true},true);
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-product-query]");
+  if(!b)return;
+  const query=b.dataset.productQuery;
+  $("#productQuery").value=query;
+  if(!query||b.tagName==="A"){$("#productHall").value="";$("#productCategory").value=""}
+  resetProductLimit();
+});
+
 function coCard(x,rank){
   const on=MINE.has(x[0]);
   const prods=x[8], why=PICKWHY.get(x[0]);
@@ -848,7 +967,7 @@ function coCard(x,rank){
     <div class="right"><span class="booth${x[4]?"":" none"}">${esc(x[4]||"부스 미정")}</span><button class="starbtn" data-star="${x[0]}" aria-pressed="${on}">${on?"★ 담음":"☆ 담기"}</button>${rank?`<span class="note mono">조회 ${fmt(x[9])}</span>`:""}</div>
     <div class="tags">${why!==undefined?'<span class="tag pick">추천</span>':""}${x[7]?'<span class="tag kr">한국 기업</span>':""}${x[6].map(c=>`<span class="tag">${esc(CATS[c])}</span>`).join("")}</div>
     ${why?`<p class="prods"><span>추천 이유 · </span>${esc(why)}</p>`:""}
-    ${prods.length?`<p class="prods"><span>전시 제품 · </span>${prods.slice(0,8).map(p=>esc(p[0])).join(" · ")}${prods.length>8?` <span>외 ${prods.length-8}개</span>`:""}</p>`:""}
+    ${prods.length?`<p class="prods"><span>전시 제품 · </span>${prods.slice(0,8).map(p=>esc(p[0])).join(" · ")}${prods.length>8?` <span>외 ${prods.length-8}개</span>`:""} · <a href="#products" data-product-query="${esc(x[3]||x[1])}">제품 사진·규격</a></p>`:""}
     <div class="links"><a href="https://e.chtf.com/#/exhorDetails/${x[0]}" target="_blank" rel="noopener">공식 기업 페이지 (중국어)</a><a href="https://papago.naver.com/?sk=zh-CN&tk=ko&st=${encodeURIComponent(x[3]+"\n"+prods.slice(0,20).map(p=>p[1]).join("\n"))}" target="_blank" rel="noopener">파파고로 원문 번역</a></div>
   </article>`;
 }
@@ -864,7 +983,11 @@ document.addEventListener("click",e=>{
   const b=e.target.closest("[data-star]"); if(!b)return;
   const id=+b.dataset.star; if(MINE.has(id))MINE.delete(id); else MINE.add(id);
   store.set("chtf26-mine",[...MINE]); updateMineCount();
-  const on=MINE.has(id); b.setAttribute("aria-pressed",on); b.textContent=on?"★ 담음":"☆ 담기";
+  const on=MINE.has(id);
+  document.querySelectorAll(`[data-star="${id}"]`).forEach(button=>{
+    button.setAttribute("aria-pressed",on);
+    button.textContent=on?"★ 담음":"☆ 담기";
+  });
   if(S.view==="mine")renderMine();
 });
 function updateMineCount(){const c=$("#mineCount");c.textContent=MINE.size;c.hidden=!MINE.size}
@@ -892,6 +1015,8 @@ fetch("data.json",{cache:"no-cache"}).then(r=>r.json()).then(d=>{
   CATS=d.cats; DATA=d;
   d.x.forEach(x=>{x[10]=(x[1]+" "+x[2]+" "+x[3]+" "+(x[4]||"")+" "+x[8].map(p=>p[0]+" "+p[1]).join(" ")).toLowerCase();BYID.set(x[0],x)});
   $("#factCo").textContent=fmt(d.x.length);
+  $("#productHall").insertAdjacentHTML("beforeend",Object.keys(d.hallCount).map(h=>`<option value="${h}">${h}관</option>`).join(""));
+  $("#productCategory").insertAdjacentHTML("beforeend",CATS.map((c,i)=>`<option value="${i}">${esc(c)}</option>`).join(""));
   const mappedHalls=(d.nav?.halls||[]).map(h=>navHall(h.name));
   $("#navLink").textContent=mappedHalls.length?`공식 부스 지도 (${mappedHalls.join("·")})`:"공식 부스 지도";
   $("#factChecked").textContent=fmtTime(d.checkedAt);
