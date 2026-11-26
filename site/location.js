@@ -13,10 +13,49 @@
   gate.innerHTML=`<h1 id="locationGateTitle">The 28th China Hi-Tech Fair</h1>
     <p>관람 안내를 이용하려면 위치 허용이 필요합니다.</p>
     <button type="button">위치 허용 및 공유</button>
-    <p role="status"></p>`;
+    <p role="status"></p>
+    <div id="locationHelp" hidden></div>`;
   document.body.prepend(gate);
   const start=gate.querySelector("button");
   const status=gate.querySelector("[role=status]");
+  const help=gate.querySelector("#locationHelp");
+  const agent=navigator.userAgent;
+  // 위치를 거부한 사람에게 기기별로 다시 허용하는 방법을 보여 준다
+  function steps(){
+    if(/KAKAOTALK|NAVER|Instagram|FBAN|FBAV|Line\//i.test(agent))return [
+      "카카오톡·네이버 같은 앱 안에서 열린 화면은 위치가 막혀 있을 수 있습니다.",
+      "오른쪽 위(또는 아래) 메뉴 → <b>다른 브라우저로 열기</b>(Safari·Chrome)를 누르세요.",
+      "새로 열린 브라우저에서 <b>위치 허용</b>을 누르세요."];
+    if(/iPhone|iPad/i.test(agent)||(/Macintosh/i.test(agent)&&navigator.maxTouchPoints>1))return /CriOS/i.test(agent)?[
+      "iPhone <b>설정</b> 앱 → <b>Chrome</b> → <b>위치</b> → <b>앱을 사용하는 동안</b>을 고르세요.",
+      "설정 → 개인정보 보호 및 보안 → <b>위치 서비스</b>가 켜져 있는지 확인하세요.",
+      "이 화면으로 돌아와 <b>다시 시도</b>를 누르세요."]:[
+      "주소창 왼쪽 <b>가가</b>(또는 ᴀA) 버튼 → <b>웹 사이트 설정</b> → <b>위치</b> → <b>허용</b>을 고르세요.",
+      "그래도 안 되면 <b>설정</b> 앱 → 개인정보 보호 및 보안 → <b>위치 서비스</b>를 켜고, 아래 <b>Safari 웹 사이트</b> → <b>앱을 사용하는 동안</b>을 고르세요.",
+      "이 화면으로 돌아와 <b>다시 시도</b>를 누르세요. 바로 안 되면 새로고침하세요."];
+    if(/Android/i.test(agent))return [
+      "주소창 왼쪽 <b>아이콘</b>(설정 모양 또는 자물쇠) → <b>권한</b>(또는 사이트 설정) → <b>위치</b> → <b>허용</b>을 고르세요.",
+      "휴대폰 상단을 내려 <b>위치</b>(GPS)가 켜져 있는지 확인하세요.",
+      "이 화면으로 돌아와 <b>다시 시도</b>를 누르세요."];
+    return [
+      "주소창 왼쪽 <b>자물쇠</b>(사이트 정보) 아이콘 → <b>위치</b> → <b>허용</b>을 고르세요.",
+      "컴퓨터의 위치 서비스가 꺼져 있다면 켜 주세요.",
+      "<b>다시 시도</b>를 누르세요."];
+  }
+  function showHelp(denied){
+    help.hidden=false;
+    help.innerHTML=`<p class="help-title">${denied?"위치를 허용해야 이 가이드를 쓸 수 있습니다.":"위치를 확인하지 못했습니다."}</p>
+      <p>지금 있는 홀과 내 위치를 지도에 표시하는 데 씁니다. 아래 순서대로 허용해 주세요.</p>
+      <ol>${(denied?steps():["휴대폰의 <b>위치</b>(GPS)를 켜 주세요.","실내라면 창가나 출입구 쪽으로 잠시 이동해 보세요.","<b>다시 시도</b>를 누르세요."]).map(t=>`<li>${t}</li>`).join("")}</ol>
+      <button type="button" class="secondary" id="locationReload">새로고침</button>`;
+    help.querySelector("#locationReload").onclick=()=>location.reload();
+    start.textContent="다시 시도";
+  }
+  // 브라우저 설정에서 허용으로 바꾸면 바로 이어서 진행한다
+  navigator.permissions?.query({name:"geolocation"}).then(p=>{
+    if(p.state==="denied")showHelp(true);
+    p.onchange=()=>{if(p.state==="granted"&&!admitted)void update();else if(p.state==="denied")showHelp(true)};
+  }).catch(()=>{});
 
   function saved(key,value){
     try{
@@ -119,6 +158,8 @@
         saved(permissionKey,"yes");
         identity ||= credentials();
         gate.hidden=true;
+        help.hidden=true;
+        start.textContent="위치 허용 및 공유";
         document.documentElement.classList.remove("location-locked");
         start.disabled=false;
         clearInterval(fixTimer);
@@ -131,9 +172,8 @@
       emit({...details,people});
     }catch(error){
       if(error.code===1||!admitted){
-        lock(error.code===1
-          ?"위치 접근이 거절됐습니다. 브라우저와 기기의 위치 설정에서 허용한 뒤 다시 시도해 주세요."
-          :"위치를 확인하지 못했습니다. 기기의 위치 서비스를 켜고 다시 시도해 주세요.");
+        lock("");
+        showHelp(error.code===1);
       }else{
         emit({zone:"",message:"위치 신호 확인 중",people:[]});
         await publish("");

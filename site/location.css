@@ -8,3 +8,8 @@ html.location-locked body > :not(#locationGate):not(noscript){display:none!impor
 #locationGate button{padding:10px 16px;border:0;border-radius:8px;background:#125cae;color:white;font:inherit;font-weight:700}
 #locationGate button:focus-visible{outline:2px solid #125cae;outline-offset:3px}
 #locationGate [role=status]{min-height:2em;margin-bottom:0}
+#locationHelp{margin-top:12px;padding:14px;border-radius:10px;background:color-mix(in srgb,#e5484d 9%,Canvas);border:1px solid color-mix(in srgb,#e5484d 45%,Canvas)}
+#locationHelp .help-title{margin:0 0 6px;font-weight:800;font-size:1.08rem}
+#locationHelp p{margin:0 0 8px}
+#locationHelp ol{margin:0 0 12px;padding-left:1.3em;display:grid;gap:6px}
+#locationGate button.secondary{background:transparent;color:inherit;border:1px solid #8d99a9}
