@@ -60,17 +60,22 @@
       return {inside,nearest};
     };
     const venue=contains(regions.venue[1]);
-    if(!venue.inside&&venue.nearest>radius)return {zone:"",message:"전시장 밖"};
-    if(venue.nearest<=radius||accuracy>150)return {zone:"",message:"위치 오차로 전시장 경계 확인 중"};
-    const zones=Object.keys(regions).filter(zone=>{
-      if(zone==="venue")return false;
-      const result=contains(regions[zone][1]);
-      return result.inside&&result.nearest>radius;
-    });
+    if(!venue.inside)return {zone:"",message:venue.nearest>radius?"전시장 밖":"전시장 입구 부근"};
+    if(accuracy>150)return {zone:"",message:"위치 신호 약함"};
+    // 홀 사이 간격보다 GPS 오차가 커도, 측정 지점이 들어 있는 홀을 가장 가능성 높은 위치로 본다
+    const zones=Object.keys(regions).filter(zone=>zone!=="venue"&&contains(regions[zone][1]).inside);
     const zone=zones.length===1?zones[0]:"venue";
     return {zone,message:zone==="venue"?"전시장 권역 · 홀 확인 중":zoneLabel(zone)+" 추정"};
   }
 
+  // 지도용 원시 측정값. 기기 안에서만 쓰고 서버에는 보내지 않는다.
+  let watching=false;
+  const fix=({coords:c,timestamp})=>window.dispatchEvent(new CustomEvent("chtf:fix",{detail:{lat:c.latitude,lng:c.longitude,acc:c.accuracy,t:timestamp||Date.now()}}));
+  function watch(){
+    if(watching)return;
+    watching=true;
+    navigator.geolocation.watchPosition(fix,()=>{},{enableHighAccuracy:true,maximumAge:0,timeout:20_000});
+  }
   function emit(detail){
     window.dispatchEvent(new CustomEvent("chtf:position",{detail}));
   }
@@ -107,6 +112,7 @@
     try{
       const reading=await new Promise((resolve,reject)=>
         navigator.geolocation.getCurrentPosition(resolve,reject,{enableHighAccuracy:true,timeout:12_000,maximumAge:10_000}));
+      fix(reading);
       const position=classify(reading.coords);
       if(!admitted){
         admitted=true;
@@ -117,6 +123,7 @@
         start.disabled=false;
         clearInterval(fixTimer);
         fixTimer=setInterval(update,20_000);
+        watch();
       }
       const details={...position,accuracy:Math.round(reading.coords.accuracy),device:identity.device};
       emit(details);

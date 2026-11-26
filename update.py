@@ -15,6 +15,7 @@ import datetime as dt
 import hashlib
 import html
 import json
+import math
 import os
 import re
 import sys
@@ -223,6 +224,9 @@ def fetch_nav():
         hall = nav_hall(a.get("areaName") or "")
         codes = Counter(nav_code(x.get("planBooth") or "", hall) for x in rows)
         named = []
+        booths = [[x["id"], x["leftX"], x["topY"], x["width"], x["height"], (x.get("planBooth") or "").strip(),
+                   str(x.get("catalogueId") or ""), (x.get("planName") or x.get("jcName") or "").strip()]
+                  for x in rows if all(isinstance(x.get(k), int) for k in ("leftX", "topY", "width", "height"))]
         for x in rows:
             name = (x.get("planName") or x.get("jcName") or "").strip()
             if not name:
@@ -230,12 +234,54 @@ def fetch_nav():
             code = (x.get("planBooth") or "").strip()
             named.append({"booth": code, "name": name, "cid": str(x.get("catalogueId") or ""),
                           "id": x["id"] if code and codes[nav_code(code, hall)] == 1 else None})
-        halls.append({"id": a["id"], "name": a.get("areaName") or "", "total": len(rows), "named": named,
+        halls.append({"id": a["id"], "name": a.get("areaName") or "", "total": len(rows), "named": named, "booths": booths,
                       "checkedAt": dt.datetime.now(KST).isoformat(timespec="minutes")})
     return halls
 
 
-def nav_public(nav, exhibitors):
+# 공식 홀 도면(imgDt)에서 홀 외곽선의 픽셀 범위. 도면 이미지가 바뀌면 다시 잰다.
+# shortcut: 11/27 도면 기준으로 한 번 측정한 값, 주최 측이 도면을 교체하면 재측정 필요
+HALL_RECT = {5: [112, 176, 1587, 2877], 6: [369, 211, 1409, 2227], 7: [112, 197, 1587, 2898],
+             8: [405, 246, 1505, 2103], 9: [275, 189, 1345, 2265], 10: [378, 148, 1448, 2225],
+             11: [112, 136, 1587, 2893], 12: [369, 211, 1409, 2227], 13: [273, 191, 1343, 2267],
+             14: [369, 211, 1409, 2227], 15: [269, 185, 1339, 2261], 16: [112, 129, 1587, 2913]}
+
+
+def hall_geo(hall):
+    """도면 좌상·우상·좌하 모서리의 [위도, 경도]. 도면 아래쪽은 항상 중앙 통로 쪽 정문이다.
+    짝수 홀(동쪽 줄)은 도면 왼쪽이 북쪽, 홀수 홀(서쪽 줄)은 왼쪽이 남쪽 (도면 옆 '通往N号馆' 표기로 확인)."""
+    s = open(os.path.join(SITE, "venue.js"), encoding="utf-8").read()
+    pts = json.loads(s[s.index("{"):s.rindex("}") + 1]).get(f"hall-{hall}", [None, None])[1]
+    if not pts:
+        return None
+    lat0, lon0 = pts[0]
+    kx, ky = 111320 * math.cos(math.radians(lat0)), 110574
+    P = [((b - lon0) * kx, (a - lat0) * ky) for a, b in pts]
+    best = None
+    for (x1, y1), (x2, y2) in zip(P, P[1:]):
+        t = math.atan2(y2 - y1, x2 - x1)
+        c, n = math.cos(t), math.sin(t)
+        u = [x * c + y * n for x, y in P]
+        v = [-x * n + y * c for x, y in P]
+        size = (max(u) - min(u)) * (max(v) - min(v))
+        if best is None or size < best[0]:
+            best = (size, t, min(u), max(u), min(v), max(v))
+    _, t, u0, u1, v0, v1 = best
+    if u1 - u0 < v1 - v0:  # u를 긴 변(동서 방향)으로
+        t, u0, u1, v0, v1 = t - math.pi / 2, -v1, -v0, u0, u1
+    if math.cos(t) < 0:  # u가 동쪽을 향하게
+        t, u0, u1, v0, v1 = t + math.pi, -u1, -u0, -v1, -v0
+    c, n = math.cos(t), math.sin(t)
+
+    def geo(u, v):
+        x, y = u * c - v * n, u * n + v * c
+        return [round(lat0 + y / ky, 6), round(lon0 + x / kx, 6)]
+    if hall % 2 == 0:  # 위=동, 왼쪽=북
+        return [geo(u1, v1), geo(u1, v0), geo(u0, v1)]
+    return [geo(u0, v0), geo(u0, v1), geo(u1, v0)]  # 위=서, 왼쪽=남
+
+
+def nav_public(nav, exhibitors, tr=lambda s: s):
     companies = {str(x[0]): x for x in exhibitors}
     result = []
     for area in nav:
@@ -250,7 +296,12 @@ def nav_public(nav, exhibitors):
                 targets.setdefault(code, []).append([company[0], booth["id"]])
         result.append({"name": area["name"], "total": area["total"], "named": len(area["named"]),
                        "hall": hall, "id": area["id"], "checkedAt": area.get("checkedAt"),
-                       "targets": {code: entries[0] for code, entries in targets.items() if len(entries) == 1}})
+                       "targets": {code: entries[0] for code, entries in targets.items() if len(entries) == 1},
+                       "r": HALL_RECT.get(hall), "g": hall_geo(hall) if hall in HALL_RECT else None,
+                       # [부스 id, x, y, w, h, 부스 번호, 기업 id(없으면 0), 기업 id가 없을 때만 한글·중국어 이름]
+                       "b": [[i, x, y, w, h, nav_code(code, hall), int(cid) if cid in companies else 0,
+                              *(["", ""] if cid in companies else [tr(name), name])]
+                             for i, x, y, w, h, code, cid, name in area.get("booths", [])]})
     return result
 
 
@@ -423,7 +474,7 @@ def build(now_iso):
         "recent": recent,
         "eventPages": [{"url": e["url"], "title": e["title"], "ko": tr(e["title"]), "kind": e.get("kind", "event")} for e in events_state.get("items", [])],
         "nav": {"url": f"https://s.whte.cn/zwzl/chtf/?id={NAV_PROJECT}",
-                "halls": nav_public(nav, X)},
+                "halls": nav_public(nav, X, tr)},
         "x": X,
     }
     save(os.path.join(SITE, "data.json"), out, compact=True)
@@ -499,6 +550,7 @@ def collect():
     mt = load(os.path.join(I18N, "mt_cache.json"), {})
     strings = [r.get("companyName", "").strip() for r in new.values()]
     strings += [product_name(p) for cid in new for p in prods.get(str(cid), [])] + [e["title"] for e in ev_new]
+    strings += [b[7] for h in load(os.path.join(RAW, "nav.json"), []) for b in h.get("booths", [])]
     need = [s for s in strings if s and CJK.search(s) and s not in ko and s not in mt]
     if need:
         save(os.path.join(I18N, "mt_cache.json"), mt_translate(need, mt))

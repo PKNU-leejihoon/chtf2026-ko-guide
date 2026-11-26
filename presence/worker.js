@@ -1,5 +1,8 @@
 import { DurableObject } from "cloudflare:workers";
 
+export { MeetingReminder } from "./reminders.js";
+import { pushEndpoint } from "./reminders.js";
+
 const siteOrigin = "https://pknu-leejihoon.github.io";
 const expiresAfter = 75_000;
 const maxParticipants = 500;
@@ -41,23 +44,38 @@ export class VenueRoom extends DurableObject {
 
 export default {
   async fetch(request, env) {
-    if (request.headers.get("Origin") !== siteOrigin || new URL(request.url).pathname !== "/presence") {
+    const path = new URL(request.url).pathname;
+    if (request.headers.get("Origin") !== siteOrigin || !["/presence","/meeting","/meeting-key"].includes(path)) {
       return new Response(null, { status: 404 });
     }
     const headers = {
       "Access-Control-Allow-Origin": siteOrigin,
-      "Access-Control-Allow-Methods": "POST, OPTIONS",
+      "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
       "Access-Control-Allow-Headers": "Content-Type",
       "Cache-Control": "no-store",
       "Vary": "Origin"
     };
     if (request.method === "OPTIONS") return new Response(null, { status: 204, headers });
-    if (request.method !== "POST") return new Response(null, { status: 405, headers });
+    if (path === "/meeting-key" && request.method === "GET") {
+      const publicKey = await env.MEETINGS.getByName("vapid-keys").publicKey();
+      return Response.json({ publicKey }, { headers });
+    }
+    if (request.method !== "POST" || path === "/meeting-key") return new Response(null, { status: 405, headers });
     const { success } = await env.REQUESTS.limit({ key: request.headers.get("CF-Connecting-IP") || "unknown" });
     if (!success) return new Response(null, { status: 429, headers });
     const length = Number(request.headers.get("Content-Length"));
-    if (!Number.isInteger(length) || length <= 0 || length > 256) return new Response(null, { status: 400, headers });
+    if (!Number.isInteger(length) || length <= 0 || length > (path === "/meeting" ? 3072 : 256)) return new Response(null, { status: 400, headers });
     const body = await request.json().catch(() => null);
+    if (path === "/meeting") {
+      const endpoint = pushEndpoint(body?.endpoint);
+      const due = body?.due;
+      if (!endpoint || !Number.isSafeInteger(due) || (due !== 0 && (due <= Date.now() || due > Date.now()+7*86400_000)))
+        return new Response(null, { status: 400, headers });
+      const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(endpoint.href));
+      const name = [...new Uint8Array(digest)].map(n=>n.toString(16).padStart(2,"0")).join("");
+      await env.MEETINGS.getByName(name).schedule(endpoint.href, due);
+      return new Response(null, { status: 204, headers });
+    }
     if (!body || typeof body.token !== "string" || typeof body.device !== "string" || typeof body.zone !== "string") {
       return new Response(null, { status: 400, headers });
     }

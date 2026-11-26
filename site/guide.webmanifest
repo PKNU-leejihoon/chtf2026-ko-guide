@@ -1,0 +1,11 @@
+{
+  "name": "China Hi-Tech Fair 관람 가이드",
+  "short_name": "CHTF 가이드",
+  "lang": "ko",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#125cae"
+}
