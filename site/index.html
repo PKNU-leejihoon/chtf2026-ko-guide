@@ -125,7 +125,20 @@ footer{margin-bottom:calc(58px + env(safe-area-inset-bottom,0px))}
 }
 .map-viewer{display:grid;gap:10px}
 .hall-svg{position:relative;border:1px solid var(--line);border-radius:8px;background:var(--bg);overflow:hidden}
-#hallSvg{display:block;width:100%;height:min(66dvh,680px);touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab}
+#hallSvg{display:block;width:100%;height:min(62dvh,640px);touch-action:pan-x pan-y;user-select:none;-webkit-user-select:none;cursor:grab}
+.hall-svg.full{position:fixed;inset:0;z-index:50;border:0;border-radius:0}
+.hall-svg.full #hallSvg{height:100dvh;touch-action:none}
+.map-full,.map-full body{overflow:hidden}
+.map-hint{position:absolute;inset:40% 12px auto;margin:0;padding:10px 12px;border-radius:8px;background:rgba(18,32,51,.82);color:#fff;text-align:center;font-weight:700;pointer-events:none}
+.map-viewer>*{min-width:0}
+.map-viewer .section-h{flex-wrap:nowrap;align-items:center;gap:8px}
+#hallMapTitle{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+#mapToProducts{flex:none}
+#mapHall{min-width:0;width:100%;flex:1 1 auto;font-weight:700;padding:7px 8px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font:inherit}
+.linkish{border:0;background:none;padding:4px 0;color:var(--muted);font:inherit;font-size:.85rem;text-decoration:underline;text-align:left;cursor:pointer}
+.sheet-products{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scroll-snap-type:x proximity}
+.sheet-products a{flex:0 0 112px;display:grid;gap:4px;align-content:start;color:var(--ink);text-decoration:none;font-size:.82rem;line-height:1.3;scroll-snap-align:start}
+.sheet-products img,.sheet-products .noimg{width:112px;height:84px;object-fit:cover;border-radius:6px;background:var(--bg);border:1px solid var(--line)}
 #hallSvg text{font-family:inherit;pointer-events:none}
 .hall-floor{fill:var(--surface);stroke:var(--muted);stroke-width:2;vector-effect:non-scaling-stroke}
 .hall-side{fill:var(--muted);font-size:30px;font-weight:700}
@@ -141,7 +154,11 @@ footer{margin-bottom:calc(58px + env(safe-area-inset-bottom,0px))}
 #meDot .dot{fill:#2563eb;stroke:#fff;stroke-width:3;vector-effect:non-scaling-stroke}
 .map-ctrl{position:absolute;right:8px;bottom:8px;display:grid;gap:8px}
 .map-ctrl button{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-size:1.25rem;font-weight:700;box-shadow:0 1px 4px rgba(0,0,0,.18);cursor:pointer}
-.booth-sheet{display:grid;gap:6px;border-left:4px solid #e5484d}
+.booth-sheet{position:absolute;left:8px;right:60px;bottom:8px;max-height:58%;overflow:auto;display:grid;gap:6px;padding:12px 12px 10px;border-radius:10px;border:1px solid var(--line);border-top:4px solid #e5484d;background:var(--surface);box-shadow:0 4px 18px rgba(0,0,0,.22);overscroll-behavior:contain}
+.booth-sheet .cn{color:var(--muted)}
+.sheet-x{position:sticky;top:0;justify-self:end;margin:-4px -4px -30px 0;width:32px;height:32px;border:0;border-radius:50%;background:var(--bg);color:var(--ink);font-size:1rem;cursor:pointer}
+.hall-svg.full .booth-sheet{bottom:calc(8px + env(safe-area-inset-bottom,0px))}
+.hall-svg.full .map-ctrl{top:calc(8px + env(safe-area-inset-top,0px));bottom:auto}
 .booth-sheet h3{margin:0;font-size:1.15rem}
 .booth-sheet ul{margin:0;padding-left:1.1em}
 #mapHits .fchip{max-width:100%;white-space:normal;text-align:left}
@@ -408,6 +425,24 @@ footer .wrap{padding-block:18px 28px;display:flex;flex-direction:column;gap:4px}
       <p id="hereLabel" role="status">내 위치 · 홀 미지정</p>
       <a id="currentHallLink" hidden>내 홀 지도</a>
     </div>
+    <article class="card map-viewer" id="hallMapViewer">
+      <div class="section-h">
+        <h2 id="hallMapTitle" tabindex="-1">홀 지도</h2>
+        <select id="mapHall" aria-label="홀 선택"><option value="">홀 선택</option></select>
+        <span class="people-marker" id="mapPeopleMarker" hidden></span>
+        <a class="btn" id="mapToProducts" href="#find">이 홀의 제품</a>
+      </div>
+      <p class="empty" id="mapNone" hidden></p>
+      <div class="search"><input id="mapQ" type="search" enterkeyhint="search" aria-label="이 홀에서 기업·제품·부스 찾기" placeholder="이 홀에서 기업·제품·부스 찾기" autocomplete="off"></div>
+      <div class="filters" id="mapHits" hidden></div>
+      <div class="hall-svg" id="hallSvgWrap">
+        <svg id="hallSvg" role="img" aria-label="홀 부스 지도"></svg>
+        <p class="map-hint" id="mapHint" hidden>지도는 두 손가락으로 움직이세요 · ⤢ 전체 화면</p>
+        <div class="map-ctrl"><button type="button" id="mapFull" aria-label="전체 화면">⤢</button><button type="button" id="mapMe" aria-label="내 위치로">◎</button><button type="button" id="mapIn" aria-label="확대">+</button><button type="button" id="mapOut" aria-label="축소">−</button></div>
+        <div class="booth-sheet" id="boothSheet" hidden></div>
+      </div>
+      <p class="note" id="mapFix" role="status"></p>
+    </article>
     <details class="card" id="meeting">
       <summary><b>버스 집합 장소</b> <span class="note" id="meetingSummary"></span></summary>
       <div class="meet-fields">
@@ -425,21 +460,6 @@ footer .wrap{padding-block:18px 28px;display:flex;flex-direction:column;gap:4px}
       </div>
     </details>
     <aside class="card" id="sharedHall" aria-label="공유받은 위치" hidden></aside>
-    <article class="card map-viewer" id="hallMapViewer" hidden>
-      <div class="section-h">
-        <h2 id="hallMapTitle" tabindex="-1">홀 지도</h2>
-        <span class="people-marker" id="mapPeopleMarker" hidden></span>
-        <a class="btn" id="mapToProducts" href="#find">이 홀의 제품</a>
-      </div>
-      <div class="search"><input id="mapQ" type="search" aria-label="이 홀에서 기업·제품·부스 찾기" placeholder="이 홀에서 기업·제품·부스 찾기" autocomplete="off"></div>
-      <div class="filters" id="mapHits" hidden></div>
-      <div class="hall-svg">
-        <svg id="hallSvg" role="img" aria-label="홀 부스 지도"></svg>
-        <div class="map-ctrl"><button type="button" id="mapMe" aria-label="내 위치로">◎</button><button type="button" id="mapIn" aria-label="확대">+</button><button type="button" id="mapOut" aria-label="축소">−</button></div>
-      </div>
-      <p class="note" id="mapFix" role="status"></p>
-      <div class="card booth-sheet" id="boothSheet" hidden></div>
-    </article>
     <details class="card hall-picker" id="map" open>
       <summary><b>홀 선택</b> <span class="note" id="hallSelection"></span></summary>
       <div class="hall-tools">
@@ -982,12 +1002,13 @@ function svgPoint(cx,cy){
 function zoomAt([px,py],k){
   const v=HM.vb; setVB([px-(px-v[0])/k, py-(py-v[1])/k, v[2]/k, v[3]/k]);
 }
-function focusBooths(list,k=4){
+function focusBooths(list,k=4,sheet=false){
   if(!list.length)return;
   const xs=list.flatMap(b=>[b[1],b[1]+b[3]]), ys=list.flatMap(b=>[b[2],b[2]+b[4]]);
   const w=Math.max(Math.max(...xs)-Math.min(...xs),HM.base[2]/k), h=Math.max(Math.max(...ys)-Math.min(...ys),HM.base[3]/k);
   const s=Math.max(w/HM.base[2],h/HM.base[3])*1.4;
-  setVB([(Math.min(...xs)+Math.max(...xs))/2-HM.base[2]*s/2,(Math.min(...ys)+Math.max(...ys))/2-HM.base[3]*s/2,HM.base[2]*s,HM.base[3]*s]);
+  const cy=(Math.min(...ys)+Math.max(...ys))/2+(sheet?HM.base[3]*s*.22:0);
+  setVB([(Math.min(...xs)+Math.max(...xs))/2-HM.base[2]*s/2,cy-HM.base[3]*s/2,HM.base[2]*s,HM.base[3]*s]);
 }
 function paintBooths(){
   const area=HM.area, selCompany=HM.sel>=0?area.b[HM.sel][6]:0;
@@ -997,21 +1018,34 @@ function paintBooths(){
     g.classList.toggle("hit",HM.hits.has(i));
   });
 }
+function boothCenter(b){return toGeo(HM.area,b[1]+b[3]/2,b[2]+b[4]/2)}
 function selectBooth(i,focus=false){
   const area=HM.area; HM.sel=i; paintBooths();
   const sheet=$("#boothSheet");
   if(i<0){sheet.hidden=true;return}
   const b=area.b[i], x=b[6]&&BYID.get(b[6]);
   const codes=[...new Set(area.b.filter(o=>x?o[6]===b[6]:o===b).map(o=>o[5]).filter(Boolean))];
+  const me=myFix(), [lat,lng]=boothCenter(b);
+  const far=me&&currentHall===area.hall?Math.round(Math.hypot((lng-me.lng)*111320*Math.cos(lat*Math.PI/180),(lat-me.lat)*110574)/5)*5:null;
+  const items=x?(products?products.filter(([p])=>p[1]===x[0]).map(([p])=>p):null):[];
+  if(x&&!products)loadProducts();
+  const list=items===null?'<p class="note">제품 불러오는 중…</p>'
+    :items.length?`<div class="sheet-products">${items.slice(0,12).map(p=>`<a href="https://e.chtf.com/#/exhDetails/${encodeURIComponent(p[0])}" target="_blank" rel="noopener">${p[5]?.startsWith("https://")?`<img src="${esc(p[5])}" loading="lazy" referrerpolicy="no-referrer" alt="">`:'<span class="noimg"></span>'}<span>${esc(p[2])}</span></a>`).join("")}</div>`
+    :x?.[8]?.length?`<ul>${x[8].slice(0,6).map(p=>`<li>${esc(p[0])}</li>`).join("")}</ul>`
+    :`<p class="note">${x?"등록된 제품이 없습니다":"등록된 기업 정보가 없습니다"}</p>`;
   sheet.hidden=false;
-  sheet.innerHTML=`<span class="booth">${esc(codes.join(" · ")||"부스 번호 없음")}</span>
+  sheet.scrollTop=0;
+  sheet.innerHTML=`<button class="sheet-x" type="button" aria-label="닫기">✕</button>
+    <div><span class="booth">${esc(codes.join(" · ")||"부스 번호 없음")}</span>${far!==null?` <span class="note">내 위치에서 약 ${far}m</span>`:""}</div>
     <h3>${esc(boothName(b)||"이름 없는 부스")}</h3>
     <div class="cn" lang="zh">${esc(x?x[3]||x[2]:b[8]||"")}</div>
-    ${x?.[8]?.length?`<ul>${x[8].slice(0,4).map(p=>`<li>${esc(p[0])}</li>`).join("")}</ul>`:""}
-    <div class="filters">${x?`<a class="btn" href="#booth/${x[0]}?hall=${area.hall}">기업·제품 보기</a>`:""}<button class="btn" type="button" id="iAmHere">여기 있어요</button><button class="btn" type="button" id="sheetClose">닫기</button></div>`;
-  $("#iAmHere").onclick=()=>{calibrate(b);$("#iAmHere").textContent="내 위치 맞춤"};
-  $("#sheetClose").onclick=()=>selectBooth(-1);
-  if(focus)focusBooths(area.b.filter((o,j)=>j===i||(b[6]&&o[6]===b[6])));
+    ${list}
+    <div class="filters">${x?`<a class="btn" href="#booth/${x[0]}?hall=${area.hall}">기업 상세</a>`:""}${items?.length>12?`<a class="btn" href="#booth/${x[0]}?hall=${area.hall}">제품 ${items.length}개 모두</a>`:""}</div>
+    ${me&&currentHall===area.hall?'<button class="linkish" type="button" id="iAmHere">파란 점이 틀렸다면: 내 위치를 이 부스로 맞추기</button>':""}`;
+  sheet.querySelector(".sheet-x").onclick=()=>selectBooth(-1);
+  const fix=$("#iAmHere");
+  if(fix)fix.onclick=()=>{calibrate(b);fix.textContent="내 위치를 이 부스로 맞췄습니다";fix.disabled=true};
+  if(focus)focusBooths(area.b.filter((o,j)=>j===i||(b[6]&&o[6]===b[6])),4,true);
 }
 function searchMap(q){
   const area=HM.area; q=q.trim().toLowerCase(); HM.hits.clear();
@@ -1069,59 +1103,115 @@ window.addEventListener("chtf:fix",e=>{
   HM.fixes=[...HM.fixes.filter(o=>f.t-o.t<15_000),f].slice(-10);
   placeMe();
 });
+/* 지도 조작: 페이지 안에서는 한 손가락 = 페이지 스크롤, 두 손가락 = 지도 이동·확대.
+   전체 화면에서는 한 손가락으로 지도를 움직인다. 마우스는 끌어서 이동, Ctrl+휠(트랙패드 핀치)로 확대. */
 (()=>{
-  const svg=$("#hallSvg"), pts=new Map();
-  let down=null, moved=0, last=null;
+  const svg=$("#hallSvg"), wrap=$("#hallSvgWrap"), hint=$("#mapHint");
+  let moved=0, drag=null, pinch=null, hintTimer=0;
+  const full=()=>wrap.classList.contains("full");
+  const xy=t=>[t.clientX,t.clientY];
+  const mid=t=>[(t[0].clientX+t[1].clientX)/2,(t[0].clientY+t[1].clientY)/2];
+  const dist=t=>Math.hypot(t[0].clientX-t[1].clientX,t[0].clientY-t[1].clientY);
+  function panBy(a,b){
+    const A=svgPoint(...a), B=svgPoint(...b), v=HM.vb;
+    setVB([v[0]-(B[0]-A[0]),v[1]-(B[1]-A[1]),v[2],v[3]]);
+  }
+  function showHint(){
+    hint.hidden=false;
+    clearTimeout(hintTimer);
+    hintTimer=setTimeout(()=>{hint.hidden=true},1600);
+  }
   svg.addEventListener("pointerdown",e=>{
-    svg.setPointerCapture(e.pointerId);
-    pts.set(e.pointerId,[e.clientX,e.clientY]);
-    if(pts.size===1){down=e.target.closest?.(".bt");moved=0}
-    last=null;
+    if(e.pointerType!=="mouse"||!HM.vb)return;
+    svg.setPointerCapture(e.pointerId);drag=xy(e);moved=0;
   });
   svg.addEventListener("pointermove",e=>{
-    if(!pts.has(e.pointerId)||!HM.vb)return;
-    const prev=pts.get(e.pointerId);
-    pts.set(e.pointerId,[e.clientX,e.clientY]);
-    if(pts.size===1){
-      moved+=Math.hypot(e.clientX-prev[0],e.clientY-prev[1]);
-      const a=svgPoint(...prev), b=svgPoint(e.clientX,e.clientY), v=HM.vb;
-      setVB([v[0]-(b[0]-a[0]),v[1]-(b[1]-a[1]),v[2],v[3]]);
-    }else if(pts.size===2){
-      moved=99;
-      const [p,q]=[...pts.values()], d=Math.hypot(p[0]-q[0],p[1]-q[1]);
-      if(last)zoomAt(svgPoint((p[0]+q[0])/2,(p[1]+q[1])/2),d/last);
-      last=d;
-    }
+    if(e.pointerType!=="mouse"||!drag)return;
+    const p=xy(e);moved+=Math.hypot(p[0]-drag[0],p[1]-drag[1]);panBy(drag,p);drag=p;
   });
-  const up=e=>{
-    pts.delete(e.pointerId);
-    if(pts.size<2)last=null;
-    if(!pts.size&&e.type==="pointerup"&&moved<8&&HM.area)selectBooth(down?+down.dataset.i:-1);
-    if(!pts.size)down=null;
-  };
-  svg.addEventListener("pointerup",up);
-  svg.addEventListener("pointercancel",up);
-  svg.addEventListener("wheel",e=>{if(!HM.vb)return;e.preventDefault();zoomAt(svgPoint(e.clientX,e.clientY),e.deltaY<0?1.25:.8)},{passive:false});
+  svg.addEventListener("pointerup",e=>{if(e.pointerType==="mouse")drag=null});
+  svg.addEventListener("touchstart",e=>{
+    if(!HM.vb)return;
+    if(e.touches.length===1){moved=0;drag=xy(e.touches[0]);pinch=null}
+    else if(e.touches.length===2){e.preventDefault();moved=99;drag=null;pinch={c:mid(e.touches),d:dist(e.touches)};hint.hidden=true}
+  },{passive:false});
+  svg.addEventListener("touchmove",e=>{
+    if(!HM.vb)return;
+    if(e.touches.length===2&&pinch){
+      e.preventDefault();
+      const c=mid(e.touches), d=dist(e.touches);
+      panBy(pinch.c,c);zoomAt(svgPoint(...c),d/pinch.d);pinch={c,d};
+    }else if(e.touches.length===1&&drag){
+      const p=xy(e.touches[0]);
+      moved+=Math.hypot(p[0]-drag[0],p[1]-drag[1]);
+      if(full()){e.preventDefault();panBy(drag,p)}
+      else if(moved>14)showHint();
+      drag=p;
+    }
+  },{passive:false});
+  svg.addEventListener("touchend",e=>{
+    if(e.touches.length<2)pinch=null;
+    drag=e.touches.length===1&&full()?xy(e.touches[0]):null;
+  });
+  svg.addEventListener("gesturestart",e=>e.preventDefault());
+  svg.addEventListener("click",e=>{
+    if(moved>8||!HM.area)return;
+    const g=e.target.closest(".bt");
+    selectBooth(g?+g.dataset.i:-1);
+  });
+  svg.addEventListener("wheel",e=>{
+    if(!HM.vb||(!full()&&!e.ctrlKey))return;
+    e.preventDefault();zoomAt(svgPoint(e.clientX,e.clientY),Math.exp(-e.deltaY*(e.ctrlKey?.01:.002)));
+  },{passive:false});
   svg.addEventListener("dblclick",e=>{if(HM.vb)zoomAt(svgPoint(e.clientX,e.clientY),2)});
-  const mid=()=>[HM.vb[0]+HM.vb[2]/2,HM.vb[1]+HM.vb[3]/2];
-  $("#mapIn").onclick=()=>HM.vb&&zoomAt(mid(),1.6);
-  $("#mapOut").onclick=()=>HM.vb&&zoomAt(mid(),1/1.6);
+  const center=()=>[HM.vb[0]+HM.vb[2]/2,HM.vb[1]+HM.vb[3]/2];
+  $("#mapIn").onclick=()=>HM.vb&&zoomAt(center(),1.6);
+  $("#mapOut").onclick=()=>HM.vb&&zoomAt(center(),1/1.6);
   $("#mapMe").onclick=()=>{
-    if(HM.area&&currentHall&&currentHall!==HM.area.hall&&navArea(currentHall)){location.hash="#map/"+currentHall;return}
+    if(currentHall&&(!HM.area||currentHall!==HM.area.hall)){location.hash="#map/"+currentHall;return}
     placeMe(true);
   };
+  function setFull(on){
+    const v=HM.vb&&center(), k=HM.vb&&HM.vb[2];
+    wrap.classList.toggle("full",on);
+    document.documentElement.classList.toggle("map-full",on);
+    $("#mapFull").textContent=on?"✕":"⤢";
+    $("#mapFull").setAttribute("aria-label",on?"전체 화면 닫기":"전체 화면");
+    if(v)setVB([v[0]-k/2,v[1]-HM.vb[3]*k/HM.vb[2]/2,k,HM.vb[3]*k/HM.vb[2]]);
+  }
+  $("#mapFull").onclick=()=>setFull(!full());
+  document.addEventListener("keydown",e=>{if(e.key==="Escape"&&full())setFull(false)});
+  window.addEventListener("hashchange",()=>{if(full())setFull(false)});
   $("#mapQ").addEventListener("input",e=>{if(HM.area)searchMap(e.target.value)});
+  $("#mapQ").addEventListener("keydown",e=>{
+    if(e.key!=="Enter")return;
+    e.preventDefault();
+    $("#mapHits button")?.click();
+    e.target.blur();
+  });
+  $("#mapHall").addEventListener("change",e=>{location.hash=e.target.value?"#map/"+e.target.value:"#map"});
 })();
 function renderMapPage(hall,company=0,boothId=0){
   viewedMapHall=hall;
   $("#mapPeopleMarker").dataset.peopleZone="hall-"+hall;
   updateMarkers();
   const area=navArea(hall);
-  $("#hallMapViewer").hidden=!area;
+  const sel=$("#mapHall");
+  if(sel.options.length<2)sel.insertAdjacentHTML("beforeend",Object.keys(HALLS).map(h=>`<option value="${h}">${h}관 · ${esc(HALLS[h].z)}</option>`).join(""));
+  sel.value=HALLS[hall]?String(hall):"";
+  $("#hallMapTitle").textContent=HALLS[hall]?`${hall}관`:"홀 지도";
+  $("#mapToProducts").hidden=!HALLS[hall];
+  $("#mapToProducts").href="#hall/"+hall;
+  const none=$("#mapNone");
+  none.hidden=Boolean(area);
+  none.innerHTML=!HALLS[hall]?"보려는 홀을 고르세요."
+    :!DATA?"지도 불러오는 중…"
+    :`${hall}관은 공식 부스 배치도가 없습니다. <a href="#hall/${hall}">${hall}관 참가 기업 목록</a>`;
+  for(const el of [$("#mapQ").parentElement,$("#hallSvgWrap"),$("#mapFix")])el.hidden=!area;
+  if(!area){$("#mapHits").hidden=true;$("#boothSheet").hidden=true}
   $("#map").open=!area;
   if(!area)setMapMode(true);
   if(area){
-    $("#mapToProducts").href="#hall/"+hall;
     if(HM.area!==area){
       HM.area=area;HM.sel=-1;HM.hits.clear();HM.shift=null;
       $("#mapQ").value="";$("#mapHits").hidden=true;
@@ -1130,7 +1220,7 @@ function renderMapPage(hall,company=0,boothId=0){
     const i=area.b.findIndex(b=>(company&&b[6]===company)||(boothId&&b[0]===boothId));
     selectBooth(i,i>=0);
     if(i<0)setVB(HM.base);
-    $("#hallMapTitle").textContent=`${hall}관 · ${HALLS[hall]?.z||"지도"}`;
+    else $("#hallSvgWrap").scrollIntoView({block:"nearest"});
     placeMe();
   }else HM.area=null;
   renderPlan();
@@ -1381,6 +1471,7 @@ function loadProducts(){
       productLoading=false;
       if(S.view==="products")renderProducts();
       if(S.view==="explore")renderFind();
+      if(S.view==="locationmap"&&HM.area&&HM.sel>=0)selectBooth(HM.sel);
     }).catch(()=>{
       productLoading=false;
       const target=S.view==="products"?$("#productResults"):$("#hallProducts");
