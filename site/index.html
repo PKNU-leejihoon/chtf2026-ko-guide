@@ -1778,7 +1778,7 @@ if("serviceWorker" in navigator){
 fetch("data.json",{cache:"no-cache"}).then(r=>r.json()).then(d=>{
   CATS=d.cats; DATA=d;
   renderOffline();
-  d.x.forEach(x=>{x[10]=(x[1]+" "+x[2]+" "+x[3]+" "+(x[4]||"")+" "+x[8].map(p=>p[0]+" "+p[1]).join(" ")).toLowerCase();BYID.set(x[0],x)});
+  d.x.forEach(x=>{x[10]=(x[1]+" "+x[2]+" "+x[3]+" "+(x[4]||"")+" "+(x[10]||"")+" "+x[8].map(p=>p[0]+" "+p[1]).join(" ")).toLowerCase();BYID.set(x[0],x)});
   $("#factCo").textContent=fmt(d.x.length);
   $("#productHall").insertAdjacentHTML("beforeend",Object.keys(d.hallCount).map(h=>`<option value="${h}">${h}관</option>`).join(""));
   $("#productCategory").insertAdjacentHTML("beforeend",CATS.map((c,i)=>`<option value="${i}">${esc(c)}</option>`).join(""));

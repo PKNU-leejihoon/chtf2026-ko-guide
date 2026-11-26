@@ -7,7 +7,7 @@ site/data.json 을 다시 만든다.
   python3 -I update.py            # 수집 + 비교 + 빌드
   python3 -I update.py --build    # 수집 없이 빌드만 (번역 반영 후)
 
-번역 우선순위: i18n/ko.json (사람/LLM 검수 번역) > i18n/mt_cache.json (기계번역).
+번역 우선순위: i18n/ko.json (사람/LLM 검수 번역) > i18n/llm_ko.json (i18n/llm_translate.py, Claude) > i18n/mt_cache.json·mt_long.json (기계번역).
 ko.json 에 없는 문자열은 기계번역으로 임시 표시하고 i18n/pending.json 에 모아 둔다.
 """
 import concurrent.futures as cf
@@ -499,10 +499,13 @@ def build(now_iso):
                 code = nav_code(raw_code, hall)
                 nav_booths.setdefault(entry["cid"], {}).setdefault(raw_code, set()).add(code)
 
+    llm = load(os.path.join(I18N, "llm_ko.json"), {})  # i18n/llm_translate.py (Claude) 번역
+    names = load(os.path.join(I18N, "llm_names.json"), {})
+
     def tr(s):
         if not s or not CJK.search(s):
             return s
-        return ko.get(s) or mt.get(s) or s
+        return ko.get(s) or llm.get(s) or mt.get(s) or s
 
     cats, cidx = [], {}
 
@@ -525,6 +528,10 @@ def build(now_iso):
             name = tr(cn)
             if CJK.search(cn) and cn not in ko:
                 pending.add(cn)
+        # 중국 기업은 한글 음역 대신 영문 브랜드명(i18n/llm_names.json)으로 보여 주고, 한글 이름은 검색용으로 남긴다
+        alias = ""
+        if not kr and names.get(cn):
+            alias, name = (name if name != names[cn] else ""), names[cn]
         booth = clean_booth(r.get("boothNum"))
         if official := nav_booths.get(str(r["serveCatalogueId"])):
             parts = re.split(r"\s*[,，、/]\s*", booth) if booth else list(official)
@@ -544,7 +551,7 @@ def build(now_iso):
                 catalog.append([row[1], r["serveCatalogueId"], title, p, *row[2:5]])
             if CJK.search(p) and p not in ko:
                 pending.add(p)
-        X.append([r["serveCatalogueId"], name, en, cn, booth, hs, cs, 1 if kr else 0, plist, r.get("readNum") or 0])
+        X.append([r["serveCatalogueId"], name, en, cn, booth, hs, cs, 1 if kr else 0, plist, r.get("readNum") or 0, alias])
         if hs:
             for h in hs:
                 hall_count[h] = hall_count.get(h, 0) + 1
@@ -595,9 +602,20 @@ def build(now_iso):
     details = load(os.path.join(RAW, "details.json"), {})
     mtl = load(os.path.join(I18N, "mt_long.json"), {})
 
+    rename = {x[0]: (x[10], re.sub(r"\s*\([^)]*\)$", "", x[10]), x[1]) for x in X if x[10]}
+
+    def renamed(cid, text):
+        """번역문 속 옛 한글 음역 이름을 표시 이름으로 바꾼다."""
+        if cid in rename and text:
+            old, short, new = rename[cid]
+            text = text.replace(old, new)
+            if len(short) >= 3:
+                text = text.replace(short, new)
+        return text
+
     def trl(s):
         """번역이 아직 없으면 빈 문자열 → 화면은 '번역 준비 중'과 원문을 보여 준다(중국어를 한국어 칸에 넣지 않는다)."""
-        return (ko.get(s) or mtl.get(s) or "") if s and CJK.search(s) else (s or "")
+        return (ko.get(s) or llm.get(s) or mtl.get(s) or "") if s and CJK.search(s) else (s or "")
     co_dir = os.path.join(SITE, "co")
     os.makedirs(co_dir, exist_ok=True)
     keep = set()
@@ -607,14 +625,14 @@ def build(now_iso):
         rows = [p for p in prods.get(cid, []) if isinstance(p, list)]
         kw = d.get("supplyAndDemand") or ""
         co = {
-            "p": trl(d.get("companyProfile")), "pc": d.get("companyProfile") or "", "pe": "" if d.get("companyProfile") else d.get("companyProfileEn") or "",
+            "p": renamed(int(cid), trl(d.get("companyProfile"))), "pc": d.get("companyProfile") or "", "pe": "" if d.get("companyProfile") else d.get("companyProfileEn") or "",
             "t": trl(d.get("typeProduct")), "tc": d.get("typeProduct") or "",
             "k": [w.strip() for w in re.split(r"[,，、;；]", trl(kw)) if w.strip()][:20],
             "w": d.get("site") or "", "tel": d.get("tel") or "", "m": d.get("email") or "",
             "a": d.get("companyAddress") or r.get("companyAddress") or "", "ae": d.get("companyAddressEn") or "",
             "img": (d.get("pic") or r.get("pic") or "").split(",")[0], "logo": d.get("logo") or r.get("companyLogo") or "",
             # [제품 id, 한글명, 원문명, 규격, 한글 설명, 원문 설명, 사진들]
-            "pr": [[p[1], tr(p[0]), p[0], p[4], trl(p[5]) if len(p) > 5 else "", p[5] if len(p) > 5 else "",
+            "pr": [[p[1], tr(p[0]), p[0], p[4], renamed(int(cid), trl(p[5])) if len(p) > 5 else "", p[5] if len(p) > 5 else "",
                     p[6] if len(p) > 6 else ([p[3]] if p[3] else [])] for p in rows],
         }
         name = cid + ".json"
