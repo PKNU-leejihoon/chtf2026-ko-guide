@@ -24,6 +24,14 @@ self.addEventListener("fetch", event => {
   url.search = "";
   url.hash = "";
   const key = event.request.mode === "navigate" && url.href === scope ? shell : url.href;
+  // 기업 상세는 네트워크 우선, 끊기면 한 번 열어 본 것을 보여 준다
+  if (url.pathname.includes("/co/") && url.origin === self.location.origin) {
+    event.respondWith(caches.open(cacheName).then(async cache => {
+      try { const r = await fetch(event.request); if (r.ok) cache.put(key, r.clone()); return r; }
+      catch { return (await cache.match(key)) || Response.error(); }
+    }));
+    return;
+  }
   if (catalog.includes(key)) {
     event.respondWith(caches.open(cacheName).then(cache => cache.match(key)).then(response =>
       response || fetch(event.request)));

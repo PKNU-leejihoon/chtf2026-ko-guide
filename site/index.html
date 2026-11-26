@@ -111,6 +111,21 @@ footer{margin-bottom:calc(58px + env(safe-area-inset-bottom,0px))}
 .destination{display:grid;gap:14px;max-width:740px}
 .destination .booth{width:fit-content;max-width:100%;white-space:normal;overflow-wrap:anywhere;font-size:clamp(1.7rem,7vw,3rem);padding-inline:12px}
 .destination .cn{color:var(--muted);font-size:1.2rem;overflow-wrap:anywhere}
+.co-detail{display:grid;gap:18px;min-width:0}
+.co-detail section{display:grid;gap:8px;min-width:0}
+.co-detail h3{margin:0;font-size:1.1rem}
+.co-detail p{margin:0;line-height:1.65;overflow-wrap:anywhere;word-break:keep-all}
+.co-hero{width:100%;max-height:260px;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:var(--bg)}
+.co-product{display:grid;gap:6px;padding:12px;border:1px solid var(--line);border-radius:10px;min-width:0}
+.co-product.focus{border-color:#e5484d;box-shadow:0 0 0 2px #e5484d33}
+.co-product h4{margin:0;font-size:1.02rem}
+.co-gallery{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:4px}
+.co-gallery img{flex:0 0 auto;width:min(78%,320px);aspect-ratio:4/3;object-fit:contain;background:var(--bg);border-radius:8px;border:1px solid var(--line);scroll-snap-align:start}
+.orig-text summary{cursor:pointer;color:var(--muted);font-size:.85rem}
+.orig-text p{color:var(--muted);font-size:.92rem;margin-top:6px}
+.co-contact{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;margin:0}
+.co-contact dt{color:var(--muted);font-weight:600}
+.co-contact dd{margin:0;overflow-wrap:anywhere}
 .hall-overview{display:grid;gap:7px}
 .hall-overview p{margin:0}
 .hall-switch{display:flex;gap:8px;flex-wrap:wrap}
@@ -844,7 +859,7 @@ function route(){
   if(S.view==="explore")syncControls();
   if(S.view==="locationmap")renderMapPage(h==="layout"?0:Number(mapHall)||currentHall,Number(params.get("company")),Number(params.get("booth")));
   renderSharedHall(shared,params);
-  if(S.view==="booth")renderBooth(+booth,params.get("hall"));
+  if(S.view==="booth")renderBooth(+booth,params.get("hall"),params.get("p")||"");
   if(S.view==="products"){
     if(params.has("q"))$("#productQuery").value=params.get("q");
     if(params.has("hall")){
@@ -1049,7 +1064,7 @@ function selectBooth(i,focus=false){
   const items=x?(products?products.filter(([p])=>p[1]===x[0]).map(([p])=>p):null):[];
   if(x&&!products)loadProducts();
   const list=items===null?'<p class="note">제품 불러오는 중…</p>'
-    :items.length?`<div class="sheet-products">${items.slice(0,12).map(p=>`<a href="https://e.chtf.com/#/exhDetails/${encodeURIComponent(p[0])}" target="_blank" rel="noopener">${p[5]?.startsWith("https://")?`<img src="${esc(p[5])}" loading="lazy" referrerpolicy="no-referrer" alt="">`:'<span class="noimg"></span>'}<span>${esc(p[2])}</span></a>`).join("")}</div>`
+    :items.length?`<div class="sheet-products">${items.slice(0,12).map(p=>`<a href="#booth/${x[0]}?hall=${area.hall}&p=${encodeURIComponent(p[0])}">${p[5]?.startsWith("https://")?`<img src="${esc(p[5])}" loading="lazy" referrerpolicy="no-referrer" alt="">`:'<span class="noimg"></span>'}<span>${esc(p[2])}</span></a>`).join("")}</div>`
     :x?.[8]?.length?`<ul>${x[8].slice(0,6).map(p=>`<li>${esc(p[0])}</li>`).join("")}</ul>`
     :`<p class="note">${x?"등록된 제품이 없습니다":"등록된 기업 정보가 없습니다"}</p>`;
   sheet.hidden=false;
@@ -1479,7 +1494,7 @@ function productCard(p,x,hall,compact=false){
     <p><span class="booth${booth?"":" none"}">${esc(booth||"부스 미정")}</span> <a href="${boothHash(x,hall)}">${esc(x[1])}</a></p>
     <div class="filters">
       ${hallMapFor(x,hall)}
-      <a class="btn" href="https://e.chtf.com/#/exhDetails/${encodeURIComponent(id)}" target="_blank" rel="noopener">제품 상세</a>
+      <a class="btn" href="#booth/${x[0]}?p=${encodeURIComponent(id)}">제품 상세</a>
     </div>
   </article>`;
 }
@@ -1593,7 +1608,47 @@ async function shareLink(title,url,fallback,status){
     input.select();
   }
 }
-function renderBooth(id,requestedHall){
+/* 기업 상세: site/co/<id>.json (소개·주력 제품·키워드·연락처·제품 설명과 사진) */
+const CO=new Map();
+function loadCo(id){
+  if(!CO.has(id))CO.set(id,fetch(`co/${id}.json`).then(r=>{if(!r.ok)throw new Error("co");return r.json()}).catch(e=>{CO.delete(id);throw e}));
+  return CO.get(id);
+}
+function safeSite(w){
+  try{const u=new URL(/^https?:\/\//i.test(w)?w:"https://"+w);return /^https?:$/.test(u.protocol)&&u.hostname.includes(".")?u.href:""}catch{return ""}
+}
+const textBlock=t=>esc(t).replace(/\n{2,}/g,"</p><p>").replace(/\n/g,"<br>");
+function original(ko,cn){
+  if(!cn||cn===ko)return "";
+  // 번역이 아직 없으면 원문을 펼쳐서 보여 준다
+  return ko?`<details class="orig-text"><summary>중국어 원문</summary><p lang="zh">${textBlock(cn)}</p></details>`
+    :`<p class="note">번역 준비 중 · 원문</p><p lang="zh">${textBlock(cn)}</p>`;
+}
+const translated=(ko,cn)=>ko?`<p>${textBlock(ko)}</p>`:"";
+function coDetailHTML(co,x){
+  const site=safeSite(co.w||""), mail=/^[^\s@,;]+@[^\s@,;]+\.[^\s@,;]+$/.test(co.m||"")?co.m:"", tel=/^[\d\s()+\-–,/转]{5,40}$/.test(co.tel||"")?co.tel:"";
+  const prods=co.pr||[];
+  return `${co.img?`<img class="co-hero" src="${esc(co.img)}" alt="" loading="lazy" referrerpolicy="no-referrer">`:""}
+    ${co.p||co.pc||co.pe?`<section><h3>회사 소개</h3>${translated(co.p)}${original(co.p,co.pc)}${!co.p&&!co.pc&&co.pe?`<p lang="en">${textBlock(co.pe)}</p>`:""}</section>`:""}
+    ${co.t||co.tc?`<section><h3>주력 제품·서비스</h3>${translated(co.t)}${original(co.t,co.tc)}</section>`:""}
+    ${co.k?.length?`<section><h3>키워드</h3><div class="filters">${co.k.map(k=>`<span class="tag">${esc(k)}</span>`).join("")}</div></section>`:""}
+    <section><h3>전시 제품 ${prods.length?prods.length+"개":""}</h3>
+    ${prods.length?prods.map(([pid,ko,cn,spec,desc,descCn,pics])=>`<article class="co-product" id="p-${esc(pid)}">
+      ${pics?.length?`<div class="co-gallery">${pics.map(u=>`<img src="${esc(u)}" alt="" loading="lazy" referrerpolicy="no-referrer">`).join("")}</div>`:""}
+      <h4>${esc(ko)}</h4>${cn&&cn!==ko?`<div class="note" lang="zh">${esc(cn)}</div>`:""}
+      ${spec&&![ko,cn,"-","/","无","暂无"].includes(spec)?`<p class="note"><b>모델·규격</b> ${esc(spec)}</p>`:""}
+      ${translated(desc)}${original(desc,descCn)}
+    </article>`).join(""):'<p class="note">등록된 전시 제품이 없습니다.</p>'}
+    </section>
+    ${site||tel||mail||co.a||co.ae?`<section><h3>연락처·주소</h3><dl class="co-contact">
+      ${site?`<dt>홈페이지</dt><dd><a href="${esc(site)}" target="_blank" rel="noopener noreferrer">${esc(co.w)}</a></dd>`:""}
+      ${tel?`<dt>대표 전화</dt><dd><a href="tel:${esc(tel.replace(/[^\d+]/g,""))}">${esc(tel)}</a></dd>`:""}
+      ${mail?`<dt>이메일</dt><dd><a href="mailto:${esc(mail)}">${esc(mail)}</a></dd>`:""}
+      ${co.a?`<dt>주소</dt><dd lang="zh">${esc(co.a)}</dd>`:""}
+      ${co.ae?`<dt>영문 주소</dt><dd lang="en">${esc(co.ae)}</dd>`:""}
+    </dl></section>`:""}`;
+}
+function renderBooth(id,requestedHall,productId=""){
   if(!DATA)return;
   const el=$("#destination"), x=BYID.get(id);
   if(!x){
@@ -1628,9 +1683,19 @@ function renderBooth(id,requestedHall){
       ${x[5].map(h=>`<a href="#hall/${h}">${h}관 기업 목록</a>`).join("")}
       ${exactMapLinks|| (area?mapLink(hall):'<a href="#layout">한글 전체 배치도</a>')}
     </div>
-    ${x[8].length?`<div><h3>전시 제품</h3><ul>${x[8].slice(0,8).map(p=>`<li>${esc(p[0])}</li>`).join("")}</ul><a href="#products" data-product-query="${esc(x[3]||x[1])}">제품 사진·규격 보기</a></div>`:""}
-    <div class="field-links"><a href="https://e.chtf.com/#/exhorDetails/${id}">공식 기업 페이지</a><a href="https://github.com/PKNU-leejihoon/chtf2026-ko-guide/issues/new?${esc(report.toString())}">부스 정보 정정</a></div>
+    <div class="co-detail" id="coDetail"><p class="note">상세 정보 불러오는 중…</p></div>
+    <div class="field-links"><a href="https://github.com/PKNU-leejihoon/chtf2026-ko-guide/issues/new?${esc(report.toString())}">부스 정보 정정</a><a class="note" href="https://e.chtf.com/#/exhorDetails/${id}" target="_blank" rel="noopener">공식 페이지 (중국어)</a></div>
   </article>`;
+  loadCo(id).then(co=>{
+    const box=$("#coDetail");
+    if(!box||S.view!=="booth"||!location.hash.startsWith("#booth/"+id))return;
+    box.innerHTML=coDetailHTML(co,x);
+    const target=productId&&document.getElementById("p-"+productId);
+    if(target){target.classList.add("focus");target.scrollIntoView({block:"start"})}
+  }).catch(()=>{
+    const box=$("#coDetail");
+    if(box)box.innerHTML=x[8].length?`<h3>전시 제품</h3><ul>${x[8].map(p=>`<li>${esc(p[0])}</li>`).join("")}</ul><p class="note">연결되면 회사 소개와 제품 설명을 볼 수 있습니다.</p>`:'<p class="note">연결되면 회사 소개를 볼 수 있습니다.</p>';
+  });
   $("#enlargeSign").addEventListener("click",e=>{
     const large=el.firstElementChild.classList.toggle("show-sign");
     e.currentTarget.setAttribute("aria-pressed",large);
@@ -1647,7 +1712,7 @@ function coCard(x,rank,hall){
     <div class="tags">${why!==undefined?'<span class="tag pick">추천</span>':""}${x[6].map(c=>`<span class="tag">${esc(CATS[c])}</span>`).join("")}</div>
     ${why?`<p class="prods"><span>추천 이유 · </span>${esc(why)}</p>`:""}
     ${prods.length?`<p class="prods"><span>전시 제품 · </span>${prods.slice(0,8).map(p=>esc(p[0])).join(" · ")}${prods.length>8?` <span>외 ${prods.length-8}개</span>`:""} · <a href="#products" data-product-query="${esc(x[3]||x[1])}">제품 사진·규격</a></p>`:""}
-    <div class="links">${hallMapFor(x,hall)}<a href="https://e.chtf.com/#/exhorDetails/${x[0]}" target="_blank" rel="noopener">공식 기업 페이지</a></div>
+    <div class="links">${hallMapFor(x,hall)}<a href="${boothHash(x,hall)}">기업 상세</a></div>
   </article>`;
 }
 function renderFind(){

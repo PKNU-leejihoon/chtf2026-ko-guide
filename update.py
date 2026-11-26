@@ -124,6 +124,22 @@ def fetch_exhibitors():
     return list(uniq.values())
 
 
+def clean_text(t):
+    t = html.unescape(re.sub(r"<br\s*/?>|</p>", "\n", t or "", flags=re.I))
+    t = re.sub(r"<[^>]+>", "", t).replace("\r", "")
+    return re.sub(r"\n{3,}", "\n\n", "\n".join(line.strip() for line in t.split("\n"))).strip()
+
+
+DETAIL_KEYS = ("companyProfile", "companyProfileEn", "typeProduct", "site", "tel", "email",
+               "companyAddress", "companyAddressEn", "supplyAndDemand", "pic", "logo")
+
+
+def fetch_detail(cid):
+    """기업 상세(소개·주력 제품·연락처). 담당자 이름·휴대폰은 개인정보라 받지 않는다."""
+    d = post_form("serveCatalogue/getMoreByIdFocusCata", {"serveCatalogueId": cid}).get("data") or {}
+    return {k: clean_text(d.get(k)) if isinstance(d.get(k), str) else "" for k in DETAIL_KEYS}
+
+
 def fetch_products(cid):
     rows, page = [], 1
     while True:
@@ -142,8 +158,10 @@ def fetch_products(cid):
             continue
         pic = (r.get("pic") or "").split(",", 1)[0].strip()
         spec = (r.get("productSpec") or "").strip()
+        pics = [u.strip() for u in (r.get("pic") or "").split(",") if u.strip().startswith("https://")]
         products.append([name, r["serveProductId"], (r.get("productNameEn") or "").strip(),
-                         pic if pic.startswith("https://") else "", spec if len(spec) <= 100 and "<" not in spec else ""])
+                         pic if pic.startswith("https://") else "", spec if len(spec) <= 100 and "<" not in spec else "",
+                         clean_text(r.get("productData")), pics[:8]])
     return products
 
 
@@ -155,7 +173,7 @@ def refresh_products(new, prods):
     refetch = [
         cid for cid, r in new.items()
         if str(cid) not in prods or len(prods[str(cid)]) != (r.get("productCount") or 0)
-        or any(isinstance(p, str) for p in prods[str(cid)])
+        or any(isinstance(p, str) or len(p) < 7 for p in prods[str(cid)])
     ]
     with cf.ThreadPoolExecutor(8) as pool:
         for cid, res in zip(refetch, pool.map(lambda c: _safe(fetch_products, c), refetch)):
@@ -335,6 +353,100 @@ def mt_translate(strings, cache):
     return cache
 
 
+# 번역기가 자주 틀리게 옮기는 업계 용어 (번역 결과에서 바로잡는다)
+KO_FIX = {"민첩한 손": "로봇 손", "손재주 있는 손": "로봇 손", "손재주가 있는 손": "로봇 손", "능숙한 손": "로봇 손",
+          "구현된 지능": "체화 지능", "구체화된 지능": "체화 지능", "구현 지능": "체화 지능"}
+
+
+def mt_long(texts, cache, save_to=None, budget=4000):
+    """소개문·제품 설명처럼 여러 줄인 긴 글. 줄바꿈을 살리고 여러 글을 한 요청(약 4,000자)에 묶어 보낸다.
+    번역이 안 된 글은 저장하지 않는다(반쪽 번역이나 중국어가 한국어 칸에 나가지 않도록)."""
+    todo = [t for t in dict.fromkeys(texts) if t and CJK.search(t) and t not in cache]
+    url = "https://translate.googleapis.com/translate_a/t?client=dict-chrome-ex&sl=zh-CN&tl=ko"
+
+    def call(qs):
+        body = urllib.parse.urlencode([("q", q) for q in qs]).encode()
+        req = urllib.request.Request(url, data=body, headers={
+            "User-Agent": "Mozilla/5.0", "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"})
+        for i in range(5):
+            try:
+                d = json.load(urllib.request.urlopen(req, timeout=60))
+                d = [x[0] if isinstance(x, list) else x for x in (d if isinstance(d, list) else [d])]
+                if len(d) != len(qs):
+                    raise ValueError("응답 개수 불일치")
+                return d
+            except urllib.error.HTTPError as e:
+                time.sleep(60 if e.code == 429 else 5 * (i + 1))
+            except Exception:  # noqa: BLE001
+                time.sleep(5 * (i + 1))
+        return None
+
+    def tidy(r):
+        r = re.sub("[\u200b-\u200d\ufeff]", "", r)
+        for k, v in KO_FIX.items():
+            r = r.replace(k, v)
+        return re.sub(r"[ \t]+\n", "\n", re.sub(r"[ \t]{2,}", " ", r)).strip()
+
+    # 긴 글은 문단 묶음으로 쪼개 보내고 다시 합친다
+    pieces = []  # (글 번호, 조각)
+    for n, t in enumerate(todo):
+        cur = ""
+        for para in t.split("\n"):
+            if cur and len(cur) + len(para) > budget:
+                pieces.append((n, cur))
+                cur = ""
+            cur += para + "\n"
+        pieces.append((n, cur))
+    out, failed, batch, size, sent = {}, set(), [], 0, 0
+
+    def flush():
+        nonlocal batch, size, sent
+        if not batch:
+            return
+        res = call([q.rstrip("\n") for _, q in batch])
+        for k, (n, _) in enumerate(batch):
+            if res is None or not res[k].strip():
+                failed.add(n)
+            else:
+                out.setdefault(n, []).append(res[k])
+        batch, size = [], 0
+        sent += 1
+        if save_to and sent % 20 == 0:
+            commit()
+            save(save_to, cache)
+        time.sleep(0.6)
+
+    def commit():
+        for n, parts in list(out.items()):
+            if n in failed:
+                continue
+            if sum(1 for m, _ in pieces if m == n) == len(parts):
+                r = tidy("\n".join(parts))
+                if r and len(CJK.findall(r)) < len(r) * .2:
+                    cache[todo[n]] = r
+                del out[n]
+
+    for n, q in pieces:
+        if size and size + len(q) > budget:
+            flush()
+        batch.append((n, q))
+        size += len(q)
+    flush()
+    commit()
+    if save_to:
+        save(save_to, cache)
+    return cache
+
+
+def long_texts(details, prods):
+    out = []
+    for d in details.values():
+        out += [d.get("companyProfile"), d.get("typeProduct"), d.get("supplyAndDemand")]
+    for rows in prods.values():
+        out += [r[5] for r in rows if isinstance(r, list) and len(r) > 5]
+    return [t for t in out if t]
+
+
 # ---------------------------------------------------------------- 빌드
 CATMAP = {
     "人工智能与机器人": "AI·로봇", "智能制造与自动化": "스마트 제조·자동화", "新材料": "신소재",
@@ -429,7 +541,7 @@ def build(now_iso):
             title = tr(p)
             plist.append([title, p])
             if isinstance(row, list):
-                catalog.append([row[1], r["serveCatalogueId"], title, p, *row[2:]])
+                catalog.append([row[1], r["serveCatalogueId"], title, p, *row[2:5]])
             if CJK.search(p) and p not in ko:
                 pending.add(p)
         X.append([r["serveCatalogueId"], name, en, cn, booth, hs, cs, 1 if kr else 0, plist, r.get("readNum") or 0])
@@ -478,6 +590,39 @@ def build(now_iso):
         "x": X,
     }
     save(os.path.join(SITE, "data.json"), out, compact=True)
+
+    # 기업 상세: 기업마다 site/co/<id>.json (상세 화면을 열 때만 받는다)
+    details = load(os.path.join(RAW, "details.json"), {})
+    mtl = load(os.path.join(I18N, "mt_long.json"), {})
+
+    def trl(s):
+        """번역이 아직 없으면 빈 문자열 → 화면은 '번역 준비 중'과 원문을 보여 준다(중국어를 한국어 칸에 넣지 않는다)."""
+        return (ko.get(s) or mtl.get(s) or "") if s and CJK.search(s) else (s or "")
+    co_dir = os.path.join(SITE, "co")
+    os.makedirs(co_dir, exist_ok=True)
+    keep = set()
+    for r in ex:
+        cid = str(r["serveCatalogueId"])
+        d = details.get(cid, {})
+        rows = [p for p in prods.get(cid, []) if isinstance(p, list)]
+        kw = d.get("supplyAndDemand") or ""
+        co = {
+            "p": trl(d.get("companyProfile")), "pc": d.get("companyProfile") or "", "pe": "" if d.get("companyProfile") else d.get("companyProfileEn") or "",
+            "t": trl(d.get("typeProduct")), "tc": d.get("typeProduct") or "",
+            "k": [w.strip() for w in re.split(r"[,，、;；]", trl(kw)) if w.strip()][:20],
+            "w": d.get("site") or "", "tel": d.get("tel") or "", "m": d.get("email") or "",
+            "a": d.get("companyAddress") or r.get("companyAddress") or "", "ae": d.get("companyAddressEn") or "",
+            "img": (d.get("pic") or r.get("pic") or "").split(",")[0], "logo": d.get("logo") or r.get("companyLogo") or "",
+            # [제품 id, 한글명, 원문명, 규격, 한글 설명, 원문 설명, 사진들]
+            "pr": [[p[1], tr(p[0]), p[0], p[4], trl(p[5]) if len(p) > 5 else "", p[5] if len(p) > 5 else "",
+                    p[6] if len(p) > 6 else ([p[3]] if p[3] else [])] for p in rows],
+        }
+        name = cid + ".json"
+        keep.add(name)
+        save(os.path.join(co_dir, name), co, compact=True)
+    for name in os.listdir(co_dir):
+        if name.endswith(".json") and name not in keep:
+            os.remove(os.path.join(co_dir, name))
     save(os.path.join(SITE, "products.json"), catalog, compact=True)
     save(os.path.join(I18N, "pending.json"), sorted(pending))
     return len(X), len(pending)
@@ -501,6 +646,16 @@ def collect():
     for cid, o in old.items():
         if cid not in new:
             items.append({"type": "removed", "id": cid, "name_cn": o.get("companyName"), "booth": clean_booth(o.get("boothNum"))})
+
+    # 기업 상세: 새 기업은 바로, 기존 기업은 오래된 순으로 매번 300곳씩 다시 받는다 (약 3시간이면 한 바퀴)
+    details = load(os.path.join(RAW, "details.json"), {})
+    stale = sorted(new, key=lambda c: (str(c) in details, details.get(str(c), {}).get("_at", "")))[:max(300, sum(str(c) not in details for c in new))]
+    with cf.ThreadPoolExecutor(8) as pool:
+        for cid, res in zip(stale, pool.map(lambda c: _safe(fetch_detail, c), stale)):
+            if res is not None:
+                res["_at"] = now
+                details[str(cid)] = res
+    save(os.path.join(RAW, "details.json"), {k: v for k, v in details.items() if int(k) in new})
 
     for cid in refresh_products(new, prods):
         if cid in old:
@@ -554,6 +709,8 @@ def collect():
     need = [s for s in strings if s and CJK.search(s) and s not in ko and s not in mt]
     if need:
         save(os.path.join(I18N, "mt_cache.json"), mt_translate(need, mt))
+    mtl_path = os.path.join(I18N, "mt_long.json")
+    mt_long(long_texts(details, prods), load(mtl_path, {}), save_to=mtl_path)
     return now, items
 
 
