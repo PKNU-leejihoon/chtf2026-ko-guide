@@ -173,6 +173,7 @@ footer{margin-bottom:calc(58px + env(safe-area-inset-bottom,0px))}
 .bt.hit text{fill:#3a0d0f}
 .bt.sel rect{fill:#e5484d;stroke:#a51d24;stroke-width:3;opacity:1}
 .bt.sel text,.bt.sel .bc{fill:#fff}
+#meDot{pointer-events:none}
 #meDot .acc{fill:rgba(37,99,235,.16);stroke:rgba(37,99,235,.55);stroke-width:1.5;vector-effect:non-scaling-stroke}
 #meDot .dot{fill:#2563eb;stroke:#fff;stroke-width:3;vector-effect:non-scaling-stroke}
 .map-ctrl{position:absolute;z-index:3;right:8px;bottom:8px;display:grid;gap:8px}
@@ -1157,7 +1158,8 @@ window.addEventListener("chtf:fix",e=>{
   }
   svg.addEventListener("pointerdown",e=>{
     if(e.pointerType!=="mouse"||!HM.vb)return;
-    svg.setPointerCapture(e.pointerId);drag=xy(e);moved=0;
+    const target=e.target.closest(".bt")||svg;
+    target.setPointerCapture(e.pointerId);drag=xy(e);moved=0;
   });
   svg.addEventListener("pointermove",e=>{
     if(e.pointerType!=="mouse"||!drag)return;
