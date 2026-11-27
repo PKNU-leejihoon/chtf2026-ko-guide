@@ -303,10 +303,29 @@ def nav_public(nav, exhibitors, tr=lambda s: s, names=None):
     names = names or {}
     companies = {str(x[0]): x for x in exhibitors}
     # 지도 부스에 기업 id가 빠져 있어도 중국어 회사명이 같으면 같은 기업으로 잇는다
-    by_cn = {}
+    norm = lambda t: re.sub(r"[\s（）()·\-]", "", t or "")
+    by_cn, by_code = {}, {}
     for x in exhibitors:
-        by_cn.setdefault(re.sub(r"[\s（）()]", "", x[3]), str(x[0]))
-    link = lambda cid, name: cid if cid in companies else by_cn.get(re.sub(r"[\s（）()]", "", name), cid)
+        by_cn.setdefault(norm(x[3]), str(x[0]))
+        for c in re.split(r"\s*[,，、/]\s*", (x[4] or "").upper()):
+            if c:
+                by_code.setdefault(c, set()).add(str(x[0]))
+
+    def link(cid, name, code):
+        """기업 id → 같은 중국어 회사명 → 같은 부스 번호이면서 회사명 핵심 글자가 60% 이상 겹치는 기업 순으로 잇는다."""
+        if cid in companies:
+            return cid
+        if norm(name) in by_cn:
+            return by_cn[norm(name)]
+        ids = by_code.get(code, ())
+        if len(ids) == 1:
+            other = next(iter(ids))
+            core = lambda t: set(re.sub(r"有限责任公司|股份有限公司|有限公司|股份|集团|公司|科技|技术|^.{2,3}?[省市]|"
+                                        r"深圳|北京|上海|广东|广州|东莞|苏州|杭州|浙江|江苏", "", norm(t)))
+            a, b = core(name), core(companies[other][3])
+            if a and b and len(a & b) >= .6 * min(len(a), len(b)):
+                return other
+        return cid
     result = []
     for area in nav:
         hall = nav_hall(area["name"])
@@ -326,7 +345,7 @@ def nav_public(nav, exhibitors, tr=lambda s: s, names=None):
                        "b": [[i, x, y, w, h, nav_code(code, hall), int(cid) if cid in companies else 0,
                               *(["", ""] if cid in companies else [names.get(name) or tr(name), name])]
                              for i, x, y, w, h, code, cid, name in
-                             [(*b[:6], link(b[6], b[7]), b[7]) for b in area.get("booths", [])]]})
+                             [(*b[:6], link(b[6], b[7], nav_code(b[5], hall)), b[7]) for b in area.get("booths", [])]]})
     return result
 
 
