@@ -51,7 +51,8 @@ jobs:
             echo "변경 없음"
           else
             git commit -m "data: 공식 데이터 갱신 $(TZ=Asia/Seoul date '+%m/%d %H:%M')"
-            git pull --rebase --autostash
+            # 같은 시각에 코드가 올라와 생성 파일이 충돌하면 이번 결과를 쓰고, 다음 실행이 최신 코드로 다시 빌드한다
+            git pull --rebase --autostash -X theirs
             git push
           fi
 
