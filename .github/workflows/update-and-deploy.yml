@@ -1,14 +1,15 @@
-name: Update data and deploy
+name: Deploy service closure notice
 
 on:
-  schedule:
-    - cron: "*/20 * * * *"   # 행사 기간(11/26–28): 20분마다. 행사 뒤에는 "17 */3 * * *"로 되돌린다
-  workflow_dispatch:
   push:
     branches: [main]
+    paths:
+      - site/index.html
+      - site/sw.js
+      - .github/workflows/update-and-deploy.yml
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -19,52 +20,17 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: 공식 데이터 수집·비교 (push 때는 건너뜀)
-        if: github.event_name != 'push'
-        id: collect
-        continue-on-error: true
-        run: python3 -I update.py
-
-      - name: 공식 안내 한글판 갱신 (push 때는 건너뜀)
-        if: github.event_name != 'push'
-        id: mirror
-        continue-on-error: true
+      - name: Prepare the closure page
         run: |
-          python3 -m pip install --quiet beautifulsoup4
-          python3 -I mirror/extract.py
-          python3 -I mirror/build.py
-
-      - name: 바뀐 데이터 커밋
-        if: github.event_name != 'push' && (steps.collect.outcome == 'success' || steps.mirror.outcome == 'success')
-        run: |
-          git config user.name "chtf-guide-bot"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add raw i18n site/data.json site/products.json site/co mirror/pages.json mirror/urls.json mirror/meetings.json mirror/pending.json site/p
-          if git diff --cached --quiet; then
-            echo "변경 없음"
-          else
-            git commit -m "data: 공식 데이터 갱신 $(TZ=Asia/Seoul date '+%m/%d %H:%M')"
-            # 같은 시각에 코드가 올라와 생성 파일이 충돌하면 이번 결과를 쓰고, 다음 실행이 최신 코드로 다시 빌드한다
-            git pull --rebase --autostash -X theirs
-            git push
-          fi
-
-      - name: 오프라인 자료 버전 지정
-        run: |
-          revision=$(sha256sum site/index.html site/data.json site/products.json site/location.css site/location.js site/venue.js site/sw.js | sha256sum | cut -d' ' -f1)
-          sed -i "s/BUILD_REVISION/$revision/" site/sw.js
-
+          mkdir pages
+          cp site/index.html site/sw.js pages/
+          cp site/index.html pages/404.html
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: pages
 
   deploy:
     needs: build
