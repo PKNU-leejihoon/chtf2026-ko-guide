@@ -78,6 +78,14 @@ footer{margin-bottom:calc(58px + env(safe-area-inset-bottom,0px))}
 .meet-fields,.meet-fields form{display:grid;gap:10px;justify-items:start;min-width:0}
 .meet-fields{margin-top:12px}.meet-fields p{margin:0}.meet-fields p:empty{display:none}
 .meet-fields input{min-width:0;max-width:100%;font:inherit;padding:7px}
+.meet-map{width:min(100%,36rem);margin:0;display:grid;gap:8px}
+.meet-map figcaption{display:grid;gap:4px}
+.meet-map svg{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+.meet-map .venue-outline{fill:var(--surface);stroke:var(--line);stroke-width:1.5}
+.meet-map .venue-hall{fill:var(--hall);stroke:var(--hall-strong);stroke-width:.8}
+.meet-map text{fill:var(--ink);font-family:inherit;font-size:11px;font-weight:700}
+.meet-map .map-legend .lg-drop{background:#c44320;border-radius:50%}
+.meet-map .map-legend .lg-direct{height:0;vertical-align:3px;border-top:2px dashed #c44320;border-radius:0}
 #meetingAlert{display:block;border-left:4px solid var(--pick);margin-bottom:12px}
 .location #hereLabel{font-weight:700}
 .hall-tools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
@@ -448,6 +456,7 @@ footer .wrap{padding-block:18px 28px;display:flex;flex-direction:column;gap:4px}
     <div class="card location">
       <p id="hereLabel" role="status">내 위치 · 홀 미지정</p>
       <a id="currentHallLink" hidden>내 홀 지도</a>
+      <a class="btn" href="#meeting">버스 하차 지점</a>
     </div>
     <article class="card map-viewer" id="hallMapViewer">
       <div class="section-h">
@@ -479,17 +488,30 @@ footer .wrap{padding-block:18px 28px;display:flex;flex-direction:column;gap:4px}
       <p class="note" id="mapFix" role="status"></p>
     </article>
     <details class="card" id="meeting">
-      <summary><b>버스 집합 장소</b> <span class="note" id="meetingSummary"></span></summary>
+      <summary><b>버스 하차 지점 · 집합</b> <span class="note" id="meetingSummary"></span></summary>
       <div class="meet-fields">
         <button class="btn" id="markMeeting">현재 위치를 하차 지점으로 기록</button>
         <p id="meetingPoint" class="note"></p>
-        <a id="meetingPin" target="_blank" rel="noopener noreferrer" hidden>하차 지점 지도 열기</a>
+        <figure class="meet-map" id="meetingMap" hidden>
+          <svg viewBox="0 0 360 270" role="img" aria-label="북쪽이 위인 버스 하차 지점 지도" aria-describedby="meetingDirection">
+            <defs><marker id="meetingArrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L7 3.5L0 7Z" fill="#c44320"/></marker></defs>
+            <g id="meetingMapLayer"></g>
+            <rect x="11" y="11" width="30" height="43" rx="5" fill="var(--surface)" stroke="var(--line)"/>
+            <path d="M20 31L26 18L32 31L26 28Z" fill="var(--ink)"/>
+            <text x="26" y="46" text-anchor="middle">북</text>
+          </svg>
+          <figcaption>
+            <p class="map-legend"><span><i class="lg-me"></i>내 위치</span><span><i class="lg-drop"></i>하차 지점</span><span id="meetingLineLegend"><i class="lg-direct"></i>직선 방향</span></p>
+            <p id="meetingDirection"></p>
+            <p class="note">현장 표지와 통제 안내를 따라 이동하세요.</p>
+            <p class="note">전시장 경계 © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a></p>
+          </figcaption>
+        </figure>
         <form id="meetingForm" hidden>
           <label for="meetTime">집합 시각 <small>(선전 시간)</small></label>
           <input id="meetTime" type="datetime-local" required>
           <button class="btn" type="submit">시각 설정</button>
         </form>
-        <p id="meetingWalk"></p>
         <div class="filters"><button class="btn" id="meetPush" hidden>집합 알림 켜기</button><button class="btn" id="meetClear" hidden>기록 지우기</button></div>
         <p class="note" id="meetStatus" role="status"></p>
       </div>

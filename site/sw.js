@@ -44,10 +44,11 @@ self.addEventListener("push", event => {
     let state = {};
     try { state = await (await (await caches.open("chtf26-meeting")).match("meeting-state")).json(); } catch {}
     const left = state.due ? Math.round((state.due - Date.now()) / 60000) : null;
-    const walk = Number.isFinite(state.dist) && state.dist !== null
-      ? `하차 지점까지 약 ${Math.round(state.dist / 10) * 10}m · 도보 약 ${Math.max(1, Math.round(state.dist * 1.3 / 75))}분` : "하차 지점을 확인하세요";
+    const distance = Number.isFinite(state.dist)
+      ? `하차 지점까지 직선거리 약 ${state.dist < 1000 ? Math.round(state.dist / 10) * 10 + "m" : (state.dist / 1000).toFixed(1) + "km"}`
+      : "하차 지점을 확인하세요";
     await self.registration.showNotification(left !== null && left > 0 ? `버스 집합 ${left}분 전` : "버스 집합 시간", {
-      body: walk, tag: "chtf26-meeting", renotify: true
+      body: distance, tag: "chtf26-meeting", renotify: true
     });
   })());
 });
