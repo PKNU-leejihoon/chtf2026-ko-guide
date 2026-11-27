@@ -302,6 +302,11 @@ def hall_geo(hall):
 def nav_public(nav, exhibitors, tr=lambda s: s, names=None):
     names = names or {}
     companies = {str(x[0]): x for x in exhibitors}
+    # 지도 부스에 기업 id가 빠져 있어도 중국어 회사명이 같으면 같은 기업으로 잇는다
+    by_cn = {}
+    for x in exhibitors:
+        by_cn.setdefault(re.sub(r"[\s（）()]", "", x[3]), str(x[0]))
+    link = lambda cid, name: cid if cid in companies else by_cn.get(re.sub(r"[\s（）()]", "", name), cid)
     result = []
     for area in nav:
         hall = nav_hall(area["name"])
@@ -320,7 +325,8 @@ def nav_public(nav, exhibitors, tr=lambda s: s, names=None):
                        # [부스 id, x, y, w, h, 부스 번호, 기업 id(없으면 0), 기업 id가 없을 때만 한글·중국어 이름]
                        "b": [[i, x, y, w, h, nav_code(code, hall), int(cid) if cid in companies else 0,
                               *(["", ""] if cid in companies else [names.get(name) or tr(name), name])]
-                             for i, x, y, w, h, code, cid, name in area.get("booths", [])]})
+                             for i, x, y, w, h, code, cid, name in
+                             [(*b[:6], link(b[6], b[7]), b[7]) for b in area.get("booths", [])]]})
     return result
 
 

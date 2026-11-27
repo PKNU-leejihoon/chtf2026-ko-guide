@@ -988,7 +988,7 @@ function fitLabel(name,code,w,h){
     }
     if(cur.trim())lines.push(cur.trim());
     // 영문 단어가 중간에서 끊기면 글자를 더 줄여 본다
-    if((lines.length+(code?.85:0))*f*1.15<=h*.9&&(!broke||f<7))break;
+    if((lines.length+(code?.85:0))*f*1.15<=h*.9&&(!broke||f<4))break;
   }
   const lh=f*1.15, total=lines.length*lh+(code?f*.85*1.15:0);
   let y=-total/2+f*.9, out="";
@@ -1066,7 +1066,7 @@ function selectBooth(i,focus=false){
   const list=items===null?'<p class="note">제품 불러오는 중…</p>'
     :items.length?`<div class="sheet-products">${items.slice(0,12).map(p=>`<a href="#booth/${x[0]}?hall=${area.hall}&p=${encodeURIComponent(p[0])}">${p[5]?.startsWith("https://")?`<img src="${esc(p[5])}" loading="lazy" referrerpolicy="no-referrer" alt="">`:'<span class="noimg"></span>'}<span>${esc(p[2])}</span></a>`).join("")}</div>`
     :x?.[8]?.length?`<ul>${x[8].slice(0,6).map(p=>`<li>${esc(p[0])}</li>`).join("")}</ul>`
-    :`<p class="note">${x?"등록된 제품이 없습니다":"등록된 기업 정보가 없습니다"}</p>`;
+    :`<p class="note">${x?"등록된 제품이 없습니다":"공식 참가 기업 목록에 상세 정보가 없는 부스입니다"}</p>`;
   sheet.hidden=false;
   sheet.scrollTop=0;
   sheet.innerHTML=`<button class="sheet-x" type="button" aria-label="닫기">✕</button>
